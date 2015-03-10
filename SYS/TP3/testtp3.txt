@@ -1,0 +1,56 @@
+;*------------------------------------------------------------------------
+;*MODULE             Test du module de gestion des chaines
+;*------------------------------------------------------------------------
+;*-------------------------------------------------------------------------
+;*OBJET
+;*    Programme interactif pour tester le module de gestion des chaines
+;*    Le programme boucle sur la saisie d'une commande qui peut etre :
+;*     l = lire une chaine
+;*     e = ecrire une chaine
+;*     c = concatener deux chaines
+;*     d = afficher toutes les chaines 
+;*     q = sortir du prog
+;*
+;*     La commande l :
+;*              -demande le numero de la chaine a lire (n)
+;*              -effectue lirech sur le descripteur numero n
+;*              -signale les debordements
+;*     La commande e :
+;*              -demande le numero de la chaine a afficher (n)
+;*              -effectue ecrirech sur le descripteur numero n
+;*     La commande c :
+;*              -demande le numero de la premiere chaine (n1)
+;*              -demande le numero de la seconde chaine  (n2)
+;*              -demande le numero de la chaine resultat (n3)
+;*              -effectue concatch sur les descripteurs de numeros
+;*               n1, n2 et n3 (resultat)
+;*              -signale les debordements
+;*
+;*     La commande d :
+;*              -affiche pour chaque descripteur son numero et la
+;*               chaine correspondante
+;*
+;*    On dispose de 10 descripteurs numerotes de 0 a 9
+;*    initialises a la chaine vide
+;*              
+;*
+;*POINTS d'ENTREE
+;*     Neant (programme principal)
+;*DONNEES EXPORTEES
+;*     Neant 
+;*REFERENCES EXTERNES
+;*     LIRENT   : lecture d'un entier
+;*     ECRIRENT : ecriture d'un entier
+;*
+;*     LIRECH   : lecture d'une chaine
+;*     ECRIRECH : ecriture d'une chaine
+;*     CONCATCH : concatenation de deux chaines
+;*--------------------------------------------------------------------------
+;*SOUS-PROGRAMMES :
+;*     LECT_NOCH : lecture d'un numero de chaine
+;*     TRAIT_L : traitement de la commande l
+;*     TRAIT_E : traitement de la commande e
+;*     TRAIT_C : traitement de la commande c
+;*     TRAIT_d : traitement de la commande d
+;*
+;*-------------------------------------------------------------------------
