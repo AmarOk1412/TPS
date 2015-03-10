@@ -1,0 +1,103 @@
+sqlite> .timer ON
+sqlite> SELECT * FROM demo WHERE code=53772617;
+Run Time: real 0.180 user 0.163989 sys 0.016495
+sqlite> SELECT * FROM demo WHERE code=53772617;
+Run Time: real 0.154 user 0.138851 sys 0.015927
+sqlite> SELECT * FROM demo WHERE code=53772617;
+Run Time: real 0.155 user 0.144589 sys 0.010053
+sqlite> SELECT * FROM demo WHERE code=53772617;
+Run Time: real 0.155 user 0.137897 sys 0.016995
+sqlite> SELECT * FROM demo WHERE code=53772617;
+Run Time: real 0.143 user 0.128074 sys 0.015011
+
+
+sqlite> SELECT * FROM demo WHERE code=53772618;
+Run Time: real 0.154 user 0.140167 sys 0.014017
+sqlite> SELECT * FROM demo WHERE code=53772618;
+Run Time: real 0.154 user 0.145539 sys 0.008946
+sqlite> SELECT * FROM demo WHERE code=53772618;
+Run Time: real 0.155 user 0.141584 sys 0.013055
+sqlite> SELECT * FROM demo WHERE code=53772618;
+Run Time: real 0.155 user 0.136823 sys 0.018091
+sqlite> SELECT * FROM demo WHERE code=53772618;
+Run Time: real 0.153 user 0.148153 sys 0.004956
+
+---
+sqlite> CREATE INDEX demoIDX ON demo(code);
+Run Time: real 1.706 user 1.228881 sys 0.075167
+sqlite> SELECT * FROM demo WHERE code=53772617;
+Run Time: real 0.001 user 0.000237 sys 0.000020
+sqlite> SELECT * FROM demo WHERE code=53772617;
+Run Time: real 0.000 user 0.000000 sys 0.000950
+sqlite> SELECT * FROM demo WHERE code=53772617;
+Run Time: real 0.000 user 0.000102 sys 0.000000
+sqlite> SELECT * FROM demo WHERE code=53772617;
+Run Time: real 0.000 user 0.000275 sys 0.000023
+sqlite> SELECT * FROM demo WHERE code=53772617;
+Run Time: real 0.000 user 0.000225 sys 0.000000
+sqlite> SELECT * FROM demo WHERE code=53772618;
+Run Time: real 0.000 user 0.000270 sys 0.000022
+sqlite> SELECT * FROM demo WHERE code=53772618;
+Run Time: real 0.000 user 0.000278 sys 0.000023
+sqlite> SELECT * FROM demo WHERE code=53772618;
+Run Time: real 0.000 user 0.000000 sys 0.000000
+sqlite> SELECT * FROM demo WHERE code=53772618;
+Run Time: real 0.000 user 0.000379 sys 0.000000
+sqlite> SELECT * FROM demo WHERE code=53772618;
+Run Time: real 0.000 user 0.000252 sys 0.000000
+
+C'est overkill
+Le temps d'éxécution de la requete est un peu raccourci
+C'est trop cheaté wess
+
+___________________________________________________
+
+
+2. requete imbriqué sans jointure
+4. requete imbriqué avec jointure
+1. Jointure avec From A,B
+3. Jointure naturelle
+
+sqlite> SELECT name FROM customer WHERE customerID IN (SELECT f.customerId FROM facture f
+   ...> WHERE amount>1000);
+4f68dad9-94c2-4b29-ba72-f0c8328ff02f
+26684a16-cfb2-41ac-8903-b68108a2cbe8
+3c1b58f8-c7f1-4845-abce-c1ff966071a7
+2a51bd22-67be-43b9-8053-7517e6a17bd0
+3cb93c01-a5c8-45c9-accc-2304efc94554
+5b8f337b-02d7-435b-90a5-93aec5989565
+1bbb0e9a-22f5-4169-aec4-8a6fcdb2b3f5
+Run Time: real 0.544 user 0.406504 sys 0.137333
+
+sqlite> SELECT name FROM customer WHERE customerId IN (SELECT c.customerId FROM customer c,
+   ...> facture f WHERE c.customerId=f.customerId AND f.amount>1000);
+4f68dad9-94c2-4b29-ba72-f0c8328ff02f
+26684a16-cfb2-41ac-8903-b68108a2cbe8
+3c1b58f8-c7f1-4845-abce-c1ff966071a7
+2a51bd22-67be-43b9-8053-7517e6a17bd0
+3cb93c01-a5c8-45c9-accc-2304efc94554
+5b8f337b-02d7-435b-90a5-93aec5989565
+1bbb0e9a-22f5-4169-aec4-8a6fcdb2b3f5
+Run Time: real 8.310 user 4.078912 sys 4.236850
+
+sqlite> SELECT c.name FROM customer c, facture f WHERE f.customerId=c.customerId AND f.amount>1000;
+4f68dad9-94c2-4b29-ba72-f0c8328ff02f
+26684a16-cfb2-41ac-8903-b68108a2cbe8
+3c1b58f8-c7f1-4845-abce-c1ff966071a7
+2a51bd22-67be-43b9-8053-7517e6a17bd0
+3cb93c01-a5c8-45c9-accc-2304efc94554
+5b8f337b-02d7-435b-90a5-93aec5989565
+1bbb0e9a-22f5-4169-aec4-8a6fcdb2b3f5
+Run Time: real 10.799 user 4.866767 sys 5.939434
+
+sqlite> SELECT name FROM (customer NATURAL JOIN facture) WHERE amount>1000;
+4f68dad9-94c2-4b29-ba72-f0c8328ff02f
+26684a16-cfb2-41ac-8903-b68108a2cbe8
+3c1b58f8-c7f1-4845-abce-c1ff966071a7
+2a51bd22-67be-43b9-8053-7517e6a17bd0
+3cb93c01-a5c8-45c9-accc-2304efc94554
+5b8f337b-02d7-435b-90a5-93aec5989565
+1bbb0e9a-22f5-4169-aec4-8a6fcdb2b3f5
+Run Time: real 10.910 user 4.913519 sys 6.004408
+
+

@@ -1,0 +1,61 @@
+sqlite TP2.db
+CREATE TABLE Client (numC INT PRIMARY KEY, nomC TEXT, tel TEXT, address TEXT);
+INSERT INTO Client VALUES(1, "Alpha CO", "1231231231", "3, rue du thabor, 35000 Rennes");
+INSERT INTO Client VALUES(2, "Beta CO", "3213213213", "43, place de la république, 35000 Rennes");
+INSERT INTO Client VALUES(3, "Gamma CO", "7417417417", "32, rue d'orléans, 44000 Nantes");
+CREATE TABLE Produit (numP INT PRIMARY KEY, nomP TEXT, prixVente FLOAT, prixAchat FLOAT, tva FLOAT);
+INSERT INTO Produit VALUES(1, "pomme", 1, 0.2, 1);
+INSERT INTO Produit VALUES(2, "tomate", 0.5, 0.1, 2);
+INSERT INTO Produit VALUES(3, "orange", 1, 0.2, 2);
+CREATE TABLE Facture (num INT PRIMARY KEY, numC INT REFERENCES Client, numP INT REFERENCES Produit, qte INT, date TEXT);
+INSERT INTO Facture VALUES(123, 1, 1, 2, "2.3.2013");
+INSERT INTO Facture VALUES(124, 2, 2, 22, "3.4.2013");
+INSERT INTO Facture VALUES(125, 3, 3, 13, "4.4.2013");
+SELECT * FROM Facture f, Client c, Produit p WHERE f.numC = c.numC AND f.numP = p.numP;
+123|1|1|2|2.3.2013|1|Alpha CO|1231231231|3, rue du thabor, 35000 Rennes|1|pomme|1|1
+124|2|2|22|3.4.2013|2|Beta CO|3213213213|43, place de la république, 35000 Rennes|2|tomate|0.5|2
+125|3|3|13|4.4.2013|3|Gamma CO|7417417417|32, rue d'orléans, 44000 Nantes|3|orange|1|2
+
+1/
+sqlite> SELECT nomC FROM Client WHERE address LIKE '%Rennes';
+Alpha CO
+Beta CO
+2/
+Les clients étant à part, le problème 2 est réglé
+
+
+3/ Prix total
+sqlite> SELECT prix*qte+tva FROM Facture f, Client c, Produit p WHERE f.numC = c.numC AND f.numP = p.numP;
+3
+13
+15
+
+4/ Plus gros client
+SELECT C.nomC FROM Facture f, Client c, Produit p WHERE f.numC = c.numC AND f.numP = p.numP AND prix*qte+tva = (SELECT MAX(prix*qte+tva) FROM Facture f, Client c, Produit p WHERE f.numC = c.numC AND f.numP = p.numP);
+Gamma CO
+
+
+5/ Le prix des oranges à baissé de 10%
+sqlite> SELECT * FROM Produit;
+1|pomme|1|0.2|1
+2|tomate|0.5|0.1|2
+3|orange|1|0.2|2
+sqlite> UPDATE Produit SET prixVente = prixVente -0.1*prixVente WHERE nomP = "orange";
+sqlite> SELECT * FROM Produit;
+1|pomme|1|0.2|1
+2|tomate|0.5|0.1|2
+3|orange|0.9|0.2|2
+
+6/ Rabais maximal par facture
+SELECT num, qte*prixVente - qte*prixAchat FROM Facture f, Produit p WHERE f.numP = p.numP;
+123|1.6
+124|8.8
+125|9.1
+
+7/ Le rabais maximum possible pour le client le plus important
+sqlite> SELECT c.nomC, num, qte*prixVente - qte*prixAchat FROM Facture f, Produit p, Client c WHERE f.numP = p.numP AND f.numC = c.numC AND f.numC = (SELECT c.numC FROM Facture f, Client c, Produit p WHERE f.numC = c.numC AND f.numP = p.numP AND prixVente*qte+tva = (SELECT MAX(prixVente*qte+tva) FROM Facture f, Client c, Produit p WHERE f.numC = c.numC AND f.numP = p.numP));
+Gamma CO|125|9.1
+
+8/
+INSERT INTO Produit VALUES(4, "Kiwi", 1, 0.2, 2);
+DELETE FROM Produit WHERE nomP = "Kiwi";
