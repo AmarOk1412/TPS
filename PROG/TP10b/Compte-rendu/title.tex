@@ -1,0 +1,57 @@
+\documentclass{article}
+%packages
+\usepackage{graphicx}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage[a4paper]{geometry}
+
+\begin{document}
+%title
+\begin{titlepage}
+	\vspace{-20px}
+	\begin{tabular}{l}
+		\textsc{Blin} S\'ebastien\\
+		\textsc{Collin} Pierre-Henri
+	\end{tabular}
+	\hfill \vspace{10px}\includegraphics[scale=0.1]{esir}\\
+	\vfill
+	\begin{center}
+		\Huge{\'Ecole sup\'erieure d'ing\'enieurs de Rennes}\\
+		\vspace{1cm}
+		\LARGE{1\`ere Ann\'ee}\\
+		\large{Parcours Informatique}\\
+		\vspace{0.5cm}\hrule\vspace{0.5cm}
+		\LARGE{\textbf{Compte-rendu}}\\
+		\Large{TP n°2 : Un vecteur g\'en\'erique}
+		\vspace{0.5cm}\hrule
+		\vfill
+		\vfill
+	\end{center}
+	\begin{flushleft}
+		\Large{Sous l'encadrement de~:}\\
+		\vspace{0.2cm}
+		\large{{Lamarche} Fabrice}
+	\end{flushleft}
+	\vfill
+\end{titlepage}
+
+\section{Une classe de vecteur g\'en\'erique}
+\subsection{Param\`etres g\'en\'eriques}
+Le seul param\`etre g\'en\'erique de la classe Vecteur est T *m\_vecteur; 
+\subsection{Contraintes associ\`ees}
+Ce type T doit red\'efinir plusieurs op\'erateurs notamment l'op\'erateur + qui est utilis\'e (ou encore l'op\'erateur *).
+\subsection{Addition de 2 std::string}
+L'addition de 2 std::string signifie une concat\'enation.
+\section{Des fonctions g\'en\'eriques}
+\subsection{Nouvelles contraintes}
+Le type T doit maintenant red\'efinir les op\'erateurs << et >>
+\subsection{Compilateur et g\'en\'ericit\'e}
+Une multiplication scalaire de std::string ne veut rien dire. Il y a une erreur car l'operateur * n'est pas d\'efini pour le type std::string.\\
+Le compilateur compile chaque fonction et chaque classe g\'en\'erique pour chaque type utilis\'e (et effectue les v\'erifications \`a chaque fois).
+\section{Les types}
+\subsection{Multiplication d'un int et d'un float}
+Pour le moment on ne peut faire des multiplication que d'un type (au-dessus de l'operator* il y a template<class T>). Pour r\'egler ce probl\`eme i suffit de mettre 2 classes dans le template.
+\subsection{a*b ; b*a}
+Dans notre multiplication, notre r\'esultat est cast\'e dans le type de la premi\`ere op\'erande (c'est-\`a-dire a*b sera du type de a, b*a sera du type b)
+\end{document}

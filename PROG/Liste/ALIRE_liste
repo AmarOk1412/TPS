@@ -1,0 +1,33 @@
+TP Liste
+------------------------------
+
+cyclicNode.h	: donné ; Noeud cyclique pour liste circulaire chaînée
+clientListe.cc	: donné ; programme client exemple
+donnees_liste	: donné ; données pour le programme client
+resu_liste 	: donné ; exemple de résultat
+
+Utilisation des fichiers de données : 
+------------------------------------
+
+Dans une fenêtre terminal, exécuter le programme client en redirigeant
+l'entrée vers le fichier de données ;
+
+par exemple, si le programme liste est dans le sous-répertoire Debug du projet
+et si le fichier donnees_liste est dans le répertoire du projet, il faudra
+taper la commande suivante depuis le répertoire du projet :
+
+Debug/liste < donnees_liste
+
+on peut même obtenir les résultats dans un fichier en redirigeant la sortie :
+
+Debug/liste < donnees_liste > resultats
+
+
+Fuites mémoire
+==============
+
+Pour tester les fuites mémoires avec valgrind : compiler *sans* le fichier memory.cxx
+
+depuis le répertoire du projet la commande est : 
+
+valgrind --tool=memcheck --leak-check=full Debug/liste < donnees_liste

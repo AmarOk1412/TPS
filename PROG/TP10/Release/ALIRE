@@ -1,0 +1,58 @@
+Utilisation google_test avec eclipse
+------------------------------------
+
+1. Créer un 2ème projet (test_vecteur)
+
+2. Ouvrir un terminal
+
+3. Se "déplacer" dans le répertoire du projet de test
+
+   cd ~/repertoire/projet/de/test
+
+4. Y désarchiver le fichier test_vecteur.tar
+
+   tar -xf  /share/esir1/prog/10_vecteur/test_vecteur.tar
+
+5. Faire des liens symboliques vers les fichiers sources du
+   projet vecteur
+
+   ln -s ~/repertoire/projet/vecteur/vecteur.cpp .
+   ln -s ~/repertoire/projet/vecteur/vecteur.h   .
+
+6. La suite de la configuration est à faire sous eclipse... il faut lui
+   indiquer où trouver les fichiers à inclure pour la compilation ainsi que
+   les bibliothèques pour l'édition de liens :
+
+Dans les propriétés du projet, C/C++ Build, Settings :
+
+ . rubrique C++ Compiler, includes (paths) ajoutez :
+	/share/esir1/prog/google_test/include
+
+ . rubrique C++ Linker, libraries, partie du haut ajoutez :
+	pthread
+
+ . rubrique C++ Linker, Miscellaneous, Other objects ajoutez : 
+      /share/esir1/prog/google_test/lib/.libs/libgtest.a
+
+7. Contruire le projet comme un projet normal ; on peut ensuite exécuter le
+   test directement depuis eclipse.
+
+Remarques : 
+
+ - Dans le fichier fourni, les fonctions de test sont toutes désactivées.
+   Pour activer une fonction de test, il suffit de supprimer DISABLED_
+   de son nom.
+
+ - Pour exécuter le test avec le fichier de données fourni (donnees_test), il
+   faut le faire dans u terminal, depuis le répertoire du projet de test ; ce
+   fichier contient des données qui servent à tester la fonction lireVecteur :
+
+   - si votre prog de test est dans le sous-répertoire Debug :
+
+     Debug/test_vecteur < donnees_test 
+
+   - si votre prog de test est dans le sous-répertoire Release :
+
+     Release/test_vecteur < donnees_test 
+
+Documentation google_test : https://code.google.com/p/googletest/wiki/Documentation

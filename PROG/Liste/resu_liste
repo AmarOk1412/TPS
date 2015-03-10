@@ -1,0 +1,107 @@
+Test Partie 1
+=============
+
+Liste de réels   : <5.5:4.4:3.3:2.2:1.1:1.1:2.2:3.3:4.4:5.5:>
+Liste de chaînes : <FFFFF:EEEE:DDD:CC:B:B:CC:DDD:EEEE:FFFFF:>
+
+Test Partie 2 (const_itérateur)
+===============================
+
+Liste            : <FFFFF EEEE DDD CC B B CC DDD EEEE FFFFF >
+Test Opérateur ->: <5 : 4 : 3 : 2 : 1 : 1 : 2 : 3 : 4 : 5 : >
+
+Test Partie 2.5  (itérateur)
+============================
+
+Liste            : <5.5 4.4 3.3 2.2 1.1 1.1 2.2 3.3 4.4 5.5 >
+Liste modifiée   : <30.25 19.36 10.89 4.84 1.21 1.21 4.84 10.89 19.36 30.25 >
+
+Test Partie 3 (find, insert, erase)
+===================================
+
+Vous allez devoir saisir une suite de nombres, terminée par une valeur finale.
+Saisissez d'abord la valeur finale : 
+Saisissez chaque nombre (x) de la suite : 
+  - si x > 0, x sera cherché dans la liste :
+     - si x est présent, x sera ajouté en tête de liste
+     - si x est absent,  x sera ajouté en fin  de liste
+  - si x < 0, -x sera cherché dans la liste :
+     - si -x est présent, il sera supprimé de la liste
+     - si -x est absent,  x  sera ajouté en tête de liste
+La saisie du nombre 0 vide la liste de son contenu
+1 est absent	<1 >
+2 est absent	<1 2 >
+-3 est absent	<-3 1 2 >
+4 est absent	<-3 1 2 4 >
+-5 est absent	<-5 -3 1 2 4 >
+1 est présent	<-5 -3 2 4 >
+1 est absent	<-5 -3 2 4 1 >
+1 est présent	<-5 -3 2 4 >
+1 est absent	<-5 -3 2 4 1 >
+4 est présent	<-5 -3 2 1 >
+2 est présent	<-5 -3 1 >
+5 est absent	<-5 -3 1 5 >
+1 est présent	<-5 -3 5 >
+1 est absent	<-5 -3 5 1 >
+2 est absent	<-5 -3 5 1 2 >
+3 est absent	<-5 -3 5 1 2 3 >
+4 est absent	<-5 -3 5 1 2 3 4 >
+5 est présent	<5 -5 -3 5 1 2 3 4 >
+0 on détruit tout <>
+10 est absent	<10 >
+2 est absent	<10 2 >
+13 est absent	<10 2 13 >
+14 est absent	<10 2 13 14 >
+5 est absent	<10 2 13 14 5 >
+5 est présent	<5 10 2 13 14 5 >
+
+Liste initiale
+<5 10 2 13 14 5 >
+
+Liste triée
+<2 5 5 10 13 14 >
+
+ajout de quelques éléments
+<1515 1984 2 5 5 10 13 14 -314.159 >
+
+Test Partie 4 (cdc, opérateurs =, + et <<)
+==========================================
+
+Liste initiale		: <1515 1984 2 5 5 10 13 14 -314.159 >
+Liste triée		: <-314.159 2 5 5 10 13 14 1515 1984 >
+Copie de la précédente	: <-314.159 2 5 5 10 13 14 1515 1984 >
+
+Saisir deux valeurs	: 
+Liste initiale modifiée	: <-9999 1515 1984 2 5 5 10 13 14 -314.159 -9999 >
+Liste triée		: <-314.159 2 5 5 10 13 14 1515 1984 >
+Copie triée modifiée	: <777 -314.159 2 5 5 10 13 14 1515 1984 777 >
+
+Concaténation (listeTriee + listeInitiale + copie)
+<-314.159 2 5 5 10 13 14 1515 1984 >
+ + <-9999 1515 1984 2 5 5 10 13 14 -314.159 -9999 >
+ + <777 -314.159 2 5 5 10 13 14 1515 1984 777 >
+ = <-314.159 2 5 5 10 13 14 1515 1984 -9999 1515 1984 2 5 5 10 13 14 -314.159 -9999 777 -314.159 2 5 5 10 13 14 1515 1984 777 >
+
+remplacer la première liste par la liste concaténée
+<-314.159 2 5 5 10 13 14 1515 1984 -9999 1515 1984 2 5 5 10 13 14 -314.159 -9999 777 -314.159 2 5 5 10 13 14 1515 1984 777 >
+
+Test Partie 4 (cdc, opérateurs =, + et <<)
+==========================================
+
+Liste initiale		: <FFFFF EEEE DDD CC B B CC DDD EEEE FFFFF >
+Liste triée		: <B B CC CC DDD DDD EEEE EEEE FFFFF FFFFF >
+Copie de la précédente	: <B B CC CC DDD DDD EEEE EEEE FFFFF FFFFF >
+
+Saisir deux valeurs	: 
+Liste initiale modifiée	: <Zorro FFFFF EEEE DDD CC B B CC DDD EEEE FFFFF Zorro >
+Liste triée		: <B B CC CC DDD DDD EEEE EEEE FFFFF FFFFF >
+Copie triée modifiée	: <Swing B B CC CC DDD DDD EEEE EEEE FFFFF FFFFF Swing >
+
+Concaténation (listeTriee + listeInitiale + copie)
+<B B CC CC DDD DDD EEEE EEEE FFFFF FFFFF >
+ + <Zorro FFFFF EEEE DDD CC B B CC DDD EEEE FFFFF Zorro >
+ + <Swing B B CC CC DDD DDD EEEE EEEE FFFFF FFFFF Swing >
+ = <B B CC CC DDD DDD EEEE EEEE FFFFF FFFFF Zorro FFFFF EEEE DDD CC B B CC DDD EEEE FFFFF Zorro Swing B B CC CC DDD DDD EEEE EEEE FFFFF FFFFF Swing >
+
+remplacer la première liste par la liste concaténée
+<B B CC CC DDD DDD EEEE EEEE FFFFF FFFFF Zorro FFFFF EEEE DDD CC B B CC DDD EEEE FFFFF Zorro Swing B B CC CC DDD DDD EEEE EEEE FFFFF FFFFF Swing >

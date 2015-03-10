@@ -1,0 +1,29 @@
+Test unitaire du TP liste
+
+ - main_test.cc : programme principal qui exécute les tests
+
+ - test_common.hh : fonctionnalités communes à tous les tests ; inclus dans les
+		   fichiers sources suivants qui testent chacun une partie du TP
+
+ - test_unitaire_p1_base.cc
+ - test_unitaire_p2_iterator.cc
+ - test_unitaire_p3a_find_insert_erase.cc
+ - test_unitaire_p3b_recherche_copie.cc
+ - test_unitaire_p4.cc
+
+Pour utiliser ces tests, il faut : 
+
+- mettre les deux fonctions chercherTri et copierTri de la partie 3 dans un
+  fichier nommé copier.h qui doit être inclus dans le fichier
+  test_unitaire_p3b_recherche_copie.cc
+
+- faire un lien symbolique vers les fichiers suivants du projet Liste : 
+  - cyclicNode.h
+  - liste.hh
+  - copier.h
+ 
+- activer chaque test en supprimant DISABLED_
+
+NB : pour tester le dernier opérateur (operator <<, voir test_unitaire_p4.cc),
+     il faut adapter la fonction de test pour qu'elle corresponde au format de
+     sortie de l'opérateur programmé.

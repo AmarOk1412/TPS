@@ -1,0 +1,89 @@
+==3702== Memcheck, a memory error detector
+==3702== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==3702== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==3702== Command: ./test_vecteur_valgrind
+==3702== 
+==3703== 
+==3703== HEAP SUMMARY:
+==3703==     in use at exit: 15,206 bytes in 240 blocks
+==3703==   total heap usage: 560 allocs, 320 frees, 67,976 bytes allocated
+==3703== 
+==3703== LEAK SUMMARY:
+==3703==    definitely lost: 0 bytes in 0 blocks
+==3703==    indirectly lost: 0 bytes in 0 blocks
+==3703==      possibly lost: 2,863 bytes in 59 blocks
+==3703==    still reachable: 12,343 bytes in 181 blocks
+==3703==         suppressed: 0 bytes in 0 blocks
+==3703== Rerun with --leak-check=full to see details of leaked memory
+==3703== 
+==3703== For counts of detected and suppressed errors, rerun with: -v
+==3703== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3708== 
+==3708== HEAP SUMMARY:
+==3708==     in use at exit: 15,873 bytes in 247 blocks
+==3708==   total heap usage: 783 allocs, 536 frees, 96,130 bytes allocated
+==3708== 
+==3708== LEAK SUMMARY:
+==3708==    definitely lost: 0 bytes in 0 blocks
+==3708==    indirectly lost: 0 bytes in 0 blocks
+==3708==      possibly lost: 3,391 bytes in 62 blocks
+==3708==    still reachable: 12,482 bytes in 185 blocks
+==3708==         suppressed: 0 bytes in 0 blocks
+==3708== Rerun with --leak-check=full to see details of leaked memory
+==3708== 
+==3708== For counts of detected and suppressed errors, rerun with: -v
+==3708== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3710== 
+==3710== HEAP SUMMARY:
+==3710==     in use at exit: 16,433 bytes in 251 blocks
+==3710==   total heap usage: 1,025 allocs, 774 frees, 127,553 bytes allocated
+==3710== 
+==3710== LEAK SUMMARY:
+==3710==    definitely lost: 0 bytes in 0 blocks
+==3710==    indirectly lost: 0 bytes in 0 blocks
+==3710==      possibly lost: 3,910 bytes in 65 blocks
+==3710==    still reachable: 12,523 bytes in 186 blocks
+==3710==         suppressed: 0 bytes in 0 blocks
+==3710== Rerun with --leak-check=full to see details of leaked memory
+==3710== 
+==3710== For counts of detected and suppressed errors, rerun with: -v
+==3710== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3712== 
+==3712== HEAP SUMMARY:
+==3712==     in use at exit: 17,035 bytes in 255 blocks
+==3712==   total heap usage: 1,398 allocs, 1,143 frees, 172,439 bytes allocated
+==3712== 
+==3712== LEAK SUMMARY:
+==3712==    definitely lost: 0 bytes in 0 blocks
+==3712==    indirectly lost: 0 bytes in 0 blocks
+==3712==      possibly lost: 4,448 bytes in 68 blocks
+==3712==    still reachable: 12,587 bytes in 187 blocks
+==3712==         suppressed: 0 bytes in 0 blocks
+==3712== Rerun with --leak-check=full to see details of leaked memory
+==3712== 
+==3712== For counts of detected and suppressed errors, rerun with: -v
+==3712== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3714== 
+==3714== HEAP SUMMARY:
+==3714==     in use at exit: 17,575 bytes in 259 blocks
+==3714==   total heap usage: 1,619 allocs, 1,360 frees, 200,477 bytes allocated
+==3714== 
+==3714== LEAK SUMMARY:
+==3714==    definitely lost: 0 bytes in 0 blocks
+==3714==    indirectly lost: 0 bytes in 0 blocks
+==3714==      possibly lost: 4,953 bytes in 71 blocks
+==3714==    still reachable: 12,622 bytes in 188 blocks
+==3714==         suppressed: 0 bytes in 0 blocks
+==3714== Rerun with --leak-check=full to see details of leaked memory
+==3714== 
+==3714== For counts of detected and suppressed errors, rerun with: -v
+==3714== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3702== 
+==3702== HEAP SUMMARY:
+==3702==     in use at exit: 0 bytes in 0 blocks
+==3702==   total heap usage: 1,698 allocs, 1,698 frees, 217,530 bytes allocated
+==3702== 
+==3702== All heap blocks were freed -- no leaks are possible
+==3702== 
+==3702== For counts of detected and suppressed errors, rerun with: -v
+==3702== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

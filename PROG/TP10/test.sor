@@ -1,0 +1,139 @@
+[==========] Running 21 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 21 tests from TestVecteur
+[ RUN      ] TestVecteur.assertConstructeur
+[       OK ] TestVecteur.assertConstructeur (200 ms)
+[ RUN      ] TestVecteur.assertGet
+Constructeur vecteur
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.assertGet (24 ms)
+[ RUN      ] TestVecteur.q1Constructeur2Param
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q1Constructeur2Param (0 ms)
+[ RUN      ] TestVecteur.q1Constructeur1Param
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q1Constructeur1Param (0 ms)
+[ RUN      ] TestVecteur.q1Constructeur0Param
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q1Constructeur0Param (0 ms)
+[ RUN      ] TestVecteur.assertSet
+Constructeur vecteur
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.assertSet (17 ms)
+[ RUN      ] TestVecteur.q1Set
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q1Set (0 ms)
+[ RUN      ] TestVecteur.q2Lirevecteur
+Entrez un nombre de dimensions
+Constructeur vecteur
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+Entrez un nombre
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q2Lirevecteur (0 ms)
+[ RUN      ] TestVecteur.q4Add
+Constructeur vecteur
+Constructeur vecteur
+Constructeur vecteur
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q4Add (0 ms)
+[ RUN      ] TestVecteur.q6ConstructeurDeCopie
+Constructeur vecteur
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q6ConstructeurDeCopie (0 ms)
+[ RUN      ] TestVecteur.q6ConstructeurDeCopieModif
+Constructeur vecteur
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q6ConstructeurDeCopieModif (0 ms)
+[ RUN      ] TestVecteur.q7OperateurAffectationTailleDiminue
+Constructeur vecteur
+Constructeur vecteur
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q7OperateurAffectationTailleDiminue (0 ms)
+[ RUN      ] TestVecteur.q7OperateurAffectationTailleAugmente
+Constructeur vecteur
+Constructeur vecteur
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q7OperateurAffectationTailleAugmente (0 ms)
+[ RUN      ] TestVecteur.q8OperateurAdd2vecteurs
+Constructeur vecteur
+Constructeur vecteur
+Constructeur vecteur
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q8OperateurAdd2vecteurs (0 ms)
+[ RUN      ] TestVecteur.q8OperateurAdd3vecteurs
+Constructeur vecteur
+Constructeur vecteur
+Constructeur vecteur
+Constructeur vecteur
+DESTRUCTION VECTEUR
+Constructeur vecteur
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q8OperateurAdd3vecteurs (0 ms)
+[ RUN      ] TestVecteur.q9ProduitScalaire
+Constructeur vecteur
+Constructeur vecteur
+DESTRUCTION VECTEUR
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q9ProduitScalaire (0 ms)
+[ RUN      ] TestVecteur.q10OperateurSaisie
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q10OperateurSaisie (0 ms)
+[ RUN      ] TestVecteur.q11AssertOperateurIndexationConst
+Constructeur vecteur
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q11AssertOperateurIndexationConst (16 ms)
+[ RUN      ] TestVecteur.q11AssertOperateurIndexation
+Constructeur vecteur
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q11AssertOperateurIndexation (14 ms)
+[ RUN      ] TestVecteur.q11OperateurIndexationConsultation
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q11OperateurIndexationConsultation (0 ms)
+[ RUN      ] TestVecteur.q11OperateurIndexationModification
+Constructeur vecteur
+DESTRUCTION VECTEUR
+[       OK ] TestVecteur.q11OperateurIndexationModification (0 ms)
+[----------] 21 tests from TestVecteur (271 ms total)
+
+[----------] Global test environment tear-down
+[==========] 21 tests from 1 test case ran. (271 ms total)
+[  PASSED  ] 21 tests.
