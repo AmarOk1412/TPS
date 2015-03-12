@@ -6,6 +6,7 @@
 #include <cassert>
 #include <iostream>
 
+//class Liste
 template<class T>
 class Liste
 { 
@@ -15,12 +16,18 @@ class Liste
   ~Liste();
   Liste(const Liste<T> &l);
   
+  //class const_iterator
   class const_iterator 
   {
     friend class Liste;
     public:    
     ~const_iterator() { }
     
+    /** opérator ++ préfixé
+    *	positionne l'itérateur sur l'élément suivant
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return nouvelle valeur de l'itérateur
+    */
     const_iterator& operator++()
     {
       assert(*this != _l->end());
@@ -28,11 +35,21 @@ class Liste
       return *this;
     }
     
+    /** opérator ++ postfixé
+    *	positionne l'itérateur sur l'élément suivant
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return nouvelle valeur de l'itérateur
+    */
     const_iterator& operator++(int)
     {
       return ++*this;
     }
     
+    /** opérator -- préfixé
+    *	positionne l'itérateur sur l'élément précédent
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return nouvelle valeur de l'itérateur
+    */
     const_iterator & operator--()
     {
       assert(*this != _l->begin());
@@ -40,26 +57,47 @@ class Liste
       return *this;
     }
     
+    /** opérator -- postfixé
+    *	positionne l'itérateur sur l'élément précédent
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return nouvelle valeur de l'itérateur
+    */
     const_iterator & operator--(int)
     {
       return --*this;
     }
         
+    /** opérator d'indirection * (accès NON modifiable)
+    *	@pre l'itérateur désigne une position valide (!= end())
+    *	@return valeur de l'élément désigné par l'itérateur
+    */    
     const T& operator*()
     {      
     	return (*_c).data();
     }
     
+    /** opérator d'indirection -> (accès NON modifiable)
+    *	@pre l'itérateur désigne une position valide(!= end())
+    *	@return adresse de l'élément désigné par l'itérateur
+    */  
     const T* operator->()
     {
     	return &_c->data();
     }
     
+    /** opérator de comparaison ==
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return true si les deux itérateurs ont la même position, false sinon.
+    */  
 		bool operator==(const const_iterator &i)
 		{
 			return i._l==_l && i._c==_c;
 		}
 		
+		/** opérator de comparaison !=
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return true si les deux itérateurs ont des positions différentes, false sinon
+    */
 		bool operator!=(const const_iterator &i)
 		{
 			return i._l!=_l || i._c!=_c;
@@ -77,12 +115,18 @@ class Liste
     Chainon* _c;   
   };
   
+  //class iterator
   class iterator 
   {
     friend class Liste;
     public:    
     ~iterator() { }
     
+    /** opérator ++ préfixé
+    *	positionne l'itérateur sur l'élément suivant
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return nouvelle valeur de l'itérateur
+    */
     iterator& operator++()
     {
       assert(*this != _l->end());
@@ -90,43 +134,77 @@ class Liste
       return *this;
     }
     
+  	/** opérator ++ postfixé
+    *	positionne l'itérateur sur l'élément suivant
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return nouvelle valeur de l'itérateur
+    */
     iterator& operator++(int)
     {
       return ++(*this);
     }
     
+    /** opérator -- préfixé
+    *	positionne l'itérateur sur l'élément précédent
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return nouvelle valeur de l'itérateur
+    */
     iterator & operator--()
     {
       assert(*this != _l->begin());
     	_c = _c->previous();
       return *this;
     }
-      
+     
+    /** opérator -- postfixé
+    *	positionne l'itérateur sur l'élément précédent
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return nouvelle valeur de l'itérateur
+    */ 
     iterator & operator--(int)
     {
       return --(*this);
     }  
     
+    /** opérator d'indirection * 
+    *	@pre l'itérateur désigne une position valide (!= end())
+    *	@return valeur de l'élément désigné par l'itérateur
+    */
     T& operator*()
     {      
     	return (*_c).data();
     }
     
+    /** opérator d'indirection ->
+    *	@pre l'itérateur désigne une position valide(!= end())
+    *	@return adresse de l'élément désigné par l'itérateur
+    */  
     T* operator->()
     {
     	return &_c->data();
     }
     
+    /** opérator de comparaison ==
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return true si les deux itérateurs ont la même position, false sinon.
+    */ 
 		bool operator==(const iterator &i)
 		{
 			return i._l==_l && i._c==_c;
 		}
 		
+		/** opérator de comparaison !=
+    *	@pre l'itérateur désigne une position valide dans la liste (!= end())
+    *	@return true si les deux itérateurs ont des positions différentes, false sinon
+    */
 		bool operator!=(const iterator &i)
 		{
 			return i._l!=_l || i._c!=_c;
 		}
 		
+		/** Récupérer un chainon
+    *	@return l'adresse du chainon désigné par l'itérateur
+    */
 		Chainon* getC()
 		{
 		  return _c;
@@ -174,6 +252,12 @@ class Liste
    return iterator(this, _sentinelle);
 	}
 	
+	/** Chercher un élément dans la séquence [premier, dernier]
+	*	@param premier : début de la séquence
+	*	@param dernier : fin de séquence
+	* @param x       : valeur cherchée
+	* @return itérateur qui désigne x s'il est trouvé ; cet itérateur est égal à dernier si x est absent
+	*/
 	iterator insert(iterator position, const T & x)
 	{
 	  Chainon* ch = new Chainon(x);
@@ -183,6 +267,11 @@ class Liste
 		return (position--);
 	}
 	
+	/** Supprimer l'élément désigné par l'itérateur passé en paramètre
+	*	@param position : itérateur qui désigne l'élément à supprimer
+	* @pre l'élément à supprimer existe
+	* @return itérateur qui désigne l'élément qui suit l'élément supprimé
+	*/
 	iterator erase(iterator position)
 	{
 		assert(position!=end());
@@ -325,9 +414,6 @@ T& Liste<T>::back()
 template <class T> 
 void Liste<T>::push_front(const T& el)
 {
-//	1. Créer un chainon
-//	2. Changer le next de la sentinelle et le previous du chainon
-//	3. Changer le previous du deuxieme et le next du chainon
 	Chainon* ch = new Chainon(el);
 	_sentinelle->insertAfter(ch);
 }
@@ -351,6 +437,12 @@ void Liste<T>::pop_back()
 	delete _sentinelle->previous();
 }
 
+/** Chercher un élément dans la séquence [premier, dernier]
+*	@param premier : début de la séquence
+*	@param dernier : fin de séquence
+* @param x       : valeur cherchée
+* @return itérateur qui désigne x s'il est trouvé ; cet itérateur est égal à dernier si x est absent
+*/
 template<class T>
 typename Liste<T>::iterator
 find(typename Liste<T>::iterator premier, typename Liste<T>::iterator dernier, const T& x)
