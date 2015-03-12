@@ -279,7 +279,8 @@ Liste<T>& Liste<T>::operator+(const Liste<T> &l) const
 template <class T>
 bool Liste<T>::empty() const
 {
-  return _sentinelle->previous() == _sentinelle && _sentinelle->next() == _sentinelle;
+  return _sentinelle->previous() == _sentinelle 
+  			 && _sentinelle->next() == _sentinelle;
 }
 
 template <class T>
@@ -325,9 +326,6 @@ T& Liste<T>::back()
 template <class T> 
 void Liste<T>::push_front(const T& el)
 {
-//	1. Créer un chainon
-//	2. Changer le next de la sentinelle et le previous du chainon
-//	3. Changer le previous du deuxieme et le next du chainon
 	Chainon* ch = new Chainon(el);
 	_sentinelle->insertAfter(ch);
 }
