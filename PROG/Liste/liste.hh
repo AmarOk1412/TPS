@@ -368,7 +368,8 @@ Liste<T>& Liste<T>::operator+(const Liste<T> &l) const
 template <class T>
 bool Liste<T>::empty() const
 {
-  return _sentinelle->previous() == _sentinelle && _sentinelle->next() == _sentinelle;
+  return _sentinelle->previous() == _sentinelle 
+  			 && _sentinelle->next() == _sentinelle;
 }
 
 template <class T>
