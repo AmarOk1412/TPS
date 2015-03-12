@@ -235,28 +235,38 @@ class Liste
   Liste<T>& operator=(const Liste<T> &l);
   Liste<T>& operator+(const Liste<T> &l) const;
 
+	/** Retourner un itérateur qui désigne le premier élément de la liste
+	*/
   const_iterator begin() const
   {
    return const_iterator(this, _sentinelle->next());
 	}
+	
+	/** Retourner un itérateur qui désigne la sentinelle de la liste
+	*/
   const_iterator end() const
   {
    return const_iterator(this, _sentinelle);
 	}
+	
+	/** Retourner un itérateur qui désigne le premier élément de la liste
+	*/
 	iterator begin() 
   {
    return iterator(this, _sentinelle->next());
 	}
+	
+	/** Retourner un itérateur qui désigne la sentinelle de la liste
+	*/
   iterator end() 
   {
    return iterator(this, _sentinelle);
 	}
 	
-	/** Chercher un élément dans la séquence [premier, dernier]
-	*	@param premier : début de la séquence
-	*	@param dernier : fin de séquence
-	* @param x       : valeur cherchée
-	* @return itérateur qui désigne x s'il est trouvé ; cet itérateur est égal à dernier si x est absent
+	/** Insérer un nouvel élément
+	*	@param position : itérateur qui désigne l'élément qui suit l'élément inséré
+	*	@param x : valeur de l'élément inséré
+	* @return itérateur qui désigne l'élément x
 	*/
 	iterator insert(iterator position, const T & x)
 	{
@@ -286,13 +296,16 @@ class Liste
 
 };
 
+/** Constructeur
+*/
 template <class T>
 Liste<T>::Liste()
 {
 	_sentinelle = new Chainon();
 }
 
-
+/** Destructeur
+*/
 template <class T>
 Liste<T>::~Liste()
 {
@@ -301,6 +314,9 @@ Liste<T>::~Liste()
 	delete _sentinelle;
 }
 
+/** Constructeur de copie
+*@param une liste 
+*/
 template <class T>
 Liste<T>::Liste(const Liste<T> &l)
 {
@@ -314,6 +330,10 @@ Liste<T>::Liste(const Liste<T> &l)
 	}
 }
 
+/** opérateur d'affectation =
+* @param l : la référence d'une liste
+* @return une référence vers une liste
+*/
 template <class T>
 Liste<T>& Liste<T>::operator=(const Liste<T> &l)
 {
@@ -331,6 +351,11 @@ Liste<T>& Liste<T>::operator=(const Liste<T> &l)
 	return *this;
 }
 
+/** Opérateur d'affichage
+*	@param o : flux de sortie
+*	@param l : une liste
+* @return un flux de sortie
+*/
 template <class T>
 std::ostream & operator<< (std::ostream & o, Liste<T> const& l)
 {
@@ -345,6 +370,11 @@ std::ostream & operator<< (std::ostream & o, Liste<T> const& l)
   return o;
 }
 
+/** Opérateur de concaténation +
+*	@param l : une liste
+* @return une référence vers une nouvelle liste qui résulte de la concaténation 
+* de this avec la liste passé en paramètre
+*/
 template <class T>
 Liste<T>& Liste<T>::operator+(const Liste<T> &l) const
 {
@@ -365,6 +395,9 @@ Liste<T>& Liste<T>::operator+(const Liste<T> &l) const
 	return *res;
 }
 
+/** Liste vide
+* @return true si la liste est vide, false sinon
+*/
 template <class T>
 bool Liste<T>::empty() const
 {
@@ -372,6 +405,9 @@ bool Liste<T>::empty() const
   			 && _sentinelle->next() == _sentinelle;
 }
 
+/** Taille de la liste
+* @return un entier qui correspond à la taille de la liste
+*/
 template <class T>
 const int Liste<T>::size() const
 {
@@ -385,6 +421,9 @@ const int Liste<T>::size() const
 	return res;
 }
 
+/** Renvoyer la valeur du premier élément de la liste (accès NON modifiable)
+* @return la valeur du premier élément de la liste
+*/
 template <class T>
 const T& Liste<T>::front() const
 {
@@ -392,6 +431,9 @@ const T& Liste<T>::front() const
 	return _sentinelle->next()->data();
 }
 
+/** Renvoyer la valeur du premier élément de la liste
+* @return la valeur du premier élément de la liste
+*/
 template <class T>
 T& Liste<T>::front()
 {
@@ -399,6 +441,9 @@ T& Liste<T>::front()
 	return _sentinelle->next()->data();
 }
 
+/** Renvoyer la valeur du dernier élément de la liste (accès NON modifiable)
+* @return la valeur du dernier élément de la liste
+*/
 template <class T>
 const T& Liste<T>::back() const
 {
@@ -406,18 +451,29 @@ const T& Liste<T>::back() const
 	return _sentinelle->previous()->data();
 }
 
+/** Renvoyer la valeur du dernier élément de la liste 
+* @return la valeur du dernier élément de la liste
+*/
 template <class T>
 T& Liste<T>::back()
 {
   assert(!empty());
 	return _sentinelle->previous()->data();
 }
+
+/** Insérer un élément en début de liste
+* @param el : la valeur de l'élément
+*/
 template <class T> 
 void Liste<T>::push_front(const T& el)
 {
 	Chainon* ch = new Chainon(el);
 	_sentinelle->insertAfter(ch);
 }
+
+/** Insérer un élément en fin de liste
+* @param el : la valeur de l'élément
+*/
 template <class T>
 void Liste<T>::push_back(const T& el)
 {
@@ -425,12 +481,17 @@ void Liste<T>::push_back(const T& el)
 	_sentinelle->insertBefore(ch);
 }
 
+/** Supprimer le premier élément de la liste
+*/
 template <class T>
 void Liste<T>::pop_front()
 {
   assert(!empty());
 	delete _sentinelle->next();
 }
+
+/** Supprimer le dernier élément de la liste
+*/
 template <class T>
 void Liste<T>::pop_back()
 {
