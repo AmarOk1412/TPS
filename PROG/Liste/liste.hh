@@ -223,7 +223,7 @@ class Liste
   };
     
   bool empty() const;
-  const int size() const;
+  unsigned int size() const;
   T& front();
   T& back();
   const T& front() const;
@@ -407,7 +407,7 @@ bool Liste<T>::empty() const
 * @return un entier qui correspond à la taille de la liste
 */
 template <class T>
-const int Liste<T>::size() const
+unsigned int Liste<T>::size() const
 {
   int res = 0;
   Chainon* it = _sentinelle;
