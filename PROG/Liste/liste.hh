@@ -233,7 +233,7 @@ class Liste
   void pop_front();
   void pop_back();
   Liste<T>& operator=(const Liste<T> &l);
-  Liste<T>& operator+(const Liste<T> &l) const;
+  Liste<T> operator+(const Liste<T> &l) const;
 
 	/** Retourner un itérateur qui désigne le premier élément de la liste
 	*/
@@ -374,20 +374,20 @@ std::ostream & operator<< (std::ostream & o, Liste<T> const& l)
 * de this avec la liste passé en paramètre
 */
 template <class T>
-Liste<T>& Liste<T>::operator+(const Liste<T> &l) const
+Liste<T> Liste<T>::operator+(const Liste<T> &l) const
 {
-  Liste<T>* res = new Liste<T>();
+  Liste<T> res;
 	typename Liste<T>::const_iterator it = begin();
 	typename Liste<T>::const_iterator it2 = end();
 	typename Liste<T>::const_iterator it3 = l.begin();
 	typename Liste<T>::const_iterator it4 = l.end();
 	while(it != it2)
 	{
-		res->push_back(*it);
+		res.push_back(*it);
 		++it;
 	}
 	while(it3 != it4) {
-		res->push_back(*it3);
+		res.push_back(*it3);
 		++it3;
 	}
 	return res;
