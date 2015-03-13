@@ -203,8 +203,7 @@ static Liste<double> * bricoler(Liste<double> * maliste) {
 template <class T>
 static typename Liste<T>::iterator chercherTri(Liste<T> & l,const T & x) {
 	typename Liste<T>::iterator it(l.begin());
-	while(*it<x && it != l.end())
-		it++;
+	while(*it<x && it != l.end()) it++;
 	return it;
 }
 

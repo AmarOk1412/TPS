@@ -71,7 +71,7 @@ class Liste
     *	@pre l'itérateur désigne une position valide (!= end())
     *	@return valeur de l'élément désigné par l'itérateur
     */    
-    const T& operator*()
+    const T& operator*() const 
     {      
     	return (*_c).data();
     }
@@ -80,7 +80,7 @@ class Liste
     *	@pre l'itérateur désigne une position valide(!= end())
     *	@return adresse de l'élément désigné par l'itérateur
     */  
-    const T* operator->()
+    const T* operator->() const
     {
     	return &_c->data();
     }
@@ -89,7 +89,7 @@ class Liste
     *	@pre l'itérateur désigne une position valide dans la liste (!= end())
     *	@return true si les deux itérateurs ont la même position, false sinon.
     */  
-		bool operator==(const const_iterator &i)
+		bool operator==(const const_iterator &i) const
 		{
 			return i._l==_l && i._c==_c;
 		}
@@ -98,7 +98,7 @@ class Liste
     *	@pre l'itérateur désigne une position valide dans la liste (!= end())
     *	@return true si les deux itérateurs ont des positions différentes, false sinon
     */
-		bool operator!=(const const_iterator &i)
+		bool operator!=(const const_iterator &i) const
 		{
 			return i._l!=_l || i._c!=_c;
 		}
@@ -170,7 +170,7 @@ class Liste
     *	@pre l'itérateur désigne une position valide (!= end())
     *	@return valeur de l'élément désigné par l'itérateur
     */
-    T& operator*()
+    T& operator*() const
     {      
     	return (*_c).data();
     }
@@ -179,7 +179,7 @@ class Liste
     *	@pre l'itérateur désigne une position valide(!= end())
     *	@return adresse de l'élément désigné par l'itérateur
     */  
-    T* operator->()
+    T* operator->() const
     {
     	return &_c->data();
     }
@@ -188,7 +188,7 @@ class Liste
     *	@pre l'itérateur désigne une position valide dans la liste (!= end())
     *	@return true si les deux itérateurs ont la même position, false sinon.
     */ 
-		bool operator==(const iterator &i)
+		bool operator==(const iterator &i) const
 		{
 			return i._l==_l && i._c==_c;
 		}
@@ -197,7 +197,7 @@ class Liste
     *	@pre l'itérateur désigne une position valide dans la liste (!= end())
     *	@return true si les deux itérateurs ont des positions différentes, false sinon
     */
-		bool operator!=(const iterator &i)
+		bool operator!=(const iterator &i) const
 		{
 			return i._l!=_l || i._c!=_c;
 		}
@@ -289,11 +289,9 @@ class Liste
 		delete position.getC();
 		return res;
 	}
-
     
   protected:
   Chainon* _sentinelle;
-
 };
 
 /** Constructeur
@@ -309,8 +307,8 @@ Liste<T>::Liste()
 template <class T>
 Liste<T>::~Liste()
 {
-	while(_sentinelle->next() != _sentinelle)
-	  delete _sentinelle->next();
+	while(!empty())
+	  pop_back();
 	delete _sentinelle;
 }
 
@@ -477,7 +475,7 @@ void Liste<T>::push_front(const T& el)
 template <class T>
 void Liste<T>::push_back(const T& el)
 {
-	Chainon * ch = new Chainon(el);
+	Chainon* ch = new Chainon(el);
 	_sentinelle->insertBefore(ch);
 }
 
