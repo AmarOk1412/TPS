@@ -64,7 +64,7 @@ void  Ferry::afficher(std::ostream & s) const
 	 	<< " - 		Tarif total : " << calculerTarif() << std::endl;
 }
 
-//opérateur d'affichage
+//opérateur d'affichage <<
 std::ostream & operator << (std::ostream & sortie, const Ferry & ferry)
 {
 	ferry.afficher(sortie);
