@@ -390,7 +390,7 @@ Liste<T>& Liste<T>::operator+(const Liste<T> &l) const
 		res->push_back(*it3);
 		++it3;
 	}
-	return *res;
+	return res;
 }
 
 /** Liste vide
