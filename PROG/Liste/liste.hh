@@ -42,6 +42,7 @@ class Liste
     */
     const_iterator& operator++(int)
     {
+      assert(*this != _l->end());
       return ++*this;
     }
     
@@ -73,6 +74,7 @@ class Liste
     */    
     const T& operator*() const 
     {      
+   		assert(*this != _l->end());
     	return (*_c).data();
     }
     
@@ -82,6 +84,7 @@ class Liste
     */  
     const T* operator->() const
     {
+   		assert(*this != _l->end());
     	return &_c->data();
     }
     
@@ -89,9 +92,9 @@ class Liste
     *	@pre l'itérateur désigne une position valide dans la liste (!= end())
     *	@return true si les deux itérateurs ont la même position, false sinon.
     */  
-		bool operator==(const const_iterator &i) const
+		bool operator==(const_iterator i) const
 		{
-			return i._l==_l && i._c==_c;
+			return i._c==_c;
 		}
 		
 		/** opérator de comparaison !=
@@ -129,7 +132,7 @@ class Liste
     */
     iterator& operator++()
     {
-      assert(*this != _l->end());
+		  assert(*this != _l->end());
       _c = _c->next();
       return *this;
     }
@@ -141,6 +144,7 @@ class Liste
     */
     iterator& operator++(int)
     {
+      assert(*this != _l->end());
       return ++(*this);
     }
     
@@ -172,6 +176,7 @@ class Liste
     */
     T& operator*() const
     {      
+   		assert(*this != _l->end());
     	return (*_c).data();
     }
     
@@ -181,6 +186,7 @@ class Liste
     */  
     T* operator->() const
     {
+   		assert(*this != _l->end());
     	return &_c->data();
     }
     
@@ -188,9 +194,9 @@ class Liste
     *	@pre l'itérateur désigne une position valide dans la liste (!= end())
     *	@return true si les deux itérateurs ont la même position, false sinon.
     */ 
-		bool operator==(const iterator &i) const
+		bool operator==(iterator i) const
 		{
-			return i._l==_l && i._c==_c;
+			return i._c==_c;
 		}
 		
 		/** opérator de comparaison !=
@@ -208,6 +214,11 @@ class Liste
 		Chainon* getC()
 		{
 		  return _c;
+		}
+		
+		Liste<T>* getL()
+		{
+		  return _l;
 		}
 		
     protected:
@@ -270,11 +281,9 @@ class Liste
 	*/
 	iterator insert(iterator position, const T & x)
 	{
-	  Chainon* ch = new Chainon(x);
-	  position.getC()->insertBefore(ch);
-		if(position==end()) 
-		  return begin();
-		return (position--);
+		assert(this == position.getL());
+		position.getC()->insertBefore(new Chainon(x));
+		return --position;
 	}
 	
 	/** Supprimer l'élément désigné par l'itérateur passé en paramètre
@@ -284,9 +293,10 @@ class Liste
 	*/
 	iterator erase(iterator position)
 	{
-		assert(position!=end());
+		assert(position!=end() && this == position.getL());
+		Chainon* c = position.getC();
 		typename Liste<T>::iterator res = (position++);
-		delete position.getC();
+		delete c;
 		return res;
 	}
     
@@ -364,7 +374,7 @@ std::ostream & operator<< (std::ostream & o, Liste<T> const& l)
     o << *it << " ";
     ++it;
   }
-  o << ">\n";
+  o << ">";
   return o;
 }
 
@@ -399,8 +409,7 @@ Liste<T> Liste<T>::operator+(const Liste<T> &l) const
 template <class T>
 bool Liste<T>::empty() const
 {
-  return _sentinelle->previous() == _sentinelle 
-  			 && _sentinelle->next() == _sentinelle;
+  return size() == 0;
 }
 
 /** Taille de la liste

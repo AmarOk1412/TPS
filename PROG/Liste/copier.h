@@ -10,7 +10,7 @@
 template <class T>
 static typename Liste<T>::iterator chercherTri(Liste<T> & l,const T & x) {
 	typename Liste<T>::iterator it(l.begin());
-	while(*it<x && it != l.end()) it++;
+	while(it != l.end() && *it<x) it++;
 	return it;
 }
 

@@ -126,8 +126,7 @@ static void testPartie2bis(void) {
   std::cout << "Liste modifiée   : ";
   Liste<double>::iterator it  = uneliste->begin();
   Liste<double>::iterator fin = uneliste->end();
-  while (*it != *fin) {
-//  while (it != fin) {
+  while (it != fin) {
     *it *= *it;
     ++it;
   }
@@ -278,24 +277,25 @@ template <class T> static void testPartie4(Liste<T> * listeInitiale) {
 // Le programme de test des classes Liste et iterator
 //------------------------------------------------------------------------
 int main() {
+
   // test partie 1 liste de réels
   testPartie1();
 
-  // test partie 2 : const_iterator et liste de chaînes
+//  // test partie 2 : const_iterator et liste de chaînes
   Liste<std::string> * listeChaines = testPartie2<std::string>();
 
-  // test partie 2.5 : iterator et modification de liste de réels
+//  // test partie 2.5 : iterator et modification de liste de réels
   testPartie2bis();
 
-  // test partie 3 (liste de réels)
+//  // test partie 3 (liste de réels)
   Liste<double> * listeReels = testPartie3();
-   
-   
+//   
+//   
 
-  // test partie 4 (liste de réels)
+//  // test partie 4 (liste de réels)
   testPartie4(listeReels);
 
-  // test partie 4 (liste de chaînes)
+//  // test partie 4 (liste de chaînes)
   testPartie4(listeChaines);
 
   delete listeReels;
