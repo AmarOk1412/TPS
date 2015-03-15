@@ -48,7 +48,7 @@ TMAX          EQU     100         			; taille de la zone de stockage
 FIN_CH        EQU     0DH         			; code de fin de chaine en saisie (CR)
 ;
 VRAI          EQU     1           			; code de vrai
-FAUX          EQU     0			  			; code de faux
+FAUX          EQU     0			  					; code de faux
 ;
 D_TAILLE      EQU     0           			; dep. pour champ "taille" du desc.
 D_AD          EQU     2           			; dep. pour champ "adresse" du desc.
@@ -57,11 +57,11 @@ D_AD          EQU     2           			; dep. pour champ "adresse" du desc.
 ;
 ZONECAR       DB      TMAX DUP (?)    		; zone de stockage des caracteres
 
-ADCARLIB      DW      TMAX            		; Nombre de caractŠres libres restant
-              DW      OFFSET ZONECAR		; ad. 1er car. libre dans ZONECAR
+ADCARLIB      DW      TMAX            		; Nombre de caracteres libres restant
+              DW      OFFSET ZONECAR			; ad. 1er car. libre dans ZONECAR
 ;
 ;*
-;*------------------------------------------------------------------------
+;*-----------------------------------------------------------------------
 ;*PROCEDURE     LIRECH
 ;*------------------------------------------------------------------------
 ;* 
@@ -157,10 +157,10 @@ ECRIRECH: push bp
 
 					PUSH AX
 					PUSH BX
-					push di
+					PUSH DI
 					PUSH SI
 
-					mov bx,[BP]+ech_ch+D_AD;
+					MOV BX,[BP]+ech_ch+D_AD;
 					MOV SI,0 ;
 					MOV CX,[BP]+ech_ch+D_TAILLE;
 
@@ -175,7 +175,7 @@ ECH_repeter: ; repeter jqa debordement ou fin suite
 
 ECH_FIN:
 					POP SI
-					pop di
+					POP DI
 					POP BX
 					POP AX
 
@@ -186,7 +186,7 @@ ECH_FIN:
 ;*------------------------------------------------------------------------
 ;*PROCEDURE      CONCATCH
 ;*------------------------------------------------------------------------
-;* 
+;* DON'T WORK
 ;*------------------------------------------------------------------------
 
               .DATA
@@ -205,7 +205,19 @@ CONCATCH:
 							PUSH	DX
 							PUSH	SI											; entête
 							
-							;TODOOO
+							
+							MOV		BX, ADCARLIB+D_AD
+							PUSH 	Concatch_ch
+							CALL 	COPIECH
+							POP		AX
+							PUSH 	Concatch_ch2
+							CALL 	COPIECH
+							POP		AX
+							
+							MOV		DI,Concatch_ch+D_AD
+							MOV 	DI,BX
+							MOV		DI,Concatch_ch+D_TAILLE
+							MOV		DI,5
 							
 COCH_FIN:			
 							POP 	SI
@@ -237,11 +249,20 @@ COPIECH:
 							PUSH	DX
 							PUSH	SI											; entête
         		
-            	MOV  	BX, [BP]+c_ch+D_AD			; Bx=adr de la chaine
-							MOV		SI,	[BP]+c_ch+D_TAILLE	; Si=incrémenteur
+            	MOV   BX,[BP]+c_ch+D_AD		; Bx=adr de la chaine
+							MOV		SI,0									; Si=incrémenteur
 			
 CCH_repeter:
-              ;TODO			
+							MOV   [BP]+ADCARLIB+D_AD,BX	; COPIER DANS ZONECAR
+							ADD   ADCARLIB+D_AD,1					;   mise à jour de ADCARLIB
+              SUB   ADCARLIB+D_TAILLE,1
+              ADD		BX,1
+			
+							INC		SI											; On incrémente 
+							CMP   SI,[bp]+c_ch+D_TAILLE		;    si SI = taille de la chaîne
+              JNE   CCH_repeter							;	on finit la procédure
+			
+CCH_FIN:		
 							POP 	SI
 							POP		DX
 							POP		BX
