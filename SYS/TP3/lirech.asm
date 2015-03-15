@@ -108,7 +108,7 @@ LCH_repeter:																		; repeter jqa debordement ou fin suite
 LCH_LURC:                             
 			;--> On a lu "retour charriot"
 							
-              MOV     bx,ADCARLIB+D_ad					;      met a jour le descripteur
+              MOV     bx,ADCARLIB+D_ad					;   met a jour le descripteur
               MOV     di,[bp]+lch_ch				
               MOV     [di]+D_ad,bx    			
               MOV     [di]+D_TAILLE,SI			
@@ -117,7 +117,7 @@ LCH_LURC:
               SUB     adcarlib+D_Taille,si		
 
               MOV     BX,[bp]+lch_err			 
-              MOV     byte ptr[BX],Faux      	 ;   erreur:=faux        
+              MOV     byte ptr[BX],Faux      	 	;   erreur:=faux        
               JMP     LCH_FIN       
 			  
 LCH_DEB:
@@ -147,39 +147,40 @@ LCH_FIN:
 ;*------------------------------------------------------------------------
 
 .DATA
-ech_ch        equ     4
+ech_ch equ 4
+ech_TPARAM equ 4
 
 .CODE
-ECRIRECH:
-							PUSH	BP
-							MOV		BP,SP
-			
-							PUSH	AX 
-							PUSH	BX
-							PUSH	DX
-							PUSH	SI											; entête
-        		
-            	MOV  	BX, [BP]+ech_ch+D_AD		; Bx=adr de la chaine
-							MOV		SI,0										; Si=incrémenteur
-			
-ECH_repeter:
-							MOV		AH,2H					
-							MOV		DL, [bx+si]							; on affiche le caractère courant
-							INT		21H									
-			
-							INC		SI											; On incrémente 
-							CMP   SI,[bp]+ech_ch+d_taille	;    si SI = taille de la chaîne
-            	JNE   ECH_repeter							;	on finit la procédure
-			
-			
-			
-ECH_FIN:			
-							POP 	SI
-							POP		DX
-							POP		BX
-							POP		AX					;prologue
-							POP		BP	
-							RET
+
+ECRIRECH: push bp
+					mov bp,sp
+
+					PUSH AX
+					PUSH BX
+					push di
+					PUSH SI
+
+					mov bx,[BP]+ech_ch+D_AD;
+					MOV SI,0 ;
+					MOV CX,[BP]+ech_ch+D_TAILLE;
+
+ECH_repeter: ; repeter jqa debordement ou fin suite
+					MOV DL,[BX+SI]
+					MOV AH,2H
+					INT 21h
+					ADD SI,1
+
+					CMP CX,SI ; Si CX = 0, on est à la fin de la ligne
+					JNE ECH_repeter
+
+ECH_FIN:
+					POP SI
+					pop di
+					POP BX
+					POP AX
+
+					pop bp
+					RET
 
 ;*
 ;*------------------------------------------------------------------------
@@ -190,12 +191,29 @@ ECH_FIN:
 
               .DATA
 Concatch_ch1        equ     4
-Concatch_ch2		equ		?
-Concatch_ch			equ		?
-Concatch_err       equ     6
+Concatch_ch2				equ			6
+Concatch_ch					equ			8
+Concatch_err   	    equ     10
 
               .CODE
 CONCATCH:
+							PUSH	BP
+							MOV		BP,SP
+			
+							PUSH	AX 
+							PUSH	BX
+							PUSH	DX
+							PUSH	SI											; entête
+							
+							;TODOOO
+							
+COCH_FIN:			
+							POP 	SI
+							POP		DX
+							POP		BX
+							POP		AX					;prologue
+							POP		BP	
+							RET
 
 
 
@@ -207,22 +225,29 @@ CONCATCH:
 ;* 
 ;*------------------------------------------------------------------------
               .DATA
-Copiech_ch        equ     4
+c_ch        equ     4
 
               .CODE
 COPIECH:
-			PUSH	BP							;
-			MOV		BP,SP						;entête
-			PUSH AX BX SI						; 
+							PUSH	BP
+							MOV		BP,SP
 			
+							PUSH	AX 
+							PUSH	BX
+							PUSH	DX
+							PUSH	SI											; entête
+        		
+            	MOV  	BX, [BP]+c_ch+D_AD			; Bx=adr de la chaine
+							MOV		SI,	[BP]+c_ch+D_TAILLE	; Si=incrémenteur
 			
-			
-			
-
-
-			POP SI BX AX						;prologue
-			POP BP								;
-
+CCH_repeter:
+              ;TODO			
+							POP 	SI
+							POP		DX
+							POP		BX
+							POP		AX					;prologue
+							POP		BP	
+							RET
 
 ;*-----------------------------------------------------------------------
 ;* 
