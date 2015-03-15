@@ -208,7 +208,7 @@ CONCATCH:
 			PUSH DX
       PUSH SI
             
-      MOV	 AX, ADCARLIB+2
+      MOV	 AX, ADCARLIB+D_AD
 			MOV  [BP] + 14, AX
 			MOV  AX, ADCARLIB
 			
@@ -231,14 +231,12 @@ CONCATCH:
 			
 			
   conc_fin:
-			;restauration des variables
       POP  SI
 			POP  DX
 			POP  CX
       POP  BX
       POP  AX
 			
-			;postfixe
 			POP	 BP	
 			RET	 4
 
@@ -251,51 +249,50 @@ CONCATCH:
 ;*------------------------------------------------------------------------
 ;* 
 ;*------------------------------------------------------------------------
+              .DATA
+c_ch        equ     4
+
+              .CODE
 COPIECH:
-						;prefixe : 0085h
 						PUSH BP
 						MOV	 BP,SP
 			
-			;libération de la mémoire pour la procedure
-            PUSH AX		; registre tampon pour le caractere
-            PUSH BX		; l'adresse du prtemier caractere de la chaine
-						PUSH CX		; l'adresse du 1e caractere libre dans la memoire, avant traitement
-						PUSH DX		; le nombre de caracteres libres restants
-						PUSH DI		; longueur de la chaine
-            PUSH SI		; l'indice de la boucle
+            PUSH AX		
+            PUSH BX		
+						PUSH CX		
+						PUSH DX		
+						PUSH DI		
+            PUSH SI		
 			
-						; variables utiles
-						MOV  BX , [BP]+4+2	; on met l'adresse de la chaine dans BX
-						MOV  CX , ADCARLIB+2; l'adresse du 1e libre dans CX
-						MOV  DX , ADCARLIB	; le nombre de caracteres restants
-						MOV  DI , [BP]+4
-						MOV  SI , 0			; on initialise l'indice SI
+						MOV  BX,[BP]+c_ch+D_AD			; on met l'adresse de la chaine dans BX
+						MOV  CX,ADCARLIB+D_AD;			  l'adresse du 1e libre dans CX
+						MOV  DX,ADCARLIB					; le nombre de caracteres restants
+						MOV  DI,[BP]+c_ch
+						MOV  SI,0									; on initialise l'indice SI
 			
   copy_for:
-							CMP  ADCARLIB , 0	; gestion des erreurs
-							JE   copy_err		;
+							CMP  ADCARLIB,0				; gestion des erreurs
+							JE   copy_err	
 			
-							MOV  AL , [BX+SI]	; AL <- chaine.charAt(SI)
+							MOV  AL,[BX+SI]
 							PUSH BX
 							MOV  BX , CX
-							MOV  [BX+SI],AL		; on met AX dans la zone de données
+							MOV  [BX+SI],AL				; on met AL dans la zone de données
 							POP  BX
 			
-							ADD  SI, 1			; caractere suivant
-							SUB  DX, 1			; il reste un caractere libre de moins
-							CMP  SI, DI	; tant que SI < length(chaine), on boucle
+							ADD  SI, 1						; caractere suivant
+							SUB  DX, 1						; il reste un caractere libre de moins
+							CMP  SI, DI						; tant que SI < length(chaine), on boucle
 							JL   copy_for
 
   copy_ok:
-							MOV  byte ptr[BP]+6 , FAUX ; pas d'erreur
+							MOV  byte ptr[BP]+6,FAUX
 							ADD  ADCARLIB+2,SI
       				SUB  ADCARLIB,SI 
 							JMP  copy_fin
-
   copy_err:
-							MOV  byte ptr[BP]+6 , VRAI  ; erreur
+							MOV  byte ptr[BP]+6,VRAI 
 							JMP  copy_fin
-
   copy_fin:
       				POP 	SI
       				POP		DI
