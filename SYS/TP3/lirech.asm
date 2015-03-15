@@ -249,15 +249,14 @@ COPIECH:
 							PUSH	DX
 							PUSH	SI											; entête
         		
-            	MOV   BX,[BP]+c_ch+D_AD		; Bx=adr de la chaine
-							MOV		SI,0									; Si=incrémenteur
+            	MOV   BX,[BP]+c_ch+D_AD						; Bx=adr de la chaine 00BD
+							MOV		SI,0			; Si=incrémenteur
 			
 CCH_repeter:
-							MOV   [BP]+ADCARLIB+D_AD,BX	; COPIER DANS ZONECAR
-							ADD   ADCARLIB+D_AD,1					;   mise à jour de ADCARLIB
-              SUB   ADCARLIB+D_TAILLE,1
-              ADD		BX,1
-			
+							MOV   di,ADCARLIB+D_Ad
+							MOV		CX,[BX+SI]	
+              MOV   [di],CX
+              ADD   ADCARLIB+D_Ad,1
 							INC		SI											; On incrémente 
 							CMP   SI,[bp]+c_ch+D_TAILLE		;    si SI = taille de la chaîne
               JNE   CCH_repeter							;	on finit la procédure
