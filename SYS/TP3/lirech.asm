@@ -180,7 +180,7 @@ ECH_FIN:
 					POP AX
 
 					pop bp
-					RET
+					RET 4
 
 ;*
 ;*------------------------------------------------------------------------
@@ -191,41 +191,56 @@ ECH_FIN:
 
               .DATA
 Concatch_ch1        equ     4
-Concatch_ch2				equ			6
-Concatch_ch					equ			8
-Concatch_err   	    equ     10
+Concatch_ch2		equ					8
+Concatch_ch			equ					12
+Concatch_err       equ     	14
 
               .CODE
 CONCATCH:
-							PUSH	BP
-							MOV		BP,SP
+			;prefixe
+			PUSH BP
+			MOV	 BP,SP
 			
-							PUSH	AX 
-							PUSH	BX
-							PUSH	DX
-							PUSH	SI											; entête
-							
-							
-							MOV		BX, ADCARLIB+D_AD
-							PUSH 	Concatch_ch
-							CALL 	COPIECH
-							POP		AX
-							PUSH 	Concatch_ch2
-							CALL 	COPIECH
-							POP		AX
-							
-							MOV		DI,Concatch_ch+D_AD
-							MOV 	DI,BX
-							MOV		DI,Concatch_ch+D_TAILLE
-							MOV		DI,5
-							
-COCH_FIN:			
-							POP 	SI
-							POP		DX
-							POP		BX
-							POP		AX					;prologue
-							POP		BP	
-							RET
+			;libération de la mémoire pour la procedure
+      PUSH AX
+      PUSH BX
+			PUSH CX
+			PUSH DX
+      PUSH SI
+            
+      MOV	 AX, ADCARLIB+2
+			MOV  [BP] + 14, AX
+			MOV  AX, ADCARLIB
+			
+			PUSH [BP] + Concatch_ch1 + D_AD										; copie de la chaine 1 à la suite
+			PUSH [BP] + Concatch_ch1
+			CALL COPIECH
+			POP	 [BP] + Concatch_ch1
+			POP  [BP] + Concatch_ch1 + D_AD
+			
+			PUSH [BP] + Concatch_ch2 + D_AD										; copie de la chaine 2
+			PUSH [BP] + Concatch_ch2
+			CALL COPIECH
+			POP	 [BP] + Concatch_ch2
+			POP  [BP] + Concatch_ch2 + D_AD	
+			
+			;TODO : CMP  ADCARLIB,0
+			;JE	  conc_err
+			SUB  AX, ADCARLIB									; On stocke la taille
+			MOV	 [BP] + 12, AX
+			
+			
+  conc_fin:
+			;restauration des variables
+      POP  SI
+			POP  DX
+			POP  CX
+      POP  BX
+      POP  AX
+			
+			;postfixe
+			POP	 BP	
+			RET	 4
 
 
 
@@ -236,38 +251,61 @@ COCH_FIN:
 ;*------------------------------------------------------------------------
 ;* 
 ;*------------------------------------------------------------------------
-              .DATA
-c_ch        equ     4
-
-              .CODE
 COPIECH:
-							PUSH	BP
-							MOV		BP,SP
+						;prefixe : 0085h
+						PUSH BP
+						MOV	 BP,SP
 			
-							PUSH	AX 
-							PUSH	BX
-							PUSH	DX
-							PUSH	SI											; entête
-        		
-            	MOV   BX,[BP]+c_ch+D_AD						; Bx=adr de la chaine 00BD
-							MOV		SI,0			; Si=incrémenteur
+			;libération de la mémoire pour la procedure
+            PUSH AX		; registre tampon pour le caractere
+            PUSH BX		; l'adresse du prtemier caractere de la chaine
+						PUSH CX		; l'adresse du 1e caractere libre dans la memoire, avant traitement
+						PUSH DX		; le nombre de caracteres libres restants
+						PUSH DI		; longueur de la chaine
+            PUSH SI		; l'indice de la boucle
 			
-CCH_repeter:
-							MOV   di,ADCARLIB+D_Ad
-							MOV		CX,[BX+SI]	
-              MOV   [di],CX
-              ADD   ADCARLIB+D_Ad,1
-							INC		SI											; On incrémente 
-							CMP   SI,[bp]+c_ch+D_TAILLE		;    si SI = taille de la chaîne
-              JNE   CCH_repeter							;	on finit la procédure
+						; variables utiles
+						MOV  BX , [BP]+4+2	; on met l'adresse de la chaine dans BX
+						MOV  CX , ADCARLIB+2; l'adresse du 1e libre dans CX
+						MOV  DX , ADCARLIB	; le nombre de caracteres restants
+						MOV  DI , [BP]+4
+						MOV  SI , 0			; on initialise l'indice SI
 			
-CCH_FIN:		
-							POP 	SI
+  copy_for:
+							CMP  ADCARLIB , 0	; gestion des erreurs
+							JE   copy_err		;
+			
+							MOV  AL , [BX+SI]	; AL <- chaine.charAt(SI)
+							PUSH BX
+							MOV  BX , CX
+							MOV  [BX+SI],AL		; on met AX dans la zone de données
+							POP  BX
+			
+							ADD  SI, 1			; caractere suivant
+							SUB  DX, 1			; il reste un caractere libre de moins
+							CMP  SI, DI	; tant que SI < length(chaine), on boucle
+							JL   copy_for
+
+  copy_ok:
+							MOV  byte ptr[BP]+6 , FAUX ; pas d'erreur
+							ADD  ADCARLIB+2,SI
+      				SUB  ADCARLIB,SI 
+							JMP  copy_fin
+
+  copy_err:
+							MOV  byte ptr[BP]+6 , VRAI  ; erreur
+							JMP  copy_fin
+
+  copy_fin:
+      				POP 	SI
+      				POP		DI
 							POP		DX
+							POP		CX
 							POP		BX
 							POP		AX					;prologue
-							POP		BP	
-							RET
+							POP		BP
+			RET	4
+
 
 ;*-----------------------------------------------------------------------
 ;* 
