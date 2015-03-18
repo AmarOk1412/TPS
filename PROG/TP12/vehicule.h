@@ -14,7 +14,7 @@ public:
   */
   Vehicule(unsigned int lg = 1, unsigned int nbp = 1);
   
-  virtual Vehicule* Clone() const = 0;
+  virtual Vehicule* Clone() = 0;
 
   /// destructeur
   virtual ~Vehicule(void);

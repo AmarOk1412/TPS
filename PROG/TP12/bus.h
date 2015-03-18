@@ -15,7 +15,7 @@ public:
   */
   Bus(unsigned int l = 1, unsigned int nbp = 1);
   
-  virtual Vehicule* Clone() const;
+  virtual Vehicule* Clone();
 
   /// destructeur
   ~Bus(void);
