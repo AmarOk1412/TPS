@@ -29,3 +29,4 @@ std::ostream & operator << (std::ostream & sortie, const Vehicule & v)
 	v.afficher(sortie);
 	return sortie;
 }
+

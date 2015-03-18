@@ -1,4 +1,6 @@
 #include "ferry.h"
+#include <algorithm>
+#include "ComparerLongueurVehicules.h"
  /**
      constructeur : initialiser un ferry vide
      @param longueur  : capacité du ferry en unités de longueur
@@ -26,9 +28,10 @@ Ferry::~Ferry(void)
 bool  Ferry::ajouter(const Vehicule * pv)
 {
 	if(_maxL-_longueur >= pv->getLongueur() && _maxP-_passagers >= pv->getPassagers()){
-		_ferry.push_back(pv);
-		_longueur += pv->getLongueur();
-		_passagers += pv->getPassagers();
+	  Vehicule *toAdd = pv->Clone();
+		_ferry.push_back(toAdd);
+		_longueur += toAdd->getLongueur();
+		_passagers += toAdd->getPassagers();
 		return true;
 	}
 	return false; 
@@ -69,4 +72,9 @@ std::ostream & operator << (std::ostream & sortie, const Ferry & ferry)
 {
 	ferry.afficher(sortie);
 	return sortie;
+}
+
+void Ferry::trier(bool sensTri)
+{
+ std::sort(_ferry.begin(), _ferry.end(), ComparerLongueurVehicules(sensTri)); 
 }

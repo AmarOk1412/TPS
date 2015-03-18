@@ -41,6 +41,8 @@ int main(void)
     // Essayer d'ajouter ce nouveau véhicule dans le ferry
     std::cout << "Ajout de : " << *pv << std::endl;
     bool plein = ! jules.ajouter(pv);
+    
+    delete pv;
 
     if (plein) {
       // Ajout impossible : fin de remplissage
@@ -55,12 +57,12 @@ int main(void)
   }
 
   // trier par longueur croissante
-//   jules.trier();
-//   std::cout << "\nFerry trié par longueur croissante\n" << jules;
+   jules.trier();
+   std::cout << "\nFerry trié par longueur croissante\n" << jules;
 
   // trier par longueur décroissante
-//   jules.trier(false);
-//   std::cout << "\nFerry trié par longueur décroissante\n" << jules;
+   jules.trier(false);
+   std::cout << "\nFerry trié par longueur décroissante\n" << jules;
 
   std::cout << "Fin du programme\n";
   return 0;

@@ -24,8 +24,6 @@ public:
 
   //! afficher les caractéristiques du véhicule
   virtual void		afficher(std::ostream & s = std::cout) const = 0;
-  
-//  virtual Vehicule* clone(const Vehicule* v) = 0;
 
   //! déterminer la longueur d'un véhicule
   unsigned int		getLongueur(void) const;
