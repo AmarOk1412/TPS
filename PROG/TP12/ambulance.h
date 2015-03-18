@@ -1,23 +1,20 @@
-// -*- c++ -*-
-#ifndef _AUTO_H
-#define _AUTO_H
+#ifndef _AMBULANCE_H
+#define _AMBULANCE_H
 
-#include "vehicule.h"
+#include "auto.h"
 #include <iostream>
-/**
- * définition abstraite d'un Vehicule
- */
 
-class Auto : public Vehicule {
+class Ambulance : public Auto
+{
 public:
   /** @param lg : longueur du véhicule
       @param nbp : nombre de personnes transportées
   */
-  Auto(unsigned int nbp = 1, bool tT=false);
+  Ambulance(unsigned int nbp = 1, bool tT=false);
   virtual Vehicule* Clone() const;
 
   /// destructeur
-  ~Auto(void);
+  ~Ambulance(void);
 
   //! déterminer le tarif du véhicule
   virtual double	calculerTarif(void) const;
@@ -27,7 +24,7 @@ public:
 private:
   unsigned int longueur;		///< longueur du véhicule
   unsigned int passagers;		///< nombre de personnes dans le véhicule
-  bool toutTerrain; 				///tout terrain ou pas
+  bool toutTerrain;
 };
 
-#endif // _VEHICULE_H
+#endif

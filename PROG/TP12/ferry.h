@@ -7,10 +7,12 @@
 //#include <deque>
 #include <list>
 #include "vehicule.h"
+#include "ComparerNombrePassagers.h"
 
 /**
  * Un ferry transporte des véhicules
  */
+
 class Ferry {
 public:
   /**
@@ -36,7 +38,8 @@ public:
   //! afficher les informations sur le contenu du ferry
   virtual void   afficher(std::ostream & s = std::cout) const;
   
-  void trier(bool sensTri = true);
+//  template<class TComparator>
+//  void trier(TComparator comparator = TComparator());
 
 private :
   unsigned int _longueur;		///< longueur du gros véhicule

@@ -1,6 +1,6 @@
 #include "ComparerLongueurVehicules.h"
 
-ComparerLongueurVehicules::ComparerLongueurVehicules(bool sensTri):ordre(sensTri)	
+ComparerLongueurVehicules::ComparerLongueurVehicules(bool sensTri): Comparator(sensTri), ordre(sensTri)	
 {}
 
 ComparerLongueurVehicules::~ComparerLongueurVehicules()

@@ -3,7 +3,9 @@
 #include "ferry.h"
 #include "auto.h"
 #include "bus.h"
-// #include "ambulance.h"
+#include "Comparator.h"
+#include "ComparerNombrePassagers.h"
+#include "ambulance.h"
 
 int main(void) 
 {
@@ -29,9 +31,9 @@ int main(void)
       pv = new Bus(10 + rand() % 10, 20 + rand() % 60);
       break;
 
-//     case 2 :			// Ambulance : nombre de personnes, tout terrain ?
-//       pv = new Ambulance(rand() % 5, (rand() % 3) == 0 ? true : false);
-//       break;
+     case 2 :			// Ambulance : nombre de personnes, tout terrain ?
+       pv = new Ambulance(rand() % 5, (rand() % 3) == 0 ? true : false);
+       break;
 
     default:			// Auto : nombre de personnes, tout terrain ?
       pv = new Auto(rand() % 5, (rand() % 3) == 0 ? false : true);
@@ -57,12 +59,12 @@ int main(void)
   }
 
   // trier par longueur croissante
-   jules.trier();
-   std::cout << "\nFerry trié par longueur croissante\n" << jules;
+//   jules.trier(ComparerNombrePassagers());
+//   std::cout << "\nFerry trié par longueur croissante\n" << jules;
 
   // trier par longueur décroissante
-   jules.trier(false);
-   std::cout << "\nFerry trié par longueur décroissante\n" << jules;
+//   jules.trier(Comparator(false));
+//   std::cout << "\nFerry trié par longueur décroissante\n" << jules;
 
   std::cout << "Fin du programme\n";
   return 0;

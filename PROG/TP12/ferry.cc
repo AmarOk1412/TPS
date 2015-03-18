@@ -1,6 +1,5 @@
 #include "ferry.h"
 #include <algorithm>
-#include "ComparerLongueurVehicules.h"
  /**
      constructeur : initialiser un ferry vide
      @param longueur  : capacité du ferry en unités de longueur
@@ -74,7 +73,8 @@ std::ostream & operator << (std::ostream & sortie, const Ferry & ferry)
 	return sortie;
 }
 
-void Ferry::trier(bool sensTri)
-{
- std::sort(_ferry.begin(), _ferry.end(), ComparerLongueurVehicules(sensTri)); 
-}
+//template<class TComparator>
+//void Ferry::trier<TComparator>(TComparator comparator)
+//{
+// std::sort(_ferry.begin(), _ferry.end(), comparator); 
+//}
