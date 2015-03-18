@@ -1,5 +1,5 @@
 // -*- c++ -*-
-
+//TODO operateur de copie/affectation et nettoyer code et tri générique
 #ifndef _FERRY_H
 #define _FERRY_H
 // choisir selon le conteneur utilisé
