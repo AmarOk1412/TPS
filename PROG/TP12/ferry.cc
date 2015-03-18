@@ -74,7 +74,7 @@ std::ostream & operator << (std::ostream & sortie, const Ferry & ferry)
 }
 
 //template<class TComparator>
-//void Ferry::trier<TComparator>(TComparator comparator)
+//void Ferry<TComparator>::trier(TComparator comparator)
 //{
 // std::sort(_ferry.begin(), _ferry.end(), comparator); 
 //}

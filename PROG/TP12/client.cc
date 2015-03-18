@@ -6,6 +6,7 @@
 #include "Comparator.h"
 #include "ComparerNombrePassagers.h"
 #include "ambulance.h"
+#include "cycle.h"
 
 int main(void) 
 {
@@ -22,7 +23,7 @@ int main(void)
     Vehicule * pv;			// désigne un véhicule à ajouter
 
     // Tirer au hasard le type de véhicule
-    switch (rand() % 3) {
+    switch (rand() % 4) {
     case 0 :			// Auto : nombre de personnes, tout terrain ?
       pv = new Auto(rand() % 5, (rand() % 3) == 0 ? true : false);
       break;
@@ -33,6 +34,10 @@ int main(void)
 
      case 2 :			// Ambulance : nombre de personnes, tout terrain ?
        pv = new Ambulance(rand() % 5, (rand() % 3) == 0 ? true : false);
+       break;
+       
+     case 3 :			// Cycle
+       pv = new Cycle();
        break;
 
     default:			// Auto : nombre de personnes, tout terrain ?
