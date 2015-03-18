@@ -14,7 +14,7 @@ public:
       @param nbp : nombre de personnes transportées
   */
   Auto(unsigned int nbp = 1, bool tT=false);
-  virtual Vehicule* Clone();
+  virtual Vehicule* Clone() const;
 
   /// destructeur
   ~Auto(void);

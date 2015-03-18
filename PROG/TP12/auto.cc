@@ -3,7 +3,7 @@
 Auto::Auto(unsigned int nbp, bool tT): Vehicule(2, nbp), longueur(2), passagers(nbp), toutTerrain(tT)
 {}
 
-Vehicule* Auto::Clone()
+Vehicule* Auto::Clone() const
 { 
 	return new Auto(*this); 
 } 

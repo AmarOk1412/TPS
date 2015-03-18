@@ -3,7 +3,7 @@
 Bus::Bus(unsigned int l, unsigned int nbp): Vehicule(l,nbp), longueur(l), passagers(nbp)
 {}
 
-Vehicule* Bus::Clone()
+Vehicule* Bus::Clone() const
 { 
 	return new Bus(*this); 
 } 
