@@ -8,7 +8,7 @@
 CC	 = gcc
 
 # options de compilation
-CFLAGS   = -ggdb -export-dynamic -Wall -fPIC -shared -std=c99
+CFLAGS   = -ggdb -Wall -fPIC -shared -std=c99
 
 # options d'édition de liens
 LDFLAGS  = 
