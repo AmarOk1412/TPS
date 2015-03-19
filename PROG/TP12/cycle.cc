@@ -1,8 +1,12 @@
 #include "cycle.h"
 
-Cycle::Cycle(): Vehicule(1, 1), longueur(1), passagers(1)
+Cycle::Cycle(): Vehicule(1, 1)
 {}
 
+/**
+ * Clone un véhicule
+ * @return: un pointeur de véhicule
+ */
 Vehicule* Cycle::Clone() const
 { 
 	return new Cycle(*this); 

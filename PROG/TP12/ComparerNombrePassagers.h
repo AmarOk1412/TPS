@@ -7,12 +7,13 @@
 class ComparerNombrePassagers : public Comparator
 {
 	public:
+	// constructeur
 	ComparerNombrePassagers(bool sensTri = true);
-	~ComparerNombrePassagers();
-	virtual bool operator()(const Vehicule* v1, const Vehicule* v2) const;
+	//destructeur
+	~ComparerNombrePassagers();	
 	
-	private:
-	bool ordre;
+	protected:
+	virtual bool compare (const Vehicule* v1, const Vehicule* v2) const;
 };
 
 #endif

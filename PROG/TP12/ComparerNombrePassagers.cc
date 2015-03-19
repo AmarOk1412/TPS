@@ -1,12 +1,19 @@
 #include "ComparerNombrePassagers.h"
-
-ComparerNombrePassagers::ComparerNombrePassagers(bool sensTri): Comparator(sensTri), ordre(sensTri)	
+//comparateur
+ComparerNombrePassagers::ComparerNombrePassagers(bool sensTri): Comparator(sensTri)
 {}
-
+//destructeur
 ComparerNombrePassagers::~ComparerNombrePassagers()
 {}
 
-bool ComparerNombrePassagers::operator()(const Vehicule* v1, const Vehicule* v2) const
+/**
+ * Compare le nombre de passagers entre deux véhicules
+ * @param:v1 un pointeur de véhicule
+ * @param:v2 un pointeur de véhicule
+ * @return: vrai si le nombre de passagers de v1 est inférieur ou égal 
+ * au nombre de passagers de v2, faux sinon
+ */
+bool ComparerNombrePassagers::compare (const Vehicule* v1, const Vehicule* v2) const
 {
-	return ordre?v1->getPassagers()<v2->getPassagers():v1->getPassagers()>=v2->getPassagers();
+	return v1->getPassagers()<=v2->getPassagers();
 }

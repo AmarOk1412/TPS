@@ -1,6 +1,6 @@
 #include "bus.h"
 
-Bus::Bus(unsigned int l, unsigned int nbp): Vehicule(l,nbp), longueur(l), passagers(nbp)
+Bus::Bus(unsigned int l, unsigned int nbp): Vehicule(l,nbp)
 {}
 
 Vehicule* Bus::Clone() const

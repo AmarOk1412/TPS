@@ -31,10 +31,9 @@ public:
   /// déterminer le nombre de personnes dans le véhicule
   unsigned int		getPassagers() const;
 
-private:
+protected:
   unsigned int longueur;		///< longueur du véhicule
   unsigned int passagers;		///< nombre de personnes dans le véhicule
-protected:
   static const double tarifPassager = 15; ///< tarif passager
 };
 

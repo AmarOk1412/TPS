@@ -1,8 +1,12 @@
 #include "ambulance.h"
 
-Ambulance::Ambulance(unsigned int nbp, bool tT): Auto(nbp, tT), longueur(2), passagers(nbp), toutTerrain(tT)
+Ambulance::Ambulance(unsigned int nbp, bool tT): Auto(nbp, tT)
 {}
 
+/**
+ * Clone un Vehicule
+ * @return: Le Vehicule cloné
+ */
 Vehicule* Ambulance::Clone() const
 { 
 	return new Ambulance(*this); 

@@ -6,12 +6,16 @@
 class Comparator
 {
 	public:
+	//consructeur
 	Comparator(bool sensTri = true);
+	//destructeur
 	virtual ~Comparator();
-	virtual bool operator()(const Vehicule* v1, const Vehicule* v2) const;
+	//operateur ()
+	bool operator()(const Vehicule* v1, const Vehicule* v2) const;
 	
-	private:
-	bool ordre;
+	protected:
+	virtual bool compare (const Vehicule* v1, const Vehicule* v2) const = 0;
+	bool ordre; ///< sens du tri du comparateur 
 };
 
 #endif

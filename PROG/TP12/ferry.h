@@ -1,18 +1,15 @@
 // -*- c++ -*-
-//TODO operateur de copie/affectation et nettoyer code et tri générique
 #ifndef _FERRY_H
 #define _FERRY_H
 // choisir selon le conteneur utilisé
 #include <vector>
-//#include <deque>
-#include <list>
+#include <algorithm>
 #include "vehicule.h"
 #include "ComparerNombrePassagers.h"
 
 /**
  * Un ferry transporte des véhicules
  */
-
 class Ferry {
 public:
   /**
@@ -25,6 +22,11 @@ public:
   /// destructeur
   virtual ~Ferry(void);
 
+	//constructeur de copie
+	Ferry (const Ferry& f);
+	
+	//opérateur =
+	Ferry& operator= (const Ferry& f);
   /** ajouter un véhicule dans le ferry.
       sans effet s'il n'y a plus de place
       @param pv : désigne le véhicule à ajouter
@@ -38,14 +40,20 @@ public:
   //! afficher les informations sur le contenu du ferry
   virtual void   afficher(std::ostream & s = std::cout) const;
   
-//  template<class TComparator>
-//  void trier(TComparator comparator = TComparator());
+  /** Trier un ferry en fonction du comparateur
+   *@param comparator : un comparateur
+   */
+  template<class TComparator>
+  void trier(TComparator comparator = TComparator())
+  {
+	 std::sort(_ferry.begin(), _ferry.end(), comparator); 
+	}
 
 private :
   unsigned int _longueur;		///< longueur du gros véhicule
-  unsigned int _passagers;
-  unsigned int _maxL;		///< longueur du gros véhicule
-  unsigned int _maxP;
+  unsigned int _passagers;	///< nombre de passagers
+  unsigned int _maxL;				///< longueur du gros véhicule
+  unsigned int _maxP;				///< nombre maximum de passagers
   std::vector<const Vehicule*> _ferry;
 };
 

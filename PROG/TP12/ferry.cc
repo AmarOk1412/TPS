@@ -1,5 +1,4 @@
 #include "ferry.h"
-#include <algorithm>
  /**
      constructeur : initialiser un ferry vide
      @param longueur  : capacité du ferry en unités de longueur
@@ -17,6 +16,46 @@ Ferry::~Ferry(void)
 		delete *it;
 		++it;
 	}
+}
+
+//constructeur de copie
+Ferry::Ferry (const Ferry& f)
+{
+	_longueur=f._longueur;
+	_passagers=f._passagers;
+	_maxL=f._maxL;
+	_maxP=f._maxP;
+	std::vector<const Vehicule*>::const_iterator it = _ferry.begin();
+	std::vector<const Vehicule*>::const_iterator it2 = _ferry.end();
+	while(it!=it2)
+	{	
+		ajouter(*it);
+		it++;
+	}
+}
+
+/**
+ * Opérateur d'affectation =
+ * @param: f un ferry
+ * @return: un ferry
+ */
+Ferry& Ferry::operator= (const Ferry& f)
+{
+	if(this != &f)
+	{
+		_longueur=f._longueur;
+		_passagers=f._passagers;
+		_maxL=f._maxL;
+		_maxP=f._maxP;
+		std::vector<const Vehicule*>::const_iterator it = _ferry.begin();
+		std::vector<const Vehicule*>::const_iterator it2 = _ferry.end();
+		while(it!=it2)
+		{	
+			ajouter(*it);
+			it++;
+		}
+	}
+	return *this;
 }
 
   /** ajouter un véhicule dans le ferry.
@@ -72,9 +111,3 @@ std::ostream & operator << (std::ostream & sortie, const Ferry & ferry)
 	ferry.afficher(sortie);
 	return sortie;
 }
-
-//template<class TComparator>
-//void Ferry<TComparator>::trier(TComparator comparator)
-//{
-// std::sort(_ferry.begin(), _ferry.end(), comparator); 
-//}

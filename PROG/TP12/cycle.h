@@ -24,9 +24,6 @@ public:
 
   //! afficher les caractéristiques du véhicule
   void		afficher(std::ostream & s = std::cout) const;
-private:
-  unsigned int longueur;		///< longueur du véhicule
-  unsigned int passagers;		///< nombre de personnes dans le véhicule
 };
 
 #endif // _CYCLE_H

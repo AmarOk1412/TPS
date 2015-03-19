@@ -1,8 +1,12 @@
 #include "auto.h"
 
-Auto::Auto(unsigned int nbp, bool tT): Vehicule(2, nbp), longueur(2), passagers(nbp), toutTerrain(tT)
+Auto::Auto(unsigned int nbp, bool tT): Vehicule(2, nbp), toutTerrain(tT)
 {}
 
+/**
+ * Clone un Vehicule
+ * @return: Le Vehicule cloné
+ */
 Vehicule* Auto::Clone() const
 { 
 	return new Auto(*this); 

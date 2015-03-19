@@ -10,13 +10,14 @@ Vehicule::Vehicule(unsigned int lg, unsigned int nbp) : longueur(lg), passagers(
 {}
 // destructeur
 Vehicule::~Vehicule(void)
-{
-}
+{}
+
 // longueur d'un véhicule
 unsigned int Vehicule::getLongueur(void) const
 {
 	return longueur;
 }
+
 // nombre de personnes dans le véhicule
 unsigned int Vehicule::getPassagers() const
 {

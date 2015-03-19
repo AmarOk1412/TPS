@@ -5,6 +5,7 @@
 #include "bus.h"
 #include "Comparator.h"
 #include "ComparerNombrePassagers.h"
+#include "ComparerLongueurVehicules.h"
 #include "ambulance.h"
 #include "cycle.h"
 
@@ -64,12 +65,12 @@ int main(void)
   }
 
   // trier par longueur croissante
-//   jules.trier(ComparerNombrePassagers());
-//   std::cout << "\nFerry trié par longueur croissante\n" << jules;
+   jules.trier(ComparerNombrePassagers());
+   std::cout << "\nFerry trié par nombre de passagers\n" << jules;
 
   // trier par longueur décroissante
-//   jules.trier(Comparator(false));
-//   std::cout << "\nFerry trié par longueur décroissante\n" << jules;
+   jules.trier(ComparerLongueurVehicules(false));
+   std::cout << "\nFerry trié par longueur décroissante\n" << jules;
 
   std::cout << "Fin du programme\n";
   return 0;
