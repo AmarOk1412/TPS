@@ -1,4 +1,6 @@
 #include "pluginmanager.h"
+
+#include <dlfcn.h>
 // À COMPLÉTER TODO: On va avoir des pitis problemes
 
 extern "C" {
@@ -71,7 +73,20 @@ extern "C" {
     	char name[] = d->d_name;
     	if(strlen(name)-strlen(plugin_suffix) > 0 
     	&& subString(name,strlen(name)-strlen(plugin_suffix),strlen(name))==plugin_suffix)
+    	{	
+    		// Chargement de la bibliothèque
+    		void * handle = dlopen(name, RTLD_LAZY);
+				if (handle == NULL) {
+					fprintf(stderr, "%s\n", dlerror());
+					exit(EXIT_FAILURE);
+				}
+
+				dlerror();
+				
+				dlsym(handle, initfunc_name);
+				
     		++compteur;
+    	}
     }
     closedir(dir);
     return compteur;
