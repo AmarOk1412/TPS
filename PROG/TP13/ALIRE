@@ -1,0 +1,51 @@
+utiliser le couteau suisse de la manipulation audio (sox)
+--------------------------------------------------------
+
+1) extrait de la documentation : man sox
+
+==> spécifier les caractéristiques d'un fichier audio sans en-tête
+
+-b BITS, --bits BITS
+       The number of bits (a.k.a. bit-depth or sometimes word-length) in each
+       encoded sample.  Not applicable to complex encodings such as MP3 or
+       GSM.  Not necessary with encodings that have a fixed number of bits,
+       e.g.  A/μ-law, ADPCM.
+
+-c CHANNELS, --channels CHANNELS
+       The number of audio channels in the audio file. This can be any number
+       greater than zero.
+
+-e ENCODING, --encoding ENCODING
+       The audio encoding type.  Sometimes needed with file-types that support
+       more than one encoding type.  For example, with raw, WAV, or AU (but
+       not, for example, with MP3 or FLAC).  The available encoding types are
+       as follows:
+
+       signed-integer
+              PCM data stored as signed (`two's complement') integers.
+              Commonly used with a 16 or 24 -bit encoding size.  A value of 0
+              represents minimum signal power.
+
+-r, --rate RATE[k]
+       Gives the sample rate in Hz (or kHz if appended with `k') of the file.
+
+-L, --endian little
+
+2) exemples :
+
+- jouer un fichier "raw" mono : 
+    play -S -b 16 -c 1 -e signed-integer -r 44100 -L 07_harmonique.raw
+
+- jouer un fichier "raw" stéréo :
+    play -b 16 -c 2 -e signed-integer -r 44100 -L p1.raw
+
+- convertir un fichier raw en fichier wav
+    sox -b 16 -c 1 -e signed-integer -r 44100 -L 07_harmonique.raw 07_harmonique.wav
+
+- convertir un fichier wav en fichier raw
+    sox 07_harmonique.wav 07_harmonique.raw
+
+- jouer un fichier wav
+    play 07_harmonique.wav
+
+PS : ne pas oublier d'aciver la sortie son (contrôleur de volume)

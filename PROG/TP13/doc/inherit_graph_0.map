@@ -1,0 +1,8 @@
+<map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
+<area shape="rect" id="node1" href="$classcomposant.xhtml" title="Interface d&#39;un composant du systeme sonore." alt="" coords="5,93,91,120"/>
+<area shape="rect" id="node2" href="$classconsommateur.xhtml" title="Interface d&#39;un consommateur d&#39;échantillons sonores. Il s&#39;agit d&#39;une interface décrivant un composant ..." alt="" coords="139,67,245,93"/>
+<area shape="rect" id="node6" href="$classproducteur.xhtml" title="Interface d&#39;un producteur d&#39;échantillons sonores. Il s&#39;agit d&#39;une interface décrivant un composant ne..." alt="" coords="151,119,233,145"/>
+<area shape="rect" id="node3" href="$classenregistreur__fichier.xhtml" title="Un consommateur qui enregistre ses entrées dans un fichier binaire ; 44100 Hz, 16bits signé..." alt="" coords="293,5,424,32"/>
+<area shape="rect" id="node4" href="$classenregistreur__fichier__texte.xhtml" title="Un consommateur qui enregistre ses entrées dans un fichier texte ; une ligne = un échantillon de chaq..." alt="" coords="293,57,424,98"/>
+<area shape="rect" id="node5" href="$classfiltre.xhtml" title="Interface associée à un filtre sonore. Ce filtre est considéré comme un producteur / consommateur d&#39;é..." alt="" coords="335,123,382,149"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="consommateur" name="consommateur">
+<area shape="rect" id="node3" href="$classenregistreur__fichier.xhtml" title="Un consommateur qui enregistre ses entrées dans un fichier binaire ; 44100 Hz, 16bits signé..." alt="" coords="5,339,160,533"/>
+<area shape="rect" id="node4" href="$classenregistreur__fichier__texte.xhtml" title="Un consommateur qui enregistre ses entrées dans un fichier texte ; une ligne = un échantillon de chaq..." alt="" coords="185,331,332,541"/>
+<area shape="rect" id="node5" href="$classfiltre.xhtml" title="Interface associée à un filtre sonore. Ce filtre est considéré comme un producteur / consommateur d&#39;é..." alt="" coords="357,397,429,475"/>
+<area shape="rect" id="node2" href="$classcomposant.xhtml" title="Interface d&#39;un composant du systeme sonore." alt="" coords="203,6,313,98"/>
+</map>

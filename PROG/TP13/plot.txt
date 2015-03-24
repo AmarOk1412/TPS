@@ -1,0 +1,16 @@
+# 500 valeurs d'un fichier
+plot [500:1000] '07_harmonique.raw' binary format='%int16' using 1 
+
+# idem avec 2 fichiers
+plot [500:1000] '07_harmonique.raw' binary format='%int16' using 1 , '09_multiplicateur.raw' binary format='%int16' using 1
+
+# idem avec styles d'affichages distincts
+plot [500:1000] '07_harmonique.raw' binary format='%int16' using 1 with impulses , '09_multiplicateur.raw' binary format='%int16' using 1 with lines
+
+# afficher le volume avant/après réduction ainsi que la sortie d'un mixeur
+plot [43200:45000] '13_volume_compose.raw' binary format='%int16' using 1, '14_mixeur.raw' binary format='%int16' using 1 with lines lt rgb "#2200dd"
+
+# sortie dans un fichier png
+set terminal png size 800,600
+set output 'plot.png'
+replot

@@ -1,0 +1,6 @@
+caractéristiques des fichiers audio des répertoires m1 et m2 :
+
+- données brutes (sans en-tête)
+- 16bits par échantillon  ("little-endian")
+- 2 canaux (stéréo)
+- 44100Hz

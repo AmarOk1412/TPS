@@ -1,0 +1,4 @@
+main.cpp:11:24: erreur fatale: harmonique.h : Aucun fichier ou dossier de ce type
+ #include "harmonique.h"
+                        ^
+compilation terminée.
