@@ -1,0 +1,56 @@
+\documentclass{article}
+%packages
+\usepackage{graphicx}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage[a4paper]{geometry}
+
+\begin{document}
+%title
+\begin{titlepage}
+	\vspace{-20px}
+	\begin{tabular}{l}
+		\textsc{Blin} S\'ebastien\\
+		\textsc{Collin} Pierre-Henri
+	\end{tabular}
+	\hfill \vspace{10px}\includegraphics[scale=0.1]{esir}\\
+	\vfill
+	\begin{center}
+		\Huge{\'Ecole sup\'erieure d'ing\'enieurs de Rennes}\\
+		\vspace{1cm}
+		\LARGE{1\`ere Ann\'ee}\\
+		\large{Parcours Informatique}\\
+		\vspace{0.5cm}\hrule\vspace{0.5cm}
+		\LARGE{\textbf{Compte-rendu}}\\
+		\Large{TP \no12 : Transport de v\'ehicules}
+		\vspace{0.5cm}\hrule
+		\vfill
+		\vfill
+	\end{center}
+	\begin{flushleft}
+		\Large{Sous l'encadrement de~:}\\
+		\vspace{0.2cm}
+		\large{{Lamarche} Fabrice}
+	\end{flushleft}
+	\vfill
+\end{titlepage}
+
+\section{Mod\'elisation des v\'ehicules}
+\subsection{Question 1}
+Les m\'ethodes virtuelles seront utilis\'ees par les classes filles. Dans Vehicule, les m\'ethodes afficher, calculerTarif, et Clone sont virtuelles pures car elles n'ont aucun sens dans le cas d'un Vehicule (On ne sait pas afficher un Vehicule par exemple).\\
+Pour rendre l'operator<< polymorphe, il suffit de lui passer en param\`etre un Vehicule\& qui sera du type voulu \`a l'appel de la fonction (car une Auto est un v\'ehicule).
+\subsection{Question 2}
+Le type est const Vehicule* car il faut manipuler les Vehicule par pointeurs (sinon on pourra observer une troncature) et les v\'ehicules n'ont pas \`a \^etre modifi\'es par le Ferry.
+\subsection{Question 3}
+On d\'efinit une m\'ethode virtuelle pure Clone dans la classe Vehicule (car on ne peut pas cloner un Vehicule). Et dans chaque classe fille la m\'ethode retourne un pointeur sur une nouvelle instance du type qui fait appel au constructeur par copie. Exemple avec la classe Bus :\\
+Vehicule* Bus::Clone() const\\
+\{ \\
+return new Bus(*this); \\
+\}
+\subsection{Question 4}
+Le tri s'effectue par adresse
+\subsection{Question 5}
+Voici le header de la m\'ethode trier :\\
+template<class TComparator> void trier(TComparator comparator = TComparator())
+\end{document}
