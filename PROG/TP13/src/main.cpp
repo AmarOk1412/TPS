@@ -8,7 +8,7 @@
 #include "constantes.h"
 #include "enregistreur_fichier.h"
 #include "enregistreur_fichier_texte.h"
-#include "harmonique.h"
+//#include "harmonique.h"
 #include "signal_constant.h"
 
 void
@@ -22,7 +22,7 @@ q2_signal_constant() {
     enr.calculer();
   }
 }
-
+/*
 void q7_harmonique() {
   harmonique h(440);					// la 440Hz
   enregistreur_fichier enr("07_harmonique.raw", 1);	// fichier mono
@@ -32,11 +32,11 @@ void q7_harmonique() {
     h.calculer();
     enr.calculer();
   }
-}
+}*/
 
 int
 main() {
   q2_signal_constant();
-  q7_harmonique();
+//  q7_harmonique();
   return 0;
 }
