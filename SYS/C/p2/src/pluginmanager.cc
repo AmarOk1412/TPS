@@ -1,6 +1,13 @@
 #include "pluginmanager.h"
 
 #include <dlfcn.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+
 // À COMPLÉTER TODO: On va avoir des pitis problemes
 
 extern "C" {
@@ -18,29 +25,36 @@ extern "C" {
   //------------------------------------------------------------------------
 
   // type des éléments de la liste des plugins
-	typedef struct node{
-		struct node *next;
+	typedef struct _node{
+		struct _node *next;
 		plugin_descriptor* data; 
 	} node;
 	
   // le manager
-  struct
+  struct plugin_manager_t
   {
   	node *begin;
-  } plugin_manager_t;
+  };
 
 
   //------------------------------------------------------------------------
   // fonctions destinées à l'application
   //------------------------------------------------------------------------
+  
+  char* substring(const char* str, size_t begin, size_t len)
+	{
+		if (str == 0 || strlen(str) == 0 || strlen(str) < begin || strlen(str) < (begin+len))
+		  return 0;
+
+		return strndup(str + begin, len);
+	} 
 
   // initialiser un manager
   plugin_manager *
   make_manager()
   {
-    node* head = NULL;
-    head = malloc(sizeof(node));
-    plugin_manager* manager = malloc(sizeof(plugin_manager));
+    node* head = (node*) malloc(sizeof(node));
+    plugin_manager* manager = (plugin_manager*) malloc(sizeof(plugin_manager));
     manager->begin = head;
     return manager;
   }
@@ -70,9 +84,9 @@ extern "C" {
     struct dirent*  d = readdir(dir); 
     while(d != NULL)
     {
-    	char name[] = d->d_name;
+    	const char* name = d->d_name;
     	if(strlen(name)-strlen(plugin_suffix) > 0 
-    	&& subString(name,strlen(name)-strlen(plugin_suffix),strlen(name))==plugin_suffix)
+    	&& substring(name,strlen(name)-strlen(plugin_suffix),strlen(name))==plugin_suffix)
     	{	
     		// Chargement de la bibliothèque
     		void * handle = dlopen(name, RTLD_LAZY);
@@ -116,7 +130,9 @@ extern "C" {
     node* maillon = pm->begin->next;
     while(maillon != NULL)
     {
-      printf( maillon->data->m_name + "-%d : " + maillon->data->m_description + "\n", compteur);
+//   TODO   printf( maillon->data->m_name + "-%d : " + maillon->data->m_description + "\n", compteur);
+      printf(maillon->data->m_name);
+      printf(maillon->data->m_description);
       maillon = maillon->next;
       ++compteur;
     }
@@ -134,12 +150,12 @@ extern "C" {
 		  filter_function the_filter)
   {
     //Création du plugin 
-    plugin_descriptor * plugin = malloc(sizeof(plugin_descriptor));>
+    plugin_descriptor* plugin = (plugin_descriptor*) malloc(sizeof(plugin_descriptor));
     plugin->m_name=filter_name;
     plugin->m_description=filter_description;
-    m_filtre=the_filter;
+    plugin->m_filtre=the_filter;
     //Création du maillon
-    node* tnode = malloc(sizeof(node));
+    node* tnode = (node*) malloc(sizeof(node));
     tnode->data=plugin;
     tnode->next=NULL;
     //Ajout en fin
