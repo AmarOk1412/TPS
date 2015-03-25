@@ -1,4 +1,8 @@
 INSERT INTO Cours values(1,"BDD");
+INSERT INTO Cours values(2,"Tricot");
+INSERT INTO Cours values(3,"Chasse");
+INSERT INTO Cours values(4,"Pêche");
+INSERT INTO Cours values(5,"Berger");
 INSERT INTO Enseignant values(1,"Miklos","Zoltan");
 INSERT INTO Etudiant values(1,"Blin","Sébastien", 1);
 INSERT INTO Etudiant values(2,"Collin","Pierre-Henri", 1);
