@@ -1,0 +1,151 @@
+[==========] Running 62 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 62 tests from TestList
+[ RUN      ] TestList.q11Init
+[       OK ] TestList.q11Init (0 ms)
+[ RUN      ] TestList.q11FrontAssert
+[       OK ] TestList.q11FrontAssert (33 ms)
+[ RUN      ] TestList.q11FrontAssertConst
+[       OK ] TestList.q11FrontAssertConst (29 ms)
+[ RUN      ] TestList.q11Front
+[       OK ] TestList.q11Front (0 ms)
+[ RUN      ] TestList.q11BackAssert
+[       OK ] TestList.q11BackAssert (24 ms)
+[ RUN      ] TestList.q11BackAssertConst
+[       OK ] TestList.q11BackAssertConst (23 ms)
+[ RUN      ] TestList.q11Back
+[       OK ] TestList.q11Back (0 ms)
+[ RUN      ] TestList.q11FrontAndBack
+[       OK ] TestList.q11FrontAndBack (0 ms)
+[ RUN      ] TestList.q11PopFrontAssert
+[       OK ] TestList.q11PopFrontAssert (18 ms)
+[ RUN      ] TestList.q11PopFront
+[       OK ] TestList.q11PopFront (0 ms)
+[ RUN      ] TestList.q11PopBackAssert
+[       OK ] TestList.q11PopBackAssert (17 ms)
+[ RUN      ] TestList.q11PopBack
+[       OK ] TestList.q11PopBack (1 ms)
+[ RUN      ] TestList.q11Tout
+[       OK ] TestList.q11Tout (1 ms)
+[ RUN      ] TestList.q22Begin
+[       OK ] TestList.q22Begin (0 ms)
+[ RUN      ] TestList.q23AssertOpEtoile
+[       OK ] TestList.q23AssertOpEtoile (16 ms)
+[ RUN      ] TestList.q23AssertOpInc
+[       OK ] TestList.q23AssertOpInc (16 ms)
+[ RUN      ] TestList.q23AssertOpDec
+[       OK ] TestList.q23AssertOpDec (15 ms)
+[ RUN      ] TestList.q23EgaliteIterateurs
+[       OK ] TestList.q23EgaliteIterateurs (0 ms)
+[ RUN      ] TestList.q23EgaliteIterateursBis
+[       OK ] TestList.q23EgaliteIterateursBis (0 ms)
+[ RUN      ] TestList.q23AssertionOpFleche
+[       OK ] TestList.q23AssertionOpFleche (15 ms)
+[ RUN      ] TestList.q23OpFleche
+[       OK ] TestList.q23OpFleche (0 ms)
+[ RUN      ] TestList.q23Forward
+[       OK ] TestList.q23Forward (0 ms)
+[ RUN      ] TestList.q23Backward
+[       OK ] TestList.q23Backward (0 ms)
+[ RUN      ] TestList.q25Begin
+[       OK ] TestList.q25Begin (0 ms)
+[ RUN      ] TestList.q25AssertOpEtoile
+[       OK ] TestList.q25AssertOpEtoile (14 ms)
+[ RUN      ] TestList.q25AssertOpInc
+[       OK ] TestList.q25AssertOpInc (14 ms)
+[ RUN      ] TestList.q25AssertOpDec
+[       OK ] TestList.q25AssertOpDec (15 ms)
+[ RUN      ] TestList.q25EgaliteIterateurs
+[       OK ] TestList.q25EgaliteIterateurs (0 ms)
+[ RUN      ] TestList.q25EgaliteIterateursBis
+[       OK ] TestList.q25EgaliteIterateursBis (0 ms)
+[ RUN      ] TestList.q25AssertionOpFleche
+[       OK ] TestList.q25AssertionOpFleche (13 ms)
+[ RUN      ] TestList.q25OpFleche
+[       OK ] TestList.q25OpFleche (0 ms)
+[ RUN      ] TestList.q25Forward
+[       OK ] TestList.q25Forward (1 ms)
+[ RUN      ] TestList.q25Backward
+[       OK ] TestList.q25Backward (0 ms)
+[ RUN      ] TestList.q25opEtoileModif
+[       OK ] TestList.q25opEtoileModif (0 ms)
+[ RUN      ] TestList.q25opFlecheModif
+[       OK ] TestList.q25opFlecheModif (0 ms)
+[ RUN      ] TestList.q41cdc
+[       OK ] TestList.q41cdc (0 ms)
+[ RUN      ] TestList.q41cdcModifOriginal
+[       OK ] TestList.q41cdcModifOriginal (1 ms)
+[ RUN      ] TestList.q41cdcModifCopie
+[       OK ] TestList.q41cdcModifCopie (0 ms)
+[ RUN      ] TestList.q42OpEgalSelf
+[       OK ] TestList.q42OpEgalSelf (1 ms)
+[ RUN      ] TestList.q42OpEgalGaucheVide
+[       OK ] TestList.q42OpEgalGaucheVide (0 ms)
+[ RUN      ] TestList.q42OpEgalDroiteVide
+[       OK ] TestList.q42OpEgalDroiteVide (0 ms)
+[ RUN      ] TestList.q42OpEgal
+[       OK ] TestList.q42OpEgal (1 ms)
+[ RUN      ] TestList.q43Concat
+[       OK ] TestList.q43Concat (8 ms)
+[ RUN      ] TestList.q44opInsertion
+[       OK ] TestList.q44opInsertion (1 ms)
+[ RUN      ] TestList.q31FindListeVide
+[       OK ] TestList.q31FindListeVide (0 ms)
+[ RUN      ] TestList.q31FindListe1Element
+[       OK ] TestList.q31FindListe1Element (0 ms)
+[ RUN      ] TestList.q31FindListe
+[       OK ] TestList.q31FindListe (3 ms)
+[ RUN      ] TestList.q32InsertCurrentListAssertion
+test_unitaire_p3a_find_insert_erase.cc:93: Failure
+Death test: liste1.insert(liste2.begin(), 3.14159)
+    Result: died but not with expected error.
+  Expected: Assertion.*== *this.*failed
+Actual msg:
+[  DEATH   ] test_liste: liste.hh:284: Liste<T>::iterator Liste<T>::insert(Liste<T>::iterator, const T&) [with T = double]: Assertion `this == position.getL()' failed.
+[  DEATH   ] 
+[  FAILED  ] TestList.q32InsertCurrentListAssertion (14 ms)
+[ RUN      ] TestList.q32InsertListeVide
+[       OK ] TestList.q32InsertListeVide (0 ms)
+[ RUN      ] TestList.q32InsertTeteListe
+[       OK ] TestList.q32InsertTeteListe (1 ms)
+[ RUN      ] TestList.q32InsertFinListe
+[       OK ] TestList.q32InsertFinListe (1 ms)
+[ RUN      ] TestList.q32InsertHasardListe
+[       OK ] TestList.q32InsertHasardListe (2 ms)
+[ RUN      ] TestList.q33EraseCurrentListAssertion
+test_unitaire_p3a_find_insert_erase.cc:175: Failure
+Death test: liste1.erase(liste2.begin())
+    Result: died but not with expected error.
+  Expected: Assertion.*== *this.*failed
+Actual msg:
+[  DEATH   ] test_liste: liste.hh:296: Liste<T>::iterator Liste<T>::erase(Liste<T>::iterator) [with T = double]: Assertion `position!=end() && this == position.getL()' failed.
+[  DEATH   ] 
+[  FAILED  ] TestList.q33EraseCurrentListAssertion (14 ms)
+[ RUN      ] TestList.q33EraseEndListAssertion
+[       OK ] TestList.q33EraseEndListAssertion (13 ms)
+[ RUN      ] TestList.q33EraseListe1Element
+[       OK ] TestList.q33EraseListe1Element (0 ms)
+[ RUN      ] TestList.q33Erase
+[       OK ] TestList.q33Erase (1 ms)
+[ RUN      ] TestList.q311RechercheListeVide
+[       OK ] TestList.q311RechercheListeVide (0 ms)
+[ RUN      ] TestList.q311RechercheListeTaille1
+[       OK ] TestList.q311RechercheListeTaille1 (0 ms)
+[ RUN      ] TestList.q311RechercheListe
+[       OK ] TestList.q311RechercheListe (3 ms)
+[ RUN      ] TestList.q312CopieListeVide
+[       OK ] TestList.q312CopieListeVide (0 ms)
+[ RUN      ] TestList.q312CopieListe
+[       OK ] TestList.q312CopieListe (1 ms)
+[ RUN      ] TestList.q312CopieListeBis
+[       OK ] TestList.q312CopieListeBis (2 ms)
+[----------] 62 tests from TestList (332 ms total)
+
+[----------] Global test environment tear-down
+[==========] 62 tests from 1 test case ran. (333 ms total)
+[  PASSED  ] 60 tests.
+[  FAILED  ] 2 tests, listed below:
+[  FAILED  ] TestList.q32InsertCurrentListAssertion
+[  FAILED  ] TestList.q33EraseCurrentListAssertion
+
+ 2 FAILED TESTS

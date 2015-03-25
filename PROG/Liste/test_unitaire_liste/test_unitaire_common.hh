@@ -100,7 +100,7 @@ protected:
     for (int i = 0; i < array_size; ++i) {
       double x = 5 + drand48();
       if (ici == front) {
-	// insertion en tête
+			// insertion en tête
 	array.push_front(i * x * x);
 	Liste<double>::iterator new_elt = liste.insert(liste.begin(), i * x * x);
 	// vérifier tailles
@@ -125,15 +125,9 @@ protected:
 	EXPECT_EQ(
 		  array.size(),
 		  liste.size()) << "Erreur taille liste";
-	// vérifier valeur
-	EXPECT_EQ(
-		  *--array.end(),
-		  *--liste.end())
-	  << "Erreur valeur élément de tête";
-	EXPECT_EQ(
-		  *--array.end(),
-		  *new_elt)
-	  << "Erreur valeur élément inséré";
+//	 vérifier valeur
+	EXPECT_EQ( *--array.end(), *--liste.end()) << "Erreur valeur élément de tête";
+	EXPECT_EQ( *--array.end(), *new_elt) << "Erreur valeur élément inséré";
       } // insertion en fin
       else {
 	// insertion à une position quelconque...
@@ -144,9 +138,9 @@ protected:
 	while (pos >= 0) {
 	  ++liste_it ; ++array_it ; --pos;
 	}
-	// effectuer l'insertion
-	liste_it = liste.insert(liste_it, i * i * x + 1);
-	array_it = array.insert(array_it, i * i * x + 1);
+//	// effectuer l'insertion
+//	liste_it = liste.insert(liste_it, i * i * x + 1);
+//	array_it = array.insert(array_it, i * i * x + 1);
 	// vérifier tailles
 	EXPECT_EQ(
 		  array.size(),

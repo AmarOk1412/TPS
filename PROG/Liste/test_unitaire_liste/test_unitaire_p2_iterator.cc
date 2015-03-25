@@ -13,7 +13,7 @@
 //------------------------------------------------------------------------
 
 // const_iterator : tester begin et op *
-TEST_F(TestList, DISABLED_q22Begin)
+TEST_F(TestList, q22Begin)
 {
   Liste<double>		liste;
   liste.push_back(5.5);
@@ -26,7 +26,7 @@ TEST_F(TestList, DISABLED_q22Begin)
 }
 
 // const_iterator : tester assertion op *
-TEST_F(TestList, DISABLED_q23AssertOpEtoile)
+TEST_F(TestList, q23AssertOpEtoile)
 {
   Liste<double>		liste;
   liste.push_back(5.5);
@@ -36,7 +36,7 @@ TEST_F(TestList, DISABLED_q23AssertOpEtoile)
 }
 
 // const_iterator : tester assertion op ++
-TEST_F(TestList, DISABLED_q23AssertOpInc)
+TEST_F(TestList, q23AssertOpInc)
 {
   const Liste<double>		liste;
   Liste<double>::const_iterator it  = liste.begin();
@@ -44,7 +44,7 @@ TEST_F(TestList, DISABLED_q23AssertOpInc)
 }
 
 // const_iterator : tester assertion op --
-TEST_F(TestList, DISABLED_q23AssertOpDec)
+TEST_F(TestList, q23AssertOpDec)
 {
   const Liste<double>		liste;
   Liste<double>::const_iterator it  = liste.begin();
@@ -52,7 +52,7 @@ TEST_F(TestList, DISABLED_q23AssertOpDec)
 }
 
 // const_iterator : tester == et !=
-TEST_F(TestList, DISABLED_q23EgaliteIterateurs)
+TEST_F(TestList, q23EgaliteIterateurs)
 {
   Liste<double>		liste;
   const Liste<double> & const_liste(liste);
@@ -63,7 +63,7 @@ TEST_F(TestList, DISABLED_q23EgaliteIterateurs)
 }
 
 // const_iterator : tester == et !=
-TEST_F(TestList, DISABLED_q23EgaliteIterateursBis)
+TEST_F(TestList, q23EgaliteIterateursBis)
 {
   Liste<double>		liste;
   liste.push_back(5.5);
@@ -75,7 +75,7 @@ TEST_F(TestList, DISABLED_q23EgaliteIterateursBis)
 }
 
 // const_iterator : assertion op ->
-TEST_F(TestList, DISABLED_q23AssertionOpFleche)
+TEST_F(TestList, q23AssertionOpFleche)
 {
   const Liste<std::string> liste;
   Liste<std::string>::const_iterator it(liste.begin());
@@ -83,7 +83,7 @@ TEST_F(TestList, DISABLED_q23AssertionOpFleche)
 }
 
 // const_iterator : tester op ->
-TEST_F(TestList, DISABLED_q23OpFleche)
+TEST_F(TestList, q23OpFleche)
 {
   Liste<std::string> liste;
   std::deque<int>    longueurs;
@@ -111,7 +111,7 @@ TEST_F(TestList, DISABLED_q23OpFleche)
 }
 
 // const_iterator : parcours de liste en marche avant
-TEST_F(TestList, DISABLED_q23Forward)
+TEST_F(TestList, q23Forward)
 {
   Liste<double>		liste;
   std::deque<double>	array;
@@ -121,7 +121,7 @@ TEST_F(TestList, DISABLED_q23Forward)
 }
 
 // idem marche arrière
-TEST_F(TestList, DISABLED_q23Backward)
+TEST_F(TestList, q23Backward)
 {
   Liste<double>		liste;
   std::deque<double>	array;
@@ -137,7 +137,7 @@ TEST_F(TestList, DISABLED_q23Backward)
 //------------------------------------------------------------------------
 
 // iterator : tester begin et op * en consultation
-TEST_F(TestList, DISABLED_q25Begin)
+TEST_F(TestList, q25Begin)
 {
   Liste<double>		liste;
   liste.push_back(5.5);
@@ -149,7 +149,7 @@ TEST_F(TestList, DISABLED_q25Begin)
 }
 
 // iterator : tester assertion op *
-TEST_F(TestList, DISABLED_q25AssertOpEtoile)
+TEST_F(TestList, q25AssertOpEtoile)
 {
   Liste<double>		liste;
   liste.push_back(5.5);
@@ -158,7 +158,7 @@ TEST_F(TestList, DISABLED_q25AssertOpEtoile)
 }
 
 // iterator : tester assertion op ++
-TEST_F(TestList, DISABLED_q25AssertOpInc)
+TEST_F(TestList, q25AssertOpInc)
 {
   Liste<double>		liste;
   Liste<double>::iterator it  = liste.begin();
@@ -166,7 +166,7 @@ TEST_F(TestList, DISABLED_q25AssertOpInc)
 }
 
 // iterator : tester assertion op --
-TEST_F(TestList, DISABLED_q25AssertOpDec)
+TEST_F(TestList, q25AssertOpDec)
 {
   Liste<double>		liste;
   Liste<double>::iterator it  = liste.begin();
@@ -174,7 +174,7 @@ TEST_F(TestList, DISABLED_q25AssertOpDec)
 }
 
 // iterator : tester == et !=
-TEST_F(TestList, DISABLED_q25EgaliteIterateurs)
+TEST_F(TestList, q25EgaliteIterateurs)
 {
   Liste<double>		  liste;
   Liste<double>::iterator it_liste = liste.begin();
@@ -184,7 +184,7 @@ TEST_F(TestList, DISABLED_q25EgaliteIterateurs)
 }
 
 // iterator : tester == et !=
-TEST_F(TestList, DISABLED_q25EgaliteIterateursBis)
+TEST_F(TestList, q25EgaliteIterateursBis)
 {
   Liste<double>		  liste;
   liste.push_back(5.5);
@@ -195,7 +195,7 @@ TEST_F(TestList, DISABLED_q25EgaliteIterateursBis)
 }
 
 // iterator : assertion op ->
-TEST_F(TestList, DISABLED_q25AssertionOpFleche)
+TEST_F(TestList, q25AssertionOpFleche)
 {
   Liste<std::string> liste;
   Liste<std::string>::iterator it(liste.begin());
@@ -203,7 +203,7 @@ TEST_F(TestList, DISABLED_q25AssertionOpFleche)
 }
 
 // iterator : tester op -> (consultation)
-TEST_F(TestList, DISABLED_q25OpFleche)
+TEST_F(TestList, q25OpFleche)
 {
   Liste<std::string> liste;
   std::deque<int>    longueurs;
@@ -230,7 +230,7 @@ TEST_F(TestList, DISABLED_q25OpFleche)
 }
 
 // iterator : parcours de liste en marche avant
-TEST_F(TestList, DISABLED_q25Forward)
+TEST_F(TestList, q25Forward)
 {
   Liste<double>		liste;
   std::deque<double>	array;
@@ -239,7 +239,7 @@ TEST_F(TestList, DISABLED_q25Forward)
 }
 
 // idem marche arrière
-TEST_F(TestList, DISABLED_q25Backward)
+TEST_F(TestList, q25Backward)
 {
   Liste<double>		liste;
   std::deque<double>	array;
@@ -248,7 +248,7 @@ TEST_F(TestList, DISABLED_q25Backward)
 }
 
 // iterator : test op * modification
-TEST_F(TestList, DISABLED_q25opEtoileModif)
+TEST_F(TestList, q25opEtoileModif)
 {
   Liste<double>		liste;
   std::deque<double>	array;
@@ -267,7 +267,7 @@ TEST_F(TestList, DISABLED_q25opEtoileModif)
 }
 
 // iterator : test op -> modification
-TEST_F(TestList, DISABLED_q25opFlecheModif)
+TEST_F(TestList, q25opFlecheModif)
 {
   Liste<std::string>	  liste;
   std::deque<std::string> array;

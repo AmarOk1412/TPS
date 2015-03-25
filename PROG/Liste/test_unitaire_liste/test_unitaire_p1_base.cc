@@ -16,7 +16,7 @@
 // - constructeur
 // - empty
 // - size
-TEST_F(TestList, DISABLED_q11Init)
+TEST_F(TestList, q11Init)
 {
   Liste<double> liste;
   ASSERT_TRUE(liste.empty()) << "Liste devrait être vide";
@@ -33,21 +33,21 @@ TEST_F(TestList, DISABLED_q11Init)
 }
 
 // front() : assertion ! empty()
-TEST_F(TestList, DISABLED_q11FrontAssert)
+TEST_F(TestList, q11FrontAssert)
 {
   Liste<double> liste;
   ASSERT_DEATH(liste.front(), "Assertion.*! *empty().*failed");
 }
 
 // front() const : assertion ! empty()
-TEST_F(TestList, DISABLED_q11FrontAssertConst)
+TEST_F(TestList, q11FrontAssertConst)
 {
   const Liste<double> liste;
   ASSERT_DEATH(liste.front(), "Assertion.*! *empty().*failed");
 }
 
 // push_front, empty, size, front
-TEST_F(TestList, DISABLED_q11Front)
+TEST_F(TestList, q11Front)
 {
   Liste<double> liste;
   unsigned int i;
@@ -75,21 +75,21 @@ TEST_F(TestList, DISABLED_q11Front)
 }
 
 // back() : assertion ! empty()
-TEST_F(TestList, DISABLED_q11BackAssert)
+TEST_F(TestList, q11BackAssert)
 {
   Liste<double> liste;
   ASSERT_DEATH(liste.back(), "Assertion.*! *empty().*failed");
 }
 
 // back() const : assertion ! empty()
-TEST_F(TestList, DISABLED_q11BackAssertConst)
+TEST_F(TestList, q11BackAssertConst)
 {
   const Liste<double> liste;
   ASSERT_DEATH(liste.back(), "Assertion.*! *empty().*failed");
 }
 
 // push_back, empty, size, back
-TEST_F(TestList, DISABLED_q11Back)
+TEST_F(TestList, q11Back)
 {
   Liste<double> liste;
   unsigned int i;
@@ -117,7 +117,7 @@ TEST_F(TestList, DISABLED_q11Back)
 }
 
 // push_front/back, empty, size, front/back
-TEST_F(TestList, DISABLED_q11FrontAndBack)
+TEST_F(TestList, q11FrontAndBack)
 {
   Liste<double> liste;
   unsigned int i;
@@ -152,14 +152,14 @@ TEST_F(TestList, DISABLED_q11FrontAndBack)
 }
 
 // pop_front() : assertion ! empty()
-TEST_F(TestList, DISABLED_q11PopFrontAssert)
+TEST_F(TestList, q11PopFrontAssert)
 {
   Liste<double> liste;
   ASSERT_DEATH(liste.pop_front(), "Assertion.*! *empty().*failed");
 }
 
 // push_front, empty, size, front, pop_front
-TEST_F(TestList, DISABLED_q11PopFront)
+TEST_F(TestList, q11PopFront)
 {
   Liste<double>	liste;
   std::deque<double>	array;
@@ -168,14 +168,14 @@ TEST_F(TestList, DISABLED_q11PopFront)
 }
 
 // pop_back() : assertion ! empty()
-TEST_F(TestList, DISABLED_q11PopBackAssert)
+TEST_F(TestList, q11PopBackAssert)
 {
   Liste<double> liste;
   ASSERT_DEATH(liste.pop_back(), "Assertion.*! *empty().*failed");
 }
 
 // push_back, empty, size, back, pop_back
-TEST_F(TestList, DISABLED_q11PopBack)
+TEST_F(TestList, q11PopBack)
 {
   Liste<double>	liste;
   std::deque<double>	array;
@@ -183,10 +183,11 @@ TEST_F(TestList, DISABLED_q11PopBack)
   list_equals_deque(liste, array, back);
 }
 
-TEST_F(TestList, DISABLED_q11Tout)
+TEST_F(TestList, q11Tout)
 {
   Liste<double>		liste;
   std::deque<double>	array;
   ajouter_elts(liste, array, alea);
   list_equals_deque(liste, array, alea);
 }
+

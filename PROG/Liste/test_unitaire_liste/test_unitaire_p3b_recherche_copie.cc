@@ -22,7 +22,7 @@
 //------------------------------------------------------------------------
 // test recherche liste vide
 //------------------------------------------------------------------------
-TEST_F(TestList, DISABLED_q311RechercheListeVide)
+TEST_F(TestList, q311RechercheListeVide)
 {
   Liste<double> liste;
   Liste<double>::iterator found = chercherTri(liste, 3.14159);
@@ -38,7 +38,7 @@ TEST_F(TestList, DISABLED_q311RechercheListeVide)
 // - élément égal au premier
 // - élément supérieur au premier
 //------------------------------------------------------------------------
-TEST_F(TestList, DISABLED_q311RechercheListeTaille1)
+TEST_F(TestList, q311RechercheListeTaille1)
 {
   Liste<double> liste;
   liste.push_back(3.14159);
@@ -71,7 +71,7 @@ TEST_F(TestList, DISABLED_q311RechercheListeTaille1)
 // - élément présent à une position quelconque
 // - élément quelconque
 //------------------------------------------------------------------------
-TEST_F(TestList, DISABLED_q311RechercheListe)
+TEST_F(TestList, q311RechercheListe)
 {
   // initialiser un tableau
   std::deque<double> array;
@@ -151,7 +151,7 @@ TEST_F(TestList, DISABLED_q311RechercheListe)
 //------------------------------------------------------------------------
 // test copie triée d'une liste vide
 //------------------------------------------------------------------------
-TEST_F(TestList, DISABLED_q312CopieListeVide)
+TEST_F(TestList, q312CopieListeVide)
 {
   Liste<double>   original;
   Liste<double> * copie(copierTri(original));
@@ -176,7 +176,7 @@ TEST_F(TestList, DISABLED_q312CopieListeVide)
 
 // test copie triée d'une liste de taille quelconque
 // modification de la liste originale
-TEST_F(TestList, DISABLED_q312CopieListe)
+TEST_F(TestList, q312CopieListe)
 {
   // initialiser une liste et un tableau
   Liste<double>		original;
@@ -215,7 +215,7 @@ TEST_F(TestList, DISABLED_q312CopieListe)
 
 // test copie d'une liste de taille quelconque
 // modification de la copie
-TEST_F(TestList, DISABLED_q312CopieListeBis)
+TEST_F(TestList, q312CopieListeBis)
 {
   // initialiser une liste et un tableau
   Liste<double>		original;
