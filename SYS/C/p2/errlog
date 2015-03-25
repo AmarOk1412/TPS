@@ -1,0 +1,72 @@
+pluginmanager.cc: In function ‘plugin_manager* make_manager()’:
+pluginmanager.cc:44:38: erreur: invalid conversion from ‘void*’ to ‘node* {aka _node*}’ [-fpermissive]
+     node* head = malloc(sizeof(node*));
+                                      ^
+pluginmanager.cc:45:59: erreur: invalid application of ‘sizeof’ to incomplete type ‘plugin_manager’
+     plugin_manager* manager = malloc(sizeof(plugin_manager));
+                                                           ^
+pluginmanager.cc:46:12: erreur: invalid use of incomplete type ‘plugin_manager {aka struct plugin_manager_t}’
+     manager->begin = head;
+            ^
+In file included from pluginmanager.cc:1:0:
+../include/pluginmanager.h:27:10: erreur: forward declaration of ‘plugin_manager {aka struct plugin_manager_t}’
+   struct plugin_manager_t;
+          ^
+pluginmanager.cc: In function ‘void release_manager(plugin_manager*)’:
+pluginmanager.cc:54:19: erreur: invalid use of incomplete type ‘plugin_manager {aka struct plugin_manager_t}’
+     node* nxt = pm->begin;
+                   ^
+In file included from pluginmanager.cc:1:0:
+../include/pluginmanager.h:27:10: erreur: forward declaration of ‘plugin_manager {aka struct plugin_manager_t}’
+   struct plugin_manager_t;
+          ^
+pluginmanager.cc: In function ‘unsigned int discover_plugins(const char*, plugin_manager*)’:
+pluginmanager.cc:75:23: erreur: initializer fails to determine size of ‘name’
+      char name[] = d->d_name;
+                       ^
+pluginmanager.cc:75:23: erreur: array must be initialized with a brace-enclosed initializer
+pluginmanager.cc:77:71: erreur: ‘subString’ was not declared in this scope
+      && subString(name,strlen(name)-strlen(plugin_suffix),strlen(name))==plugin_suffix)
+                                                                       ^
+pluginmanager.cc: In function ‘plugin_descriptor* get_plugin(plugin_manager*, unsigned int)’:
+pluginmanager.cc:102:23: erreur: invalid use of incomplete type ‘plugin_manager {aka struct plugin_manager_t}’
+     node* maillon = pm->begin->next;
+                       ^
+In file included from pluginmanager.cc:1:0:
+../include/pluginmanager.h:27:10: erreur: forward declaration of ‘plugin_manager {aka struct plugin_manager_t}’
+   struct plugin_manager_t;
+          ^
+pluginmanager.cc: In function ‘void display_menu(plugin_manager*)’:
+pluginmanager.cc:118:23: erreur: invalid use of incomplete type ‘plugin_manager {aka struct plugin_manager_t}’
+     node* maillon = pm->begin->next;
+                       ^
+In file included from pluginmanager.cc:1:0:
+../include/pluginmanager.h:27:10: erreur: forward declaration of ‘plugin_manager {aka struct plugin_manager_t}’
+   struct plugin_manager_t;
+          ^
+pluginmanager.cc:121:39: erreur: invalid operands of types ‘const char*’ and ‘const char [7]’ to binary ‘operator+’
+       printf( maillon->data->m_name + "-%d : " + maillon->data->m_description + "\n", compteur);
+                                       ^
+pluginmanager.cc: In function ‘void register_plugin(plugin_manager*, const char*, const char*, filter_function)’:
+pluginmanager.cc:139:66: erreur: invalid conversion from ‘void*’ to ‘plugin_descriptor*’ [-fpermissive]
+     plugin_descriptor * plugin = malloc(sizeof(plugin_descriptor));>
+                                                                  ^
+pluginmanager.cc:139:68: erreur: expected primary-expression before ‘>’ token
+     plugin_descriptor * plugin = malloc(sizeof(plugin_descriptor));>
+                                                                    ^
+pluginmanager.cc:142:5: erreur: ‘m_filtre’ was not declared in this scope
+     m_filtre=the_filter;
+     ^
+pluginmanager.cc:144:38: erreur: invalid conversion from ‘void*’ to ‘node* {aka _node*}’ [-fpermissive]
+     node* tnode = malloc(sizeof(node));
+                                      ^
+pluginmanager.cc:148:23: erreur: invalid use of incomplete type ‘plugin_manager {aka struct plugin_manager_t}’
+     node* maillon = pm->begin;
+                       ^
+In file included from pluginmanager.cc:1:0:
+../include/pluginmanager.h:27:10: erreur: forward declaration of ‘plugin_manager {aka struct plugin_manager_t}’
+   struct plugin_manager_t;
+          ^
+make[1]: *** [../bin/pluginmanager.o] Error 1
+make[1]: Target 'all' not remade because of errors.
+make: *** [src] Error 2

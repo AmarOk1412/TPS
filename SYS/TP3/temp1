@@ -1,0 +1,298 @@
+;*------------------------------------------------------------------------
+;*MODULE                      TP3 - Manipulation de chaînes de caratères
+;*------------------------------------------------------------------------
+;* Auteur(s) : Alexandre Quettier - Amaury Louarn
+;*
+;* Formation : Esir            Groupe: 2
+;*-------------------------------------------------------------------------
+;*OBJET
+;*      Ce programme offre des procédures de manipulation de chaînes de caractères.
+;*		Ces chaînes sont déclarées comme des variables du programme.
+;*		Initialement une chaîne est vide.
+;*      
+;*POINTS d'ENTREE
+;*      
+;*DONNEES EXPORTEES
+;*      
+;*REFERENCES EXTERNES
+;*      
+;*--------------------------------------------------------------------------
+;*PROCEDURES :
+;*      LIRECH    : Lit des caractères jusqu'à la rencontre du retour chariot et affecte les
+;*					caractères lus (non compris retour-chariot) à la chaîne CH. En cas d'anomalie
+;*					la chaîne résultat est vide et erreur vaut VRAI, sinon erreur vaut FAUX.
+;*      ECRIRECH  : Affiche la suite de caractères de la chaîne CH.
+;*      CONCATCH  :	Affecte, en utilisant la procédure COPIECH, à CHR le résultat de la 
+;*					concaténation de CH1 et CH2; CH1 et CH2 ne sont pas modifiées.
+;*					Le descripteur CHR doit etre différent de CH1 et CH2. EN cas d'anomalie 
+;*					la chaîne résultat est vide et erreur vaut VRAI, sinon erreur vaut FAUX. 
+;*		COPIECH	  :	Recopie la chaîne de caratères CH1 dans la zone de stockage.
+;*-------------------------------------------------------------------------
+
+;*--------------------------------------------------------------------------
+              .MODEL  SMALL
+              .STACK
+              .CODE
+              PUBLIC  LIRECH,ECRIRECH,CONCATCH
+;*------------------------------------------------------------------------
+;*        DECLARATION GLOBALES
+;*------------------------------------------------------------------------
+              .DATA
+n          EQU     100         			; taille de la zone de stockage
+;
+TRUE          EQU     1           			; code de vrai
+FALSE         EQU     0			  			; code de faux
+;
+;variables globales du module
+;
+MEM       DB      n DUP (?)    		; zone de stockage des caracteres
+
+ADCARLIB      DW      n            		; Nombre de caractŠres libres restant
+              DW      OFFSET MEM		; ad. 1er car. libre dans ZONECAR
+;
+;*
+;*------------------------------------------------------------------------
+;*PROCEDURE     LIRECH
+;*------------------------------------------------------------------------
+;* 
+;*------------------------------------------------------------------------
+.CODE
+
+LIRECH:
+            ;prefixe
+            PUSH BP
+            MOV  BP , SP
+
+            ;libération de la mémoire pour la procedure
+            PUSH AX
+            PUSH BX
+			PUSH CX
+			PUSH DI
+            PUSH SI
+
+            ;récupération des variables utiles
+            MOV  BX , ADCARLIB+2;l'adresse du 1e libre
+			MOV  CX , ADCARLIB  ;
+            MOV  SI , 0         ;l'index du caractere en cours
+
+  lire_for:
+            MOV  AH , 01h       ;AL <- caractere
+            INT  21h
+
+            CMP  AL , 0Dh       ;si car = CR
+            JE   lire_cr        ;on sort de la boucle
+
+            CMP  CX , 0         ;si il ne reste pas de place
+            JE   lire_err       ;on sort avec un code d'erreur
+			
+			SUB  CX , 1
+
+            MOV  [BX+SI],AL     ;on stocke le caractère lu
+            ADD  SI , 1
+
+            JMP  lire_for       ;fin boucle
+
+  lire_err:
+            MOV  word ptr[BP]+4 , 0     ;on met une chaine vide
+            MOV  byte ptr[BP]+6 , true  ;bit d'erreur à true
+
+            JMP  lire_fin
+
+  lire_cr:
+			MOV  BX , ADCARLIB+2
+			MOV  DI , [BP]+4
+			
+            MOV  [DI]+2 , BX    		;on met le pointeur du 1e caractere de la chaine
+										;dans le descripteur de chaine
+            MOV  [DI] , SI      		;et on met le nombre de caracteres dans le
+										;descripteur
+			MOV  BX , [BP]+6
+            MOV  byte ptr[BX],false   ;le bit d'erreur
+
+            ADD  ADCARLIB+2,SI  		;on deplace le pointeur sur la 1e case libres
+										;du nombre de caracteres lus
+            SUB  ADCARLIB  ,SI  		;et on soustrait le nombre de caracteres lus du
+										;nombre de caracteres libres
+            JMP  lire_fin  
+
+  lire_fin:
+            ;restauration des variables
+            POP  SI
+			POP  DI
+			POP  CX
+            POP  BX
+            POP  AX
+
+            ;postfixe
+            MOV  SP , BP
+            POP  BP
+            RET 4
+			  
+;*
+;*------------------------------------------------------------------------
+;*PROCEDURE      ECRIRECH
+;*------------------------------------------------------------------------
+;* 
+;*------------------------------------------------------------------------
+ECRIRECH:	
+			;prefixe
+			PUSH BP
+			MOV	 BP,SP
+			
+			;libération de la mémoire pour la procedure
+            PUSH AX
+            PUSH BX
+			PUSH CX
+			PUSH DX
+            PUSH SI
+			
+			MOV  BX , [BP]+4+2	; on met l'adresse de la chaine dans BX
+			MOV  CX , [BP]+4	; et on met la longueur de la chaine dans CX
+			MOV  SI , 0			; on initialise l'indice SI
+  ecr_for:
+			MOV  AH , 02h		;
+			MOV  DL , [BX+SI]	; on affiche le caractere *(&chaine + i)
+			INT  21h			;
+			
+			ADD  SI, 1
+			CMP  SI , CX		; tant que SI < length(chaine), on boucle
+			JL   ecr_for
+			
+  ecr_fin:
+			;restauration des variables
+            POP  SI
+			POP  DX
+			POP  CX
+            POP  BX
+            POP  AX
+			
+			;postfixe
+			POP	 BP	
+			RET	 4
+
+;*
+;*------------------------------------------------------------------------
+;*PROCEDURE      CONCATCH
+;*------------------------------------------------------------------------
+;* 
+;*------------------------------------------------------------------------
+
+              .DATA
+Concatch_ch1        equ     4
+Concatch_ch2		equ		?
+Concatch_ch			equ		?
+Concatch_err       equ     6
+
+              .CODE
+CONCATCH:
+			;prefixe
+			PUSH BP
+			MOV	 BP,SP
+			
+			;libération de la mémoire pour la procedure
+            PUSH AX
+            PUSH BX
+			PUSH CX
+			PUSH DX
+            PUSH SI
+			
+			MOV  AX , [BP] + 4 	; la premiere chaine
+			MOV  BX , [BP] + 6
+			MOV  CX , [BP] + 8	; la 2e chaine (j'espere)
+			MOV  DX , [BP] + 10
+			MOV  DI , [BP] + 12 ; la chaine resultat (j'espere)
+			MOV  SI , [BP] + 14
+			
+			PUSH BX
+			PUSH AX
+			CALL COPIECH
+			
+			PUSH DX
+			PUSH CX
+			CALL COPIECH
+			
+			
+  conc_fin:
+			;restauration des variables
+            POP  SI
+			POP  DX
+			POP  CX
+            POP  BX
+            POP  AX
+			
+			;postfixe
+			POP	 BP	
+			RET	 4
+
+
+
+;*
+;*------------------------------------------------------------------------
+;*PROCEDURE      COPIECH
+;*------------------------------------------------------------------------
+;* 
+;*------------------------------------------------------------------------
+COPIECH:
+			;prefixe : 0085h
+			PUSH BP
+			MOV	 BP,SP
+			
+			;libération de la mémoire pour la procedure
+            PUSH AX		; registre tampon pour le caractere
+            PUSH BX		; l'adresse du prtemier caractere de la chaine
+			PUSH CX		; l'adresse du 1e caractere libre dans la memoire, avant traitement
+			PUSH DX		; le nombre de caracteres libres restants
+			PUSH DI		; longueur de la chaine
+            PUSH SI		; l'indice de la boucle
+			
+			; variables utiles
+			MOV  BX , [BP]+4+2	; on met l'adresse de la chaine dans BX
+			MOV  CX , ADCARLIB+2; l'adresse du 1e libre dans CX
+			MOV  DX , ADCARLIB	; le nombre de caracteres restants
+			MOV  DI , [BP]+4
+			MOV  SI , 0			; on initialise l'indice SI
+			
+  copy_for:
+			CMP  ADCARLIB , 0	; gestion des erreurs
+			JE   copy_err		;
+			
+			MOV  AL , [BX+SI]	; AL <- chaine.charAt(SI)
+			PUSH BX
+			MOV  BX , CX
+			MOV  [BX+SI],AL		; on met AX dans la zone de données
+			POP  BX
+			
+			ADD  SI , 1			; caractere suivant
+			SUB  DX , 1			; il reste un caractere libre de moins
+			CMP  SI , DI	; tant que SI < length(chaine), on boucle
+			JL   copy_for
+
+  copy_ok:
+			MOV  byte ptr[BP]+6 , false ; pas d'erreur
+			ADD  ADCARLIB+2,SI  		;on deplace le pointeur sur la 1e case libres
+										;du nombre de caracteres lus
+            SUB  ADCARLIB  ,SI  		;et on soustrait le nombre de caracteres lus du
+										;nombre de caracteres libres
+			JMP  copy_fin
+
+  copy_err:
+			MOV  byte ptr[BP]+6 , true  ; erreur
+			JMP  copy_fin
+
+  copy_fin:
+			;restauration des variables
+            POP  SI
+			POP  DX
+			POP  CX
+            POP  BX
+            POP  AX
+			
+			;postfixe
+			POP	 BP
+			RET	 4
+
+;*-----------------------------------------------------------------------
+;* 
+;*-----------------------------------------------------------------------
+
+          END
