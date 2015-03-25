@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 
-// À COMPLÉTER TODO: On va avoir des pitis problemes
+// À COMPLÉTER
 
 extern "C" {
 
@@ -85,22 +85,28 @@ extern "C" {
     while(d != NULL)
     {
     	const char* name = d->d_name;
-    	if(strlen(name)-strlen(plugin_suffix) > 0 
-    	&& substring(name,strlen(name)-strlen(plugin_suffix),strlen(name))==plugin_suffix)
-    	{	
+      
+    	if(strstr(name,plugin_suffix) != NULL)
+    	{
     		// Chargement de la bibliothèque
-    		void * handle = dlopen(name, RTLD_LAZY);
+    		char* full;
+				full = (char*)malloc(strlen(dirname)+strlen(name)+3); 
+				strcpy(full, dirname); 
+				strcat(full, "/"); 
+				strcat(full, name);
+
+    		printf("\nChargement de %s \n", full);
+    		void * handle = dlopen(full, RTLD_LAZY);
 				if (handle == NULL) {
 					fprintf(stderr, "%s\n", dlerror());
 					exit(EXIT_FAILURE);
 				}
-
 				dlerror();
-				
 				dlsym(handle, initfunc_name);
-				
+				free(full);
     		++compteur;
     	}
+    	d = readdir(dir);
     }
     closedir(dir);
     return compteur;
@@ -126,16 +132,19 @@ extern "C" {
   void
   display_menu(plugin_manager * pm)
   {
-    int compteur = 1;
     node* maillon = pm->begin->next;
     while(maillon != NULL)
     {
-//   TODO   printf( maillon->data->m_name + "-%d : " + maillon->data->m_description + "\n", compteur);
-      printf(maillon->data->m_name);
-      printf(maillon->data->m_description);
+//   TODO   printf( maillon->data->m_name + "-%d : " + maillon->data->m_description + "\n", compteur)
+    		printf("trololo6\n");;
+//      printf(maillon->data->m_name);
+    		printf("trololo3\n");
+//      printf(maillon->data->m_description);
+    		printf("trololo4\n");
       maillon = maillon->next;
-      ++compteur;
+    		printf("trololo5\n");
     }
+    		printf("trololo4\n");
   }
 
   //------------------------------------------------------------------------
