@@ -17,7 +17,7 @@
 // tests constructeur de copie q4.1
 //------------------------------------------------------------------------
 // cdc : vérifier copie
-TEST_F(TestList, DISABLED_q41cdc)
+TEST_F(TestList, q41cdc)
 {
   // initialiser une liste et un tableau
   Liste<double>		original;
@@ -32,7 +32,7 @@ TEST_F(TestList, DISABLED_q41cdc)
 }
 
 // cdc : vérifier copie après modifications de l'original
-TEST_F(TestList, DISABLED_q41cdcModifOriginal)
+TEST_F(TestList, q41cdcModifOriginal)
 {
   // initialiser une liste et un tableau
   Liste<double>		original;
@@ -63,7 +63,7 @@ TEST_F(TestList, DISABLED_q41cdcModifOriginal)
 }
 
 // cdc : vérifier copie après modifications de la copie
-TEST_F(TestList, DISABLED_q41cdcModifCopie)
+TEST_F(TestList, q41cdcModifCopie)
 {
   // initialiser une liste et un tableau
   Liste<double>		original;
@@ -108,7 +108,7 @@ TEST_F(TestList, DISABLED_q41cdcModifCopie)
 //------------------------------------------------------------------------
 
 // tester liste = liste
-TEST_F(TestList, DISABLED_q42OpEgalSelf)
+TEST_F(TestList, q42OpEgalSelf)
 {
   Liste<double>		liste;
   std::deque<double>	array;
@@ -120,7 +120,7 @@ TEST_F(TestList, DISABLED_q42OpEgalSelf)
 }
 
 // tester vide = droite
-TEST_F(TestList, DISABLED_q42OpEgalGaucheVide)
+TEST_F(TestList, q42OpEgalGaucheVide)
 {
   Liste<double> gauche, droite;
   std::deque<double>	array;
@@ -134,7 +134,7 @@ TEST_F(TestList, DISABLED_q42OpEgalGaucheVide)
 }
 
 // tester gauche = vide
-TEST_F(TestList, DISABLED_q42OpEgalDroiteVide)
+TEST_F(TestList, q42OpEgalDroiteVide)
 {
   Liste<double> gauche, droite;
   std::deque<double>	array;
@@ -148,7 +148,7 @@ TEST_F(TestList, DISABLED_q42OpEgalDroiteVide)
 }
 
 // tester gauche = droite
-TEST_F(TestList, DISABLED_q42OpEgal)
+TEST_F(TestList, q42OpEgal)
 {
   // initialiser la première liste
   Liste<double>		gauche;
@@ -172,7 +172,7 @@ TEST_F(TestList, DISABLED_q42OpEgal)
 //------------------------------------------------------------------------
 // test opérateur + q4.3
 //------------------------------------------------------------------------
-TEST_F(TestList, DISABLED_q43Concat)
+TEST_F(TestList, q43Concat)
 {
     // initialiser la première liste
   Liste<double>		first_list;
@@ -210,7 +210,7 @@ TEST_F(TestList, DISABLED_q43Concat)
 // À ADAPTER au format de sortie de operator <<
 //------------------------------------------------------------------------
 
-TEST_F(TestList, DISABLED_q44opInsertion)
+TEST_F(TestList, q44opInsertion)
 {
   Liste<double>		liste;
   std::deque<double>	array;

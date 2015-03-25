@@ -13,7 +13,7 @@
 //------------------------------------------------------------------------
 
 // test find dans liste vide
-TEST_F(TestList, DISABLED_q31FindListeVide)
+TEST_F(TestList, q31FindListeVide)
 {
   Liste<double>	liste;
   Liste<double>::iterator pos = find(liste.begin(), liste.end(), 3.141519);
@@ -25,7 +25,7 @@ TEST_F(TestList, DISABLED_q31FindListeVide)
 }
 
 // test find dans liste d'un élément
-TEST_F(TestList, DISABLED_q31FindListe1Element)
+TEST_F(TestList, q31FindListe1Element)
 {
   Liste<double>	liste;
   liste.push_back(3.141519);
@@ -47,7 +47,7 @@ TEST_F(TestList, DISABLED_q31FindListe1Element)
 }
 
 // test find dans liste de n éléments
-TEST_F(TestList, DISABLED_q31FindListe)
+TEST_F(TestList, q31FindListe)
 {
   Liste<double>	liste;
   std::deque<double> array;
@@ -84,7 +84,7 @@ TEST_F(TestList, DISABLED_q31FindListe)
 //------------------------------------------------------------------------
 
 // insert : assertion itérateur sur liste courante...
-TEST_F(TestList, DISABLED_q32InsertCurrentListAssertion)
+TEST_F(TestList, q32InsertCurrentListAssertion)
 {
   Liste<double> liste1;
   liste1.push_back(3.14159);
@@ -94,7 +94,7 @@ TEST_F(TestList, DISABLED_q32InsertCurrentListAssertion)
 }
 
 // test insert dans liste vide
-TEST_F(TestList, DISABLED_q32InsertListeVide)
+TEST_F(TestList, q32InsertListeVide)
 {
   Liste<double>	liste;
   EXPECT_TRUE(liste.empty()) << "Liste devrait être vide";
@@ -117,7 +117,7 @@ TEST_F(TestList, DISABLED_q32InsertListeVide)
 }
 
 // test insert en tête de liste non vide
-TEST_F(TestList, DISABLED_q32InsertTeteListe)
+TEST_F(TestList, q32InsertTeteListe)
 {
   Liste<double>		liste;
   std::deque<double>	array;
@@ -132,7 +132,7 @@ TEST_F(TestList, DISABLED_q32InsertTeteListe)
 }
 
 // test insert en fin de liste non vide
-TEST_F(TestList, DISABLED_q32InsertFinListe)
+TEST_F(TestList, q32InsertFinListe)
 {
   Liste<double>		liste;
   std::deque<double>	array;
@@ -147,7 +147,7 @@ TEST_F(TestList, DISABLED_q32InsertFinListe)
 }
 
 // test insert au hasard dans liste non vide
-TEST_F(TestList, DISABLED_q32InsertHasardListe)
+TEST_F(TestList, q32InsertHasardListe)
 {
   Liste<double>		liste;
   std::deque<double>	array;
@@ -166,7 +166,7 @@ TEST_F(TestList, DISABLED_q32InsertHasardListe)
 //------------------------------------------------------------------------
 
 // erase : assertion itérateur sur liste courante...
-TEST_F(TestList, DISABLED_q33EraseCurrentListAssertion)
+TEST_F(TestList, q33EraseCurrentListAssertion)
 {
   Liste<double> liste1;
   liste1.push_back(3.14159);
@@ -176,14 +176,14 @@ TEST_F(TestList, DISABLED_q33EraseCurrentListAssertion)
 }
 
 // erase : assertion itérateur fin de liste
-TEST_F(TestList, DISABLED_q33EraseEndListAssertion)
+TEST_F(TestList, q33EraseEndListAssertion)
 {
   Liste<double> liste;
   ASSERT_DEATH(liste.erase(liste.begin()), "Assertion.*end().*failed");  
 }
 
 // erase : suppression dans liste d'un élément
-TEST_F(TestList, DISABLED_q33EraseListe1Element)
+TEST_F(TestList, q33EraseListe1Element)
 {
   Liste<double> liste;
   liste.push_back(3.14159);
@@ -197,7 +197,7 @@ TEST_F(TestList, DISABLED_q33EraseListe1Element)
 }
 
 // erase : suppression dans liste quelconque
-TEST_F(TestList, DISABLED_q33Erase)
+TEST_F(TestList, q33Erase)
 {
   // mettre des éléments dans une liste et un tableau
   Liste<double>		liste;

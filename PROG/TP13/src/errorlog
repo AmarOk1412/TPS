@@ -1,4 +1,8 @@
-main.cpp:11:24: erreur fatale: harmonique.h : Aucun fichier ou dossier de ce type
- #include "harmonique.h"
-                        ^
-compilation terminée.
+main.o: dans la fonction « q2_signal_constant() »:
+main.cpp:(.text+0x6e): référence indéfinie vers « enregistreur_fichier_texte::enregistreur_fichier_texte(std::string, unsigned int, unsigned int) »
+main.cpp:(.text+0xb4): référence indéfinie vers « enregistreur_fichier_texte::connecterEntree(counted_ptr<flot> const&, unsigned int) »
+main.cpp:(.text+0xdb): référence indéfinie vers « enregistreur_fichier_texte::calculer() »
+main.cpp:(.text+0xf4): référence indéfinie vers « enregistreur_fichier_texte::~enregistreur_fichier_texte() »
+main.cpp:(.text+0x128): référence indéfinie vers « enregistreur_fichier_texte::~enregistreur_fichier_texte() »
+main.cpp:(.text+0x14d): référence indéfinie vers « enregistreur_fichier_texte::~enregistreur_fichier_texte() »
+collect2: erreur: ld a retourné 1 code d'état d'exécution

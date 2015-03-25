@@ -1,0 +1,19 @@
+clientListe.cc: In function ‘Liste<double>* bricoler(Liste<double>*)’:
+clientListe.cc:172:47: erreur: no matching function for call to ‘Liste<double>::insert(Liste<double>::iterator, double&)’
+         maliste -> insert(maliste->begin(), nb); // 3. ajout en tête
+                                               ^
+clientListe.cc:172:47: note: candidate is:
+In file included from clientListe.cc:4:0:
+liste.hh:177:11: note: Liste<T>::iterator Liste<T>::insert(Liste<T>::iterator&, const T&) [with T = double]
+  iterator insert(iterator& position, const T & x)
+           ^
+liste.hh:177:11: note:   no known conversion for argument 1 from ‘Liste<double>::iterator’ to ‘Liste<double>::iterator&’
+clientListe.cc:187:47: erreur: no matching function for call to ‘Liste<double>::insert(Liste<double>::iterator, double&)’
+         maliste -> insert(maliste->begin(), nb); // 3. ajout en tête
+                                               ^
+clientListe.cc:187:47: note: candidate is:
+In file included from clientListe.cc:4:0:
+liste.hh:177:11: note: Liste<T>::iterator Liste<T>::insert(Liste<T>::iterator&, const T&) [with T = double]
+  iterator insert(iterator& position, const T & x)
+           ^
+liste.hh:177:11: note:   no known conversion for argument 1 from ‘Liste<double>::iterator’ to ‘Liste<double>::iterator&’

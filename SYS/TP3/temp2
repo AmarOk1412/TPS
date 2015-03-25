@@ -1,0 +1,80 @@
+              .DATA
+Concatch_ch1        equ     4
+Concatch_ch2				equ			8
+Concatch_ch					equ			12
+Concatch_err   	    equ     14
+
+              .CODE
+CONCATCH:
+							PUSH	BP
+							MOV		BP,SP
+			
+							PUSH	AX 
+							PUSH	BX
+							PUSH	DX
+							PUSH	SI											; entête
+							
+							PUSH 	[BP]+4
+							PUSH	[BP]+6
+							CALL 	COPIECH
+							POP 	[BP]+6
+							POP		[BP]+4
+							PUSH 	[BP]+8
+							PUSH	[BP]+10
+							CALL 	COPIECH
+							POP 	[BP]+10
+							POP		[BP]+8
+							
+COCH_FIN:			
+							POP 	SI
+							POP		DX
+							POP		BX
+							POP		AX					;prologue
+							POP		BP	
+							RET
+
+
+;*
+;*------------------------------------------------------------------------
+;*PROCEDURE      COPIECH
+;*------------------------------------------------------------------------
+;* 
+;*------------------------------------------------------------------------
+              .DATA
+c_ch        	equ     4
+
+              .CODE
+COPIECH:
+							PUSH	BP
+							MOV		BP,SP
+			
+							PUSH	AX 
+							PUSH	BX
+							PUSH	DX
+							PUSH	SI											; entête
+        		
+            	MOV   BX,[BP]+c_ch+D_AD				; Bx=adr de la chaine 00BD
+							MOV		SI,0										; Si=incrémenteur
+			
+CCH_repeter:
+							MOV   DI,ADCARLIB+D_Ad						
+							MOV		CX,[BX+SI]	
+              MOV   [DI],CX
+              ADD   ADCARLIB+D_Ad,1
+							INC		SI											; On incrémente 
+							CMP   SI,[bp]+c_ch						;    si SI = taille de la chaîne
+              JNE   CCH_repeter							;	on finit la procédure
+			
+CCH_FIN:		
+							POP 	SI
+							POP		DX
+							POP		BX
+							POP		AX					;prologue
+							POP		BP	
+							RET
+
+;*-----------------------------------------------------------------------
+;* 
+;*-----------------------------------------------------------------------
+
+          END
