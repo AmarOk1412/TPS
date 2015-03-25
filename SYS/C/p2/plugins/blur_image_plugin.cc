@@ -5,7 +5,7 @@
 
 extern "C" {
 
-	void blur_filter (Char[] filename)
+	void blur_filter (char filename[])
 	{
 	
 		 cv::Mat image = imread(filename);
