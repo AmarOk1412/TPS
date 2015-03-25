@@ -37,6 +37,6 @@ extern "C" {
     register_plugin(pm,
 		    "read_filter",
 		    "Lire une image",
-		    null_filter);
+		    read_filter);
   }
 };
