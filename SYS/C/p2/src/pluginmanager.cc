@@ -36,18 +36,11 @@ extern "C" {
   	node *begin;
   };
 
+	typedef void (*initFunction) (plugin_manager *);
 
   //------------------------------------------------------------------------
   // fonctions destinées à l'application
   //------------------------------------------------------------------------
-  
-  char* substring(const char* str, size_t begin, size_t len)
-	{
-		if (str == 0 || strlen(str) == 0 || strlen(str) < begin || strlen(str) < (begin+len))
-		  return 0;
-
-		return strndup(str + begin, len);
-	} 
 
   // initialiser un manager
   plugin_manager *
@@ -55,6 +48,7 @@ extern "C" {
   {
     node* head = (node*) malloc(sizeof(node));
     plugin_manager* manager = (plugin_manager*) malloc(sizeof(plugin_manager));
+    head->next = NULL;
     manager->begin = head;
     return manager;
   }
@@ -102,7 +96,8 @@ extern "C" {
 					exit(EXIT_FAILURE);
 				}
 				dlerror();
-				dlsym(handle, initfunc_name);
+				initFunction IF = (initFunction) dlsym(handle, initfunc_name);
+				IF(pm);
 				free(full);
     		++compteur;
     	}
@@ -132,19 +127,17 @@ extern "C" {
   void
   display_menu(plugin_manager * pm)
   {
+		int compteur = 0;
     node* maillon = pm->begin->next;
     while(maillon != NULL)
     {
-//   TODO   printf( maillon->data->m_name + "-%d : " + maillon->data->m_description + "\n", compteur)
-    		printf("trololo6\n");;
-//      printf(maillon->data->m_name);
-    		printf("trololo3\n");
-//      printf(maillon->data->m_description);
-    		printf("trololo4\n");
+    	printf(maillon->data->m_name);
+      printf(" %d : ", compteur);
+      printf(maillon->data->m_description);
+      printf("\n");
       maillon = maillon->next;
-    		printf("trololo5\n");
+      ++compteur;
     }
-    		printf("trololo4\n");
   }
 
   //------------------------------------------------------------------------

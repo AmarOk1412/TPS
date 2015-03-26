@@ -22,13 +22,18 @@ int main(int nbarg, char* args[])
     plugin_manager* pm = make_manager();
     unsigned int nbPlugin = discover_plugins(word, pm);
     if(nbPlugin == 0)
-		  printf("\nPas de plugins");
+		  printf("\nPas de plugins\n");
 		else
-		{
       display_menu(pm);
-    		printf("trololo3\n");
-    }
-    release_manager(pm);
+      
+    int  number;
+
+		printf("Choisissez une fonction : \n");
+		scanf("%d", &number);
+		filter_function f = get_plugin(pm, number)->m_filtre;
+		f(cv::Mat());
+    
+    //release_manager(pm);
     
     return 0;
 }
