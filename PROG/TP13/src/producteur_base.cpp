@@ -1,10 +1,12 @@
 #include "producteur_base.h"
+#include "impl_flot.h"
 
 producteur_base::producteur_base(unsigned int nbSorties) : producteur(), _nbSorties(nbSorties)
 {
-  for(int i = 0; i < nbSorties; ++i)
+  for(unsigned int i = 0; i < nbSorties; ++i)
   {
-    counted_ptr<flot> sortie;
+  	impl_flot* f = new impl_flot();
+		counted_ptr<flot> sortie(f);
     _sorties->push_back(sortie);
   }
 }
@@ -39,6 +41,4 @@ void producteur_base::connecterSortie(const counted_ptr<flot> & f, unsigned int 
 }
 
 void producteur_base::calculer()
-{
-
-}
+{ }

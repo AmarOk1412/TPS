@@ -1,7 +1,13 @@
 #include "signal_constant.h"
+#include "impl_flot.h"
+#include <iostream>
 
 signal_constant::signal_constant(double outVal) : producteur(), _outVal(outVal), _sorties(new std::vector< counted_ptr<flot> >())
-{}
+{
+	impl_flot* f = new impl_flot();
+	counted_ptr<flot> sortie(f);
+	_sorties->push_back(sortie);
+}
 
 signal_constant::~signal_constant() {}
 
@@ -20,5 +26,5 @@ void signal_constant::calculer()
 {
   unsigned int nb = nbSorties();
 	for(unsigned int i = 0; i < nb; ++i)
-	  getSortie(i)->inserer(_outVal);
+		_sorties->at(i)->inserer(_outVal);
 }
