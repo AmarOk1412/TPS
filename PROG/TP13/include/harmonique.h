@@ -9,7 +9,7 @@
 
 class harmonique : virtual public producteur_base {
 public:
-  harmonique(unsigned int frequence, double phi);
+  harmonique(unsigned int frequence, double phi = 0);
   virtual ~harmonique() {}
 
   /**

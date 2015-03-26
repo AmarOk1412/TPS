@@ -4,8 +4,7 @@
 #include "impl_flot.h"
 
 enregistreur_fichier_texte::enregistreur_fichier_texte(std::string nf,
- unsigned int nbc, unsigned int te) : 
- m_tailleEchantillon(te), m_nomFichier(nf), m_nbE(nbc)
+ unsigned int nbc) :  m_nomFichier(nf), m_nbE(nbc)
 {
 	m_lesEntrees.resize(m_nbE);
 	for(unsigned int i = 1; i < m_nbE; ++i)

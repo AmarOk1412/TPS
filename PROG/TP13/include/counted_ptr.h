@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \class	counted_ptr
 ///
-/// \brief	Classe gérant un "smart pointer". 
+/// \brief	Classe gÃ©rant un "smart pointer". 
 ///
 /// \author	Jean Christophe Engel, Fabrice Lamarche, University Of Rennes 1
 /// \date	23/04/2010
@@ -18,86 +18,86 @@ public:
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   /// \fn	explicit counted_ptr(T * pointer = 0)
   /// \brief	Constructeur
-  /// \param	pointer Si non nul, un pointeur vers une variable allouée dynamiquement.
+  /// \param	pointer Si non nul, un pointeur vers une variable allouÃ©e dynamiquement.
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   explicit counted_ptr(T * pointer = 0) ;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   /// \fn	virtual ~counted_ptr(void)
-  /// \brief	Destructeur, libère la donnée s'il s'agit du dernier pointeur qui la désigne.
+  /// \brief	Destructeur, libÃ¨re la donnÃ©e s'il s'agit du dernier pointeur qui la dÃ©signe.
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   virtual ~counted_ptr() ;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   /// \fn	counted_ptr(const counted_ptr & smartPointer)
   /// \brief	Constructeur de copie. 
-  /// \param	smartPointer : le "smart pointer" à copier. 
+  /// \param	smartPointer : le "smart pointer" Ã  copier. 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   counted_ptr(const counted_ptr & smartPointer) ;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   /// \fn	counted_ptr & operator = (const counted_ptr & smartPointer)
-  /// \brief	Opérateur d'affectation. 
-  /// \param	smartPointer : l'opérande de droite de l'affectation. 
+  /// \brief	OpÃ©rateur d'affectation. 
+  /// \param	smartPointer : l'opÃ©rande de droite de l'affectation. 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   counted_ptr & operator = (const counted_ptr & smartPointer) ;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   /// \brief	Constructeur de transtypage. Permet de pointer sur une instance de classe U
-  ///		via un pointeur de type T, U héritant T.
+  ///		via un pointeur de type T, U hÃ©ritant T.
   /// \param smartPointer 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   template <class U>
   counted_ptr(const counted_ptr<U> & smartPointer) ;
 
-  /// Donner à counted_ptr<U> accès à la partie privée de counted_ptr<T>
+  /// Donner Ã  counted_ptr<U> accÃ¨s Ã  la partie privÃ©e de counted_ptr<T>
   template <class U> friend class counted_ptr;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   /// \fn	bool isnull () const
-  /// \return	vrai si le pointeur ne désigne rien
+  /// \return	vrai si le pointeur ne dÃ©signe rien
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   bool isnull() const;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   /// \fn	T & operator * () const
-  /// \brief	Accès à la variable désignée par le pointeur. 
-  /// \return	La variable désignée par le pointeur. 
+  /// \brief	AccÃ¨s Ã  la variable dÃ©signÃ©e par le pointeur. 
+  /// \return	La variable dÃ©signÃ©e par le pointeur. 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   T & operator * () const	;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   /// \fn	T * operator -> () const
-  /// \brief	Opérateur d'accès aux attributs / méthodes de la variable pointée. 
-  /// \return	adresse de la variable désignée par le pointeur.
+  /// \brief	OpÃ©rateur d'accÃ¨s aux attributs / mÃ©thodes de la variable pointÃ©e. 
+  /// \return	adresse de la variable dÃ©signÃ©e par le pointeur.
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   T * operator -> () const ;
 
 private:
   //------------------------------------------------------------------------
-  // méthodes d'implémentation
+  // mÃ©thodes d'implÃ©mentation
   //-----------------------------------------------------------------------
 
-  // acquérir la ressource désignée par cp
+  // acquÃ©rir la ressource dÃ©signÃ©e par cp
   void acquerir(const counted_ptr<T> & cp) ;
 
   // idem entre un counted_ptr<T> et un counted_ptr<U>
   template <class U>
   void acquerir(const counted_ptr<U> & cp) ;
 
-  // libérer la ressource
+  // libÃ©rer la ressource
   void liberer() ;
 
 private:
   //------------------------------------------------------------------------
   // attributs
   //-----------------------------------------------------------------------
-  unsigned int * m_counter ; // Pointeur vers le compteur de références
-  T   * m_ptr ;	    // Pointeur vers l'objet désigné
+  unsigned int * m_counter ; // Pointeur vers le compteur de rÃ©fÃ©rences
+  T   * m_ptr ;	    // Pointeur vers l'objet dÃ©signÃ©
 }; // counted_ptr<T>
 
 ///--------------------------------------------------------------------------------
-/// méthodes publiques
+/// mÃ©thodes publiques
 ///--------------------------------------------------------------------------------
 
 // constructeur "normal"
@@ -129,14 +129,14 @@ counted_ptr<T>::counted_ptr(const counted_ptr<T> & smartPointer)
   acquerir(smartPointer);
 }
 
-// Opérateur d'affectation. 
+// OpÃ©rateur d'affectation. 
 template <class T>
 counted_ptr<T> & 
 counted_ptr<T>::operator = (const counted_ptr<T> & smartPointer)
 {
   if(m_counter != smartPointer.m_counter)
   {
-    // les deux smart pointers ne désignent pas la même variable
+    // les deux smart pointers ne dÃ©signent pas la mÃªme variable
     liberer();
     acquerir(smartPointer);
   }
@@ -151,12 +151,12 @@ counted_ptr<T>::counted_ptr(const counted_ptr<U> & smartPointer)
   acquerir(smartPointer);
 }
 
-// déterminer si le pointeur désigne quelque chose
+// dÃ©terminer si le pointeur dÃ©signe quelque chose
 template <class T>
 bool
 counted_ptr<T>::isnull() const { return m_ptr == 0; }
 
-// opérateur d'indirection *
+// opÃ©rateur d'indirection *
 template <class T>
 T &
 counted_ptr<T>::operator * () const 
@@ -165,7 +165,7 @@ counted_ptr<T>::operator * () const
   return *m_ptr;
 }
 
-// opérateur d'indirection ->
+// opÃ©rateur d'indirection ->
 template <class T>
 T *
 counted_ptr<T>::operator -> () const 
@@ -175,10 +175,10 @@ counted_ptr<T>::operator -> () const
 }
 
 //------------------------------------------------------------------------
-// méthodes privées d'implémentation
+// mÃ©thodes privÃ©es d'implÃ©mentation
 //-----------------------------------------------------------------------
 
-// acquérir la ressource désignée par cp
+// acquÃ©rir la ressource dÃ©signÃ©e par cp
 template <class T>
 void
 counted_ptr<T>::acquerir(const counted_ptr<T> & cp)
@@ -213,7 +213,7 @@ counted_ptr<T>::acquerir(const counted_ptr<U> & cp)
   }
 }
 
-// libérer la ressource
+// libÃ©rer la ressource
 template <class T>
 void
 counted_ptr<T>::liberer()
@@ -223,7 +223,7 @@ counted_ptr<T>::liberer()
     if ((*m_counter) == 0) {
       delete m_ptr;
       delete m_counter ;
-    } // détruire la variable qui n'est plus utilisée
+    } // dÃ©truire la variable qui n'est plus utilisÃ©e
   }
 }
 #endif // COUNTED_PTR_H
