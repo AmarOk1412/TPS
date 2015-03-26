@@ -1,18 +1,17 @@
 #include <cv.h>
 #include <stdio.h>
+#include <opencv2/opencv.hpp>
 #include "plugin.h"
 #include "pluginmanager.h"
 
 extern "C" {
 
-	void display_filter (cv:: Mat image)
+	cv::Mat display_filter(cv::Mat src)
 	{
-	
-		namedWindow( "Display window", WINDOW_AUTOSIZE );			// Create a window for display.
-		imshow( "Display window", image );                   // Show our image inside it.
-
-		waitKey(0);                                          // Wait for a keystroke in the window
-   
+		cv::namedWindow( "Display window", cv::WINDOW_AUTOSIZE );			// Create a window for display.
+		cv::imshow( "Display window", src);                   // Show our image inside it.
+		cv::waitKey(0);                                          // Wait for a keystroke in the window
+		return src;
 	}
 
   // enregistrer le plugin

@@ -1,13 +1,15 @@
 #include <cv.h>
 #include <stdio.h>
+#include <opencv2/opencv.hpp>
 #include "plugin.h"
 #include "pluginmanager.h"
 
 extern "C" {
-
-	void save_filter ()
+	cv::Mat save_filter (cv::Mat src)
 	{
-		 imwrite( "Blur_Image.jpg", blur_image ); //enregistrer l'image sur le dd
+		printf("Image enregistrée sous le nom Blur_Image.jpg\n");
+		cv::imwrite("Blur_Image.jpg", src); //enregistrer l'image sur le dd
+		return src;
 	}
 
   // enregistrer le plugin
