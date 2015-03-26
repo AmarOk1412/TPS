@@ -1,0 +1,4 @@
+<map id="enregistreur_fichier" name="enregistreur_fichier">
+<area shape="rect" id="node2" href="$classconsommateur.xhtml" title="Interface d&#39;un consommateur d&#39;échantillons sonores. Il s&#39;agit d&#39;une interface décrivant un composant ..." alt="" coords="10,147,155,283"/>
+<area shape="rect" id="node3" href="$classcomposant.xhtml" title="Interface d&#39;un composant du systeme sonore. " alt="" coords="27,6,137,98"/>
+</map>

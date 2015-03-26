@@ -1,7 +1,11 @@
 #include "harmonique.h"
 #include <math.h>
+#include "impl_flot.h"
+#include <iostream>
+
 harmonique::harmonique(unsigned int frequence, double phi): producteur_base(1), _freq(frequence), _dephasage(phi)
-{}
+{
+}
 
 unsigned int harmonique::nbSorties() const
 {
@@ -16,8 +20,10 @@ unsigned int harmonique::nbSorties() const
 */
 const counted_ptr<flot> & harmonique::getSortie(unsigned int numsortie) const
 {
+	std::cout << "debug" << nbSorties() << std::endl;
 	assert(numsortie<nbSorties());
-	return _sorties->at(numsortie);
+	std::cout << "debug" << nbSorties() << std::endl;
+	return _sorties.at(numsortie);
 }
 
 /**
@@ -29,13 +35,18 @@ const counted_ptr<flot> & harmonique::getSortie(unsigned int numsortie) const
 void harmonique::connecterSortie(const counted_ptr<flot> & f, unsigned int numsortie)
 {
   assert(numsortie < nbSorties());
-	_sorties->at(numsortie) = f;
+	_sorties.at(numsortie) = f;
 }
 
 void harmonique::calculer()
 {
 	unsigned int nb = nbSorties();
 	for(unsigned int i = 0; i < nb; ++i)
-	  getSortie(i)->inserer(sin(i/MixageSonore::frequency*2*MixageSonore::pi*_freq+_dephasage));
+	{
+	  for(unsigned int j = 0; i < MixageSonore::frequency; ++i) {
+			getSortie(i)->inserer(sin(i/MixageSonore::frequency*2*MixageSonore::pi*_freq+_dephasage));	  
+			std::cout << sin(i/MixageSonore::frequency*2*MixageSonore::pi*_freq+_dephasage) << std::endl;
+		}
+	}
 	
 }

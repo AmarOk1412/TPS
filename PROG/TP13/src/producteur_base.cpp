@@ -1,5 +1,6 @@
 #include "producteur_base.h"
 #include "impl_flot.h"
+#include <iostream>
 
 producteur_base::producteur_base(unsigned int nbSorties) : producteur(), _nbSorties(nbSorties)
 {
@@ -7,7 +8,7 @@ producteur_base::producteur_base(unsigned int nbSorties) : producteur(), _nbSort
   {
   	impl_flot* f = new impl_flot();
 		counted_ptr<flot> sortie(f);
-    _sorties->push_back(sortie);
+    _sorties.push_back(sortie);
   }
 }
 
@@ -25,7 +26,7 @@ unsigned int producteur_base::nbSorties() const
 const counted_ptr<flot> & producteur_base::getSortie(unsigned int numsortie) const
 {
 	assert(numsortie<nbSorties());
-	return _sorties->at(numsortie);
+	return _sorties.at(numsortie);
 }
 
 /**
@@ -37,7 +38,7 @@ const counted_ptr<flot> & producteur_base::getSortie(unsigned int numsortie) con
 void producteur_base::connecterSortie(const counted_ptr<flot> & f, unsigned int numsortie)
 {
   assert(numsortie < nbSorties());
-	_sorties->at(numsortie) = f;
+	_sorties.at(numsortie) = f;
 }
 
 void producteur_base::calculer()
