@@ -10,6 +10,7 @@
 #include "enregistreur_fichier_texte.h"
 //#include "harmonique.h"
 #include "signal_constant.h"
+#include <iostream>
 
 void
 q2_signal_constant() {

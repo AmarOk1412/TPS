@@ -8,7 +8,7 @@ extern "C" {
 	void display_filter (cv:: Mat image)
 	{
 	
-		namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
+		namedWindow( "Display window", WINDOW_AUTOSIZE );			// Create a window for display.
 		imshow( "Display window", image );                   // Show our image inside it.
 
 		waitKey(0);                                          // Wait for a keystroke in the window
