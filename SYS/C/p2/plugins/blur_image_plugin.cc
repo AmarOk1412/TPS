@@ -8,10 +8,9 @@ extern "C" {
 
 	cv::Mat blur_filter(cv::Mat src)
 	{
-		cv::Mat image = cv::imread("Blur_Image.jpg");
-		cv::Mat blur_image; //image résultat
-		cv::blur(image,blur_image,cv::Size(5,5)); //appliquer l'effet de flou sur l'image
-		return image;
+		cv::blur(src,src,cv::Size(5,5)); //appliquer l'effet de flou sur l'image
+		printf("Flou appliqué\n");
+		return src;
 	}
 
   // enregistrer le plugin
@@ -20,7 +19,7 @@ extern "C" {
   {
     register_plugin(pm,
 		    "blur_filter",
-		    "Applique un l'effet blur",
+		    "Applique un l'effet flou",
 		    blur_filter);
   }
 };

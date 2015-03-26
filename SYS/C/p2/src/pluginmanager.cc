@@ -57,13 +57,6 @@ extern "C" {
   void
   release_manager(plugin_manager * pm)
   {
-    node* nxt = pm->begin;
-    while(nxt != NULL)
-    {
-      node* tempMaillon = nxt;
-      nxt = nxt->next;
-      free(tempMaillon);
-    }
     free(pm);
   }
 
@@ -89,7 +82,7 @@ extern "C" {
 				strcat(full, "/"); 
 				strcat(full, name);
 
-    		printf("\nChargement de %s \n", full);
+    		printf("Chargement de %s \n", full);
     		void * handle = dlopen(full, RTLD_LAZY);
 				if (handle == NULL) {
 					fprintf(stderr, "%s\n", dlerror());
@@ -127,12 +120,19 @@ extern "C" {
   void
   display_menu(plugin_manager * pm)
   {
+  	printf("#################################################\n\
+###                  MENU                     ###\n\
+#################################################\n\
+ (-3) : Quitter\n\
+ (-2) : Charge un dossier de plugins\n\
+ (-1) : Affiche le menu\n");
 		int compteur = 0;
     node* maillon = pm->begin->next;
     while(maillon != NULL)
     {
+      printf(" (%d) : ", compteur);
     	printf(maillon->data->m_name);
-      printf(" %d : ", compteur);
+      printf(" - ");
       printf(maillon->data->m_description);
       printf("\n");
       maillon = maillon->next;

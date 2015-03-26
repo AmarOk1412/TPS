@@ -19,12 +19,14 @@ extern "C" {
 		}
 		strcpy(word, buf);
 		
-		cv::Mat image;
-		image = cv::imread(word, CV_LOAD_IMAGE_COLOR);   // Read the file
+		src = cv::imread(word, CV_LOAD_IMAGE_COLOR);
 
-    if(! image.data )                              // Check for invalid input
-        printf("Could not open or find the image");
-		return image;
+    if(!src.data)
+    	printf("Fichier non trouvé !\n");
+    else
+    	printf("Image chargée !\n");
+
+		return src;
 	}
 
   // enregistrer le plugin
