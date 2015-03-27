@@ -49,7 +49,7 @@ int main(int nbarg, char* args[])
 			if(f != NULL)
 				img = f(img);
 		}
-		else if(number >= nbFunction)
+		else if(number >= nbFunction || number < -3)
 			printf("Pas de fonction à cet indice !\n");
 	}
 

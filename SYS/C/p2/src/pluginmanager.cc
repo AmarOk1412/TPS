@@ -143,6 +143,18 @@ extern "C" {
   //------------------------------------------------------------------------
   // fonction destinée aux plugins
   //------------------------------------------------------------------------
+  
+  bool plugin_exist(plugin_manager * pm, const char filter_name[])
+		{
+			node* maillon = pm->begin;
+  		while(maillon != NULL)
+     	{
+     		if(maillon->data->m_name == filter_name)
+     			return true;
+     		maillon = maillon->next;
+     	}
+     	return false;
+		}
 
   // enregistrer un plugin
   void
@@ -151,6 +163,8 @@ extern "C" {
 		  const char filter_description[],
 		  filter_function the_filter)
   {
+  	if(plugin_exist(pm, filter_name))
+  		return;
     //Création du plugin 
     plugin_descriptor* plugin = (plugin_descriptor*) malloc(sizeof(plugin_descriptor));
     plugin->m_name=filter_name;
