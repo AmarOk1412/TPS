@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-Wall -I../include
-CLIBS=
+CLIBS=-L../lib_x86_64 -loutils
 LDFLAGS=
 SRC=$(wildcard *.cpp)
 OBJ=$(SRC:.cpp=.o)
