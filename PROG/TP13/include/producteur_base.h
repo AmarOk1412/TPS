@@ -30,7 +30,7 @@ public:
   /**
    * @brief	Effectue les calculs associes au composant.
    */
-  virtual void calculer();
+  virtual void calculer() = 0;
   
 protected:
   virtual void connecterSortie(const counted_ptr<flot> & f, unsigned int numsortie); 

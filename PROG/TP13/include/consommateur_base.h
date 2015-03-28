@@ -4,8 +4,9 @@
 #define __CONSOMMATEUR_BASE__H__
 
 #include "consommateur.h"
-#include "flot.h"
+#include "impl_flot.h"
 #include "counted_ptr.h"
+#include <vector>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \class	consommateur
@@ -24,7 +25,7 @@ public:
   /// \fn	virtual ~consommateur()
   /// \brief	Destructeur virtuel. 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
-  virtual ~consommateur() {}
+  virtual ~consommateur_base() {}
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   /// \fn	virtual unsigned int nbEntrees() const = 0
@@ -58,10 +59,11 @@ public:
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   virtual bool yaDesEchantillons() const;
   
-  virtual void calculer();
+  virtual void calculer() = 0;
   
 protected:
 	unsigned int _nbEntrees;
+	std::vector<counted_ptr<flot> > _entrees;
 };
 
 #endif // __CONSOMMATEUR_BASE__H__

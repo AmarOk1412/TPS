@@ -26,14 +26,14 @@ q2_signal_constant() {
 
 void q7_harmonique() {
   harmonique h(440);					// la 440Hz
-//  enregistreur_fichier enr("07_harmonique.raw", 1);	// fichier mono
+  enregistreur_fichier enr("07_harmonique.raw", 1);	// fichier mono
 
-//  enr.connecterEntree(h.getSortie(0), 0);
-//  // produire 2 secondes de son
-//  for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i) {
-//    h.calculer();
-//    enr.calculer();
-//  }
+  enr.connecterEntree(h.getSortie(0), 0);
+  // produire 2 secondes de son
+  for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i) {
+    h.calculer();
+    enr.calculer();
+  }
 }
 
 int

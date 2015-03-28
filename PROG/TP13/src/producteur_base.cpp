@@ -2,7 +2,7 @@
 #include "impl_flot.h"
 #include <iostream>
 
-producteur_base::producteur_base(unsigned int nbSorties) : producteur(), _nbSorties(nbSorties)
+producteur_base::producteur_base(unsigned int nbSorties) : _nbSorties(nbSorties), _sorties()
 {
   for(unsigned int i = 0; i < nbSorties; ++i)
   {
@@ -40,6 +40,3 @@ void producteur_base::connecterSortie(const counted_ptr<flot> & f, unsigned int 
   assert(numsortie < nbSorties());
 	_sorties.at(numsortie) = f;
 }
-
-void producteur_base::calculer()
-{ }
