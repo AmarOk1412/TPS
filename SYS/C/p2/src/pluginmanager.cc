@@ -83,11 +83,12 @@ extern "C" {
 				strcat(full, name);
 
     		printf("Chargement de %s \n", full);
-    		void * handle = dlopen(full, RTLD_LAZY);
+    		void* handle = dlopen(full, RTLD_LAZY);
 				if (handle == NULL) {
 					fprintf(stderr, "%s\n", dlerror());
 					exit(EXIT_FAILURE);
 				}
+				
 				dlerror();
 				initFunction IF = (initFunction) dlsym(handle, initfunc_name);
 				IF(pm);
