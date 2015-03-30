@@ -6,9 +6,14 @@
 
 extern "C" {
 
+	/**
+   * Appliquer un effet de flou sur une image
+   * @param src : une matrice de points
+   * @return une matrice de points
+   */
 	cv::Mat blur_filter(cv::Mat src)
 	{
-		cv::blur(src,src,cv::Size(5,5)); //appliquer l'effet de flou sur l'image
+		cv::blur(src,src,cv::Size(5,5));
 		printf("Flou appliqué\n");
 		return src;
 	}

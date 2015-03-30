@@ -8,8 +8,6 @@
 #include <stdio.h>
 
 
-// À COMPLÉTER
-
 extern "C" {
 
   //------------------------------------------------------------------------
@@ -145,6 +143,7 @@ extern "C" {
   // fonction destinée aux plugins
   //------------------------------------------------------------------------
   
+  // recherche l'existence d'un plugin
   bool plugin_exist(plugin_manager * pm, const char filter_name[])
 		{
 			node* maillon = pm->begin;

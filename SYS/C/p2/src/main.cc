@@ -4,8 +4,10 @@
 
 #include "../include/pluginmanager.h"
 
+// Recherche le nombre de plugins présents dans un répertoire donné
 int loadDir(plugin_manager* pm)
 {
+		//Entrer un nom de répertoire
 		printf("Choisissez un dossier: ");
 		char *word;
 		char buf[100]; /*buffer*/
@@ -16,10 +18,13 @@ int loadDir(plugin_manager* pm)
 		  exit(1);
 		}
 		strcpy(word, buf); 
+		
+		//Affiche le nom du répertoire choisi
 		printf("Dossier choisi : ");
 		printf(word);
 		printf("\n");
 		
+		//Cherche le nombre de plugins présents dans le répertoire
 		int nbPlugin = discover_plugins(word, pm);
 		if(nbPlugin == 0)
 			printf("Pas de plugins\n");

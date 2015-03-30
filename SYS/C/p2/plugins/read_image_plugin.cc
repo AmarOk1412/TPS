@@ -6,6 +6,11 @@
 
 extern "C" {
 
+	/**
+   * Lit une image
+   * @param src : une matrice de points
+   * @return une matrice de points
+   */
 	cv::Mat read_filter(cv::Mat src)
 	{
 		printf("Entrez le nom du fichier qui contient l'image :"); 
