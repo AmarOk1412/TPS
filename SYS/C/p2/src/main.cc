@@ -36,6 +36,19 @@ int main(int nbarg, char* args[])
 	cv::Mat img;
 	plugin_manager* pm = make_manager();
 	int nbFunction = 0;
+	
+	for (int nArg=0; nArg < nbarg; nArg++)
+	{
+		printf("Dossier choisi : ");
+		printf(args[nArg]);
+		printf("\n");
+		
+		int nbPlugin = discover_plugins(args[nArg], pm);
+		if(nbPlugin == 0)
+			printf("Pas de plugins\n");
+		else
+			nbFunction += nbPlugin;
+	}
   int  number = -1;
   while(number != -3)
   {

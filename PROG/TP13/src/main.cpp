@@ -25,7 +25,7 @@ q2_signal_constant() {
 }
 
 void q7_harmonique() {
-  harmonique h(440);					// la 440Hz
+  harmonique h(0.5*440);					// la 440Hz
   enregistreur_fichier enr("07_harmonique.raw", 1);	// fichier mono
 
   enr.connecterEntree(h.getSortie(0), 0);

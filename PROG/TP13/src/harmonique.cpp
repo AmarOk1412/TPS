@@ -8,6 +8,6 @@ harmonique::harmonique(unsigned int frequence, double phi): producteur_base(1), 
 
 void harmonique::calculer()
 {
-	_sorties.front()->inserer(sin((_i/MixageSonore::frequency) * 2. * MixageSonore::pi * _freq + _dephasage));
+	_sorties[0]->inserer(sin((_i/(double)MixageSonore::frequency) * 2 * MixageSonore::pi * _freq + _dephasage));
 	_i++;
 }
