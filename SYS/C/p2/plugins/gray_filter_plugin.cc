@@ -6,6 +6,11 @@
 
 extern "C" {
 
+	 /**
+   * Transformer une image en niveau de gris
+   * @param src : une matrice de points
+   * @return une matrice de points
+   */
 	cv::Mat display_filter(cv::Mat src)
 	{
 		cv::cvtColor(src, src, cv::COLOR_BGR2GRAY);

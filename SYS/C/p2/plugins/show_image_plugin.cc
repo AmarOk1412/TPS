@@ -6,6 +6,11 @@
 
 extern "C" {
 
+	/**
+   * Afficher une image
+   * @param src : une matrice de points
+   * @return une matrice de points
+   */
 	cv::Mat display_filter(cv::Mat src)
 	{
 		cv::namedWindow( "Display window", cv::WINDOW_AUTOSIZE );// Create a window for display.

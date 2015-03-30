@@ -5,6 +5,12 @@
 #include "pluginmanager.h"
 
 extern "C" {
+
+	/**
+   * Sauvegarder une image
+   * @param src : une matrice de points
+   * @return une matrice de points
+   */
 	cv::Mat save_filter (cv::Mat src)
 	{
 		printf("Entrez le nom du fichier pour enregistrer l'image :"); 
