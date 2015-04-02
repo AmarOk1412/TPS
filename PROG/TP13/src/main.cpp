@@ -61,9 +61,9 @@ void q8_multiplicateur()
 
 void q12_volume()
 {
-	Volume vol(0.7);
+	Volume vol(0.3);
 	harmonique h1(440);
-	vol.connecterEntree(h1.getSortie(0));
+	vol.connecterEntree(h1.getSortie(0), 0);
 	
 	enregistreur_fichier enr("12_vol.raw", 1);
 	enr.connecterEntree(vol.getSortie(0), 0);

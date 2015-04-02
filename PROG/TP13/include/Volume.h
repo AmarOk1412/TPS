@@ -13,7 +13,7 @@ public:
   virtual ~Volume() {}
   void setVolume(double volume);
   virtual void calculer();
-  virtual void connecterEntree(const counted_ptr<flot> & f);
+  virtual void connecterEntree(const counted_ptr<flot> &f, unsigned int numentree);
   
   private:
   signal_constant _s;

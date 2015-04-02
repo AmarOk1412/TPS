@@ -1,5 +1,4 @@
 #include "impl_flot.h"
-#include <iostream>
 
 impl_flot::impl_flot() : flot(), _flot(new std::deque<double>())
 {}
