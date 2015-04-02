@@ -32,8 +32,9 @@ public:
    */
   virtual void calculer() = 0;
   
-protected:
   virtual void connecterSortie(const counted_ptr<flot> & f, unsigned int numsortie); 
+  
+protected:
   std::vector< counted_ptr<flot> > _sorties;
   unsigned int _nbSorties;
 };

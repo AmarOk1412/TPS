@@ -11,6 +11,7 @@
 #include "harmonique.h"
 #include "signal_constant.h"
 #include "Multiplicateur.h"
+#include "Volume.h"
 #include <iostream>
 
 void
@@ -56,10 +57,26 @@ void q8_multiplicateur()
 	}
 }
 
+void q12_volume()
+{
+	Volume vol(0.7);
+	harmonique h1(440);
+	vol.connecterEntree(h1.getSortie(0));
+	
+	enregistreur_fichier enr("12_vol.raw", 1);
+	enr.connecterEntree(vol.getSortie(0), 0);
+	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i) {
+		h1.calculer();
+		vol.calculer();
+		enr.calculer();
+	}
+}
+
 int
 main() {
   q2_signal_constant();
   q7_harmonique();
-  q8_multiplicateur();
+  q8_multiplicateur();  
+  q12_volume();
   return 0;
 }

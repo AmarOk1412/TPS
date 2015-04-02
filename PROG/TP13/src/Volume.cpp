@@ -1,14 +1,20 @@
 #include "Volume.h"
+#include <iostream>
 
 Volume::Volume(double volume) : filtre_base(1, 1), _s(volume), _m()
 {
 	_m.connecterEntree(_s.getSortie(0), 0);
-	_m.connecterEntree(getSortie(0), 1);
 }
 
 void Volume::setVolume(double volume)
 {
 	_s.setOutVal(volume);
+}
+
+void Volume::connecterEntree(const counted_ptr<flot> &f)
+{
+  _entrees.push_back(f);
+  _m.connecterEntree(_entrees[0], 1);
 }
 
 void Volume::calculer()
