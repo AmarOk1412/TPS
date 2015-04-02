@@ -1,7 +1,5 @@
 • Lister l’emploi du temps (d’un créneau spécifique) pour un parcours.
-
-
-
+SELECT DISTINCT horaire FROM estDans eD, Cours C, estInscrit eI, Etudiant E WHERE eD.Cours_idCours=C.idCours AND C.idCours=eI.idCours AND eI.idEtudiant=E.idEtudiant AND E.Parcours_idPar=2;
 • Trouver le nom des enseignants pour un cours spécifique.
 SELECT Enseignant_idEnseignant FROM Enseigne WHERE Cours_idCours = 1;
 • Horaires d’un cours spécifique (par ex. la date du prochain cours de bases de données).
