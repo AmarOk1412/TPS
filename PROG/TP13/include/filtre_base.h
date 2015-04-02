@@ -11,6 +11,6 @@ public:
 	filtre_base(unsigned int nbEntrees, unsigned int nbSorties);
 	virtual ~filtre_base() {}
 	virtual void calculer() = 0;
-}
+};
 
 #endif

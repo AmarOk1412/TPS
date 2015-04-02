@@ -10,6 +10,7 @@
 #include "enregistreur_fichier_texte.h"
 #include "harmonique.h"
 #include "signal_constant.h"
+#include "Multiplicateur.h"
 #include <iostream>
 
 void
@@ -36,9 +37,29 @@ void q7_harmonique() {
   }
 }
 
+
+void q8_multiplicateur()
+{
+	Multiplicateur mul;
+	harmonique h1(440);
+	mul.connecterEntree(h1.getSortie(0), 0);
+	harmonique h2(880);
+	mul.connecterEntree(h2.getSortie(0), 1);
+	
+	enregistreur_fichier enr("08_mul.raw", 1);
+	enr.connecterEntree(mul.getSortie(0), 0);
+	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i) {
+		h1.calculer();
+		h2.calculer();
+		mul.calculer();
+		enr.calculer();
+	}
+}
+
 int
 main() {
   q2_signal_constant();
   q7_harmonique();
+  q8_multiplicateur();
   return 0;
 }
