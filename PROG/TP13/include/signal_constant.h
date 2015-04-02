@@ -17,6 +17,8 @@ public:
    */
   void calculer();
   
+  void setOutVal(double newVal) { _outVal = newVal; }
+  
 private:
 	double _outVal; 
 };

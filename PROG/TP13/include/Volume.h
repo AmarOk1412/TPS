@@ -3,7 +3,7 @@
 #ifndef __VOLUME__H__
 #define __VOLUME__H__
 
-#include "Volume.h"
+#include "Multiplicateur.h"
 #include "signal_constant.h"
 #include "filtre_base.h"
 
