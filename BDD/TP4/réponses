@@ -1,10 +1,5 @@
 • Lister l’emploi du temps (d’un créneau spécifique) pour un parcours.
 
-• Obtenir une liste des étudiants (d’un parcours) qui suivent un cours spécifique.
-• Déterminer l’occupation moyenne des salles de TP.
-• Liste des salles (de TP/ou autre type) non-occupées (dans une période spécifique).
-
-
 
 
 • Trouver le nom des enseignants pour un cours spécifique.
@@ -19,4 +14,18 @@ SELECT * FROM estDans WHERE Salle_idSalle = 20;
 SELECT horaire FROM estDans WHERE Cours_idCours = (SELECT idCours FROM estInscrit WHERE idEtudiant = 1) AND horaire > '2010';
 SELECT horaire FROM estDans WHERE Cours_idCours = (SELECT idCours FROM estInscrit WHERE idEtudiant = numEtudiant) AND horaire > creneau_inf AND horaire < creneau_sup;
 • Lister l’emploi du temps (d’un créneau spécifique) pour un enseignant.
-SELECT horaire FROM estDans WHERE Cours_idCours = (SELECT idCours FROM estInscrit WHERE idEnseignant = 1);
+SELECT horaire FROM estDans WHERE Cours_idCours = (SELECT Cours_idCours FROM Enseigne WHERE Enseignant_idEnseignant = 1);
+• Obtenir une liste des étudiants (d’un parcours) qui suivent un cours spécifique.
+SELECT nom, prenom FROM estInscrit EI, Etudiant E 
+WHERE  EI.idEtudiant = E.idEtudiant AND E.Parcours_idPar = 1
+AND EI.idCours = 1;
+• Liste des salles (de TP/ou autre type) non-occupées (dans une période spécifique).
+SELECT DISTINCT Salle_idSalle FROM estDans 
+WHERE Salle_idSalle != 
+(SELECT DISTINCT Salle_idSalle FROM estDans 
+WHERE horaire > '2014' AND horaire < '2016');
+
+• Déterminer l’occupation moyenne des salles de TP.
+Soit X le nombre de créneaux sur une période T. À raison de 8 créneaux par jour. Pour une semaine, on a donc X = 40;
+SELECT COUNT(horaire)/40 FROM estDans WHERE horaire > '2015-05-04' AND horaire < '2015-05-11' AND Salle_idSalle = 1;
+SELECT COUNT(horaire)/X FROM estDans WHERE horaire > min AND horaire < sup AND Salle_idSalle = salle;
