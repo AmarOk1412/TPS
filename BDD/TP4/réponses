@@ -1,0 +1,22 @@
+• Lister l’emploi du temps (d’un créneau spécifique) pour un parcours.
+
+• Obtenir une liste des étudiants (d’un parcours) qui suivent un cours spécifique.
+• Déterminer l’occupation moyenne des salles de TP.
+• Liste des salles (de TP/ou autre type) non-occupées (dans une période spécifique).
+
+
+
+
+• Trouver le nom des enseignants pour un cours spécifique.
+SELECT Enseignant_idEnseignant FROM Enseigne WHERE Cours_idCours = 1;
+• Horaires d’un cours spécifique (par ex. la date du prochain cours de bases de données).
+SELECT horaire FROM estDans WHERE Cours_idCours = 2;
+• Obtenir une liste des étudiants (d’un parcours)
+SELECT * FROM Etudiant WHERE Parcours_idPar = 2;
+• Occupation d’un salle spécifique.
+SELECT * FROM estDans WHERE Salle_idSalle = 20;
+• Lister l’emploi du temps (d’un créneau spécifique) pour un étudiant particulier.
+SELECT horaire FROM estDans WHERE Cours_idCours = (SELECT idCours FROM estInscrit WHERE idEtudiant = 1) AND horaire > '2010';
+SELECT horaire FROM estDans WHERE Cours_idCours = (SELECT idCours FROM estInscrit WHERE idEtudiant = numEtudiant) AND horaire > creneau_inf AND horaire < creneau_sup;
+• Lister l’emploi du temps (d’un créneau spécifique) pour un enseignant.
+SELECT horaire FROM estDans WHERE Cours_idCours = (SELECT idCours FROM estInscrit WHERE idEnseignant = 1);
