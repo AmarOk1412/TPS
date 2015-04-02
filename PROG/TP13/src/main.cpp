@@ -13,6 +13,8 @@
 #include "Multiplicateur.h"
 #include "Volume.h"
 #include <iostream>
+#include <functional>
+#include "operation_binaire.h"
 
 void
 q2_signal_constant() {
@@ -41,7 +43,7 @@ void q7_harmonique() {
 
 void q8_multiplicateur()
 {
-	Multiplicateur mul;
+	operation_binaire<std::multiplies<double> > mul;
 	harmonique h1(440);
 	mul.connecterEntree(h1.getSortie(0), 0);
 	harmonique h2(880);
