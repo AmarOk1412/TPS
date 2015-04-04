@@ -15,6 +15,7 @@
 #include <iostream>
 #include <functional>
 #include "operation_binaire.h"
+#include "Mixeur.h"
 
 void
 q2_signal_constant() {
@@ -74,11 +75,38 @@ void q12_volume()
 	}
 }
 
+void q15_Mixeur()
+{
+	harmonique h1(440);
+	harmonique h2(600);
+	harmonique h3(880);
+
+  double t[] =  {0.5, 0.5, 0.5};
+
+  Mixeur m(3, t);
+  m.connecterEntree(h1.getSortie(0), 0);
+  m.connecterEntree(h2.getSortie(0), 1);
+  m.connecterEntree(h3.getSortie(0), 2);
+
+	enregistreur_fichier enr("15_mixeur.raw", 1);
+	enr.connecterEntree(m.getSortie(0), 0);
+
+	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
+	{
+		h1.calculer();
+	  h2.calculer();
+	  h3.calculer();
+	  m.calculer();
+	  enr.calculer();
+	}
+}
+
 int
 main() {
   q2_signal_constant();
   q7_harmonique();
   q8_multiplicateur();  
   q12_volume();
+  q15_Mixeur();
   return 0;
 }

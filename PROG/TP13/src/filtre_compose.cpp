@@ -1,8 +1,8 @@
 #include "filtre_compose.h"
 
 filtre_compose::filtre_compose
-(std::vector<counted_ptr<composant> > composants, unsigned int nbEntrees, unsigned int nbSorties) :
-filtre_base(nbEntrees,nbSorties), _composants(composants), _associations()
+(unsigned int nbEntrees, unsigned int nbSorties) :
+filtre_base(nbEntrees,nbSorties), _associations()
 {
 
 }

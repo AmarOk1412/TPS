@@ -7,10 +7,8 @@
 
 class Mixeur : public filtre_compose {
 public:
-	Mixeur(double volume);
+	Mixeur(unsigned int nbEntrees, double volumes[]);
   virtual ~Mixeur() {}
-  virtual void calculer();
-  virtual void connecterEntree(const counted_ptr<flot> &f, unsigned int numentree);
   
   private:
 };
