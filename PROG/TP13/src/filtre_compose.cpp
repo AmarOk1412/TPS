@@ -1,11 +1,10 @@
 #include "filtre_compose.h"
+#include <iostream>
 
 filtre_compose::filtre_compose
 (unsigned int nbEntrees, unsigned int nbSorties) :
 filtre_base(nbEntrees,nbSorties), _associations()
-{
-
-}
+{ }
 
 void filtre_compose::calculer()
 {
@@ -34,6 +33,7 @@ void filtre_compose::connecterEntreeInterne(counted_ptr<consommateur> comp, unsi
 
 void filtre_compose::connecterSortieInterne(counted_ptr<producteur_base> comp, unsigned int numSortieComp, unsigned int numSortie)
 {
+  assert(numSortie < nbSorties());
 	comp->connecterSortie(getSortie(numSortie), numSortieComp);
 }
 

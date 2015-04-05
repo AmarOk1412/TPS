@@ -12,10 +12,11 @@
 #include "signal_constant.h"
 #include "Multiplicateur.h"
 #include "Volume.h"
-#include <iostream>
-#include <functional>
 #include "operation_binaire.h"
 #include "Mixeur.h"
+#include "VolumeCompose.h"
+#include <iostream>
+#include <functional>
 
 void
 q2_signal_constant() {
@@ -75,6 +76,25 @@ void q12_volume()
 	}
 }
 
+void q14_VolumeCompose()
+{
+	harmonique h(440);
+	VolumeCompose v(0.5);
+
+	v.connecterEntree(h.getSortie(0), 0);
+
+	enregistreur_fichier enr("14_volumeCompose.raw", 1);
+	enr.connecterEntree(v.getSortie(0), 0);
+
+	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
+	{
+		h.calculer();
+		v.calculer();
+		enr.calculer();
+	}
+}
+
+
 void q15_Mixeur()
 {
 	harmonique h1(440);
@@ -103,10 +123,11 @@ void q15_Mixeur()
 
 int
 main() {
-  q2_signal_constant();
-  q7_harmonique();
-  q8_multiplicateur();  
-  q12_volume();
+//  q2_signal_constant();
+//  q7_harmonique();
+//  q8_multiplicateur();  
+//  q12_volume();
+  q14_VolumeCompose();
   q15_Mixeur();
   return 0;
 }

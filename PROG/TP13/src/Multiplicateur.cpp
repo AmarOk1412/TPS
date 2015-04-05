@@ -1,6 +1,5 @@
 #include "Multiplicateur.h"
 
-#include <iostream>
 Multiplicateur::Multiplicateur() : filtre_base(2, 1)
 { }
 

@@ -1,5 +1,6 @@
 #include "signal_constant.h"
 #include "impl_flot.h"
+#include <iostream>
 
 signal_constant::signal_constant(double outVal) : producteur_base(1), _outVal(outVal)
 { }
