@@ -15,6 +15,10 @@
 #include "operation_binaire.h"
 #include "Mixeur.h"
 #include "VolumeCompose.h"
+#include "FadeIn.h"
+#include "lecteur_fichier.h"
+#include "Compresser.h"
+#include "Echo.h"
 #include <iostream>
 #include <functional>
 
@@ -94,7 +98,6 @@ void q14_VolumeCompose()
 	}
 }
 
-
 void q15_Mixeur()
 {
 	harmonique h1(440);
@@ -121,13 +124,94 @@ void q15_Mixeur()
 	}
 }
 
+void q16_MixeurSignaux()
+{
+	lecteur_fichier l1("raw/mono.raw",1);
+	lecteur_fichier l2("raw/stereo.raw",2);
+
+  double t[] =  {0, 1, 1};
+  Mixeur m(3, t);
+  m.connecterEntree(l1.getSortie(0), 0);
+  m.connecterEntree(l2.getSortie(0), 1);
+  m.connecterEntree(l2.getSortie(1), 2);
+
+	enregistreur_fichier enr("16_mixeurSignaux.raw", 1);
+	enr.connecterEntree(m.getSortie(0), 0);
+
+	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
+	{
+		l1.calculer();
+	  l2.calculer();
+	  m.calculer();
+	  enr.calculer();
+	}
+}
+
+void FadeInf()
+{
+	operation_binaire<std::multiplies<double> > mul;
+	harmonique h1(440);
+	FadeIn f(2);
+	mul.connecterEntree(h1.getSortie(0), 0);
+	mul.connecterEntree(f.getSortie(0), 1);
+	
+	enregistreur_fichier enr("FadeIn.raw", 1);
+	enr.connecterEntree(mul.getSortie(0), 0);
+	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i) {
+		h1.calculer();
+		f.calculer();
+		mul.calculer();
+		enr.calculer();
+	}
+}
+
+void Compresse()
+{
+	harmonique h(2600);
+	Compresser c(0.5);
+
+	c.connecterEntree(h.getSortie(0), 0);
+
+	enregistreur_fichier enr("Compresse.raw", 1);
+	enr.connecterEntree(c.getSortie(0), 0);
+
+	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
+	{
+		h.calculer();
+		c.calculer();
+		enr.calculer();
+	}
+}
+
+void Echof()
+{
+	lecteur_fichier l1("raw/mono.raw",1);
+	Echo e(0.5);
+
+	e.connecterEntree(l1.getSortie(0), 0);
+
+	enregistreur_fichier enr("Echo.raw", 1);
+	enr.connecterEntree(e.getSortie(0), 0);
+
+	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
+	{
+		l1.calculer();
+		e.calculer();
+		enr.calculer();
+	}
+}
+
 int
 main() {
 //  q2_signal_constant();
 //  q7_harmonique();
 //  q8_multiplicateur();  
 //  q12_volume();
-  q14_VolumeCompose();
-  q15_Mixeur();
+//  q14_VolumeCompose();
+//  q15_Mixeur();
+//  q16_MixeurSignaux();
+  FadeInf();
+  Compresse();
+  Echof();
   return 0;
 }
