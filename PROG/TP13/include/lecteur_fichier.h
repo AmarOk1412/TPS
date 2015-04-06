@@ -10,7 +10,7 @@ public:
 	lecteur_fichier(std::string nom, unsigned int nbCanaux);
 	
 	virtual ~lecteur_fichier();
-	 void calculer();
+	void calculer();
 	
 private:
 	std::string _nom;
