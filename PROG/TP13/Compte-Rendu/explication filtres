@@ -1,0 +1,8 @@
+- des explications sur le fonctionnement du filtre composé : rôle précis des structures de données internes, rôle des opérations mises à disposition du fabricant de filtre ainsi que leur utilisation par les filtres qui hériteront de la classe filtre_compose. 
+
+Le filtre composé est un filtre contenant plusieurs objets héritants de composant.
+Ils sont stockés dans std::vector<counted_ptr<composant>  > _composants;
+Pour garder en mémoire les connexions entre les entrées du filtre et les composants internes, une map est nécessaire. Ces données sont contenus dans : 
+std::map<unsigned int, std::pair<counted_ptr<consommateur>, unsigned int> > _associations;
+Modifiée par void connecterEntreeInterne (counted_ptr<consommateur> comp, unsigned int numEntree, unsigned int numEntreeComp);
+Les connexions entre composants se font via la méthode void connecter2Composants(counted_ptr<producteur> comp1, unsigned int numSortie,	counted_ptr<consommateur> comp2, unsigned int numEntree);
