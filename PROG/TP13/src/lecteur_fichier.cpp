@@ -8,6 +8,7 @@
 #include <string>
 #include <stdlib.h>
 #include <iostream>
+#include <climits>
 
 lecteur_fichier::lecteur_fichier(std::string nom, unsigned int nbCanaux) : producteur_base(nbCanaux), _nom(nom), _nbCanaux(nbCanaux)
 {
@@ -29,15 +30,15 @@ void lecteur_fichier::calculer()
 		if(!_ifs.eof())
 			for(unsigned int i = 0; i < _nbCanaux; ++i)
 			{
-				short int echantillon(0);
-				_ifs.read((char *)&echantillon, sizeof(short int));
+				int echantillon(0);
+				_ifs.read((char *)&echantillon, sizeof(int));
 				if(!_ifs.good())
 				{
 					composant_exception exc("Échec de lecture");
 					exc.what();
 				}
-				//TODO : convertir little endian <-> big
-				_sorties[i]->inserer(echantillon);
+				double e = (double)echantillon/(double)INT_MAX;
+				_sorties[i]->inserer(e);
 			}
 		else
 		{

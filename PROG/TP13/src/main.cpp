@@ -209,9 +209,9 @@ main() {
 //  q12_volume();
 //  q14_VolumeCompose();
 //  q15_Mixeur();
-//  q16_MixeurSignaux();
-  FadeInf();
-  Compresse();
-  Echof();
+  q16_MixeurSignaux();
+//  FadeInf();
+//  Compresse();
+//  Echof();
   return 0;
 }

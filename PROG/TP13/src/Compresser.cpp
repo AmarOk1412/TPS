@@ -14,7 +14,6 @@ void Compresser::calculer()
 		if(val >= 0)
 			signe = 1.;
 		double value = signe*pow(sqrt(pow(val,2)), _taux);
-		std::cout << val << "---" << value << std::endl;
 		_sorties[0]->inserer(value);
 	}
 }
