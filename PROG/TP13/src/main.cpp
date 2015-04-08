@@ -138,7 +138,7 @@ void q16_MixeurSignaux()
 	enregistreur_fichier enr("16_mixeurSignaux.raw", 1);
 	enr.connecterEntree(m.getSortie(0), 0);
 
-	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
+	for (unsigned long int i = 0; i < 2.5 * MixageSonore::frequency; ++i)
 	{
 		l1.calculer();
 	  l2.calculer();
