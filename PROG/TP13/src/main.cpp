@@ -131,7 +131,7 @@ void q16_MixeurSignaux()
 		lecteur_fichier l1("raw/mono.raw",1);
 		lecteur_fichier l2("raw/stereo.raw",2);
 		
-		double t[] =  {1, 0, 0};
+		double t[] =  {0, 1, 1};
 		Mixeur m(3, t);
 		m.connecterEntree(l1.getSortie(0), 0);
 		m.connecterEntree(l2.getSortie(0), 1);
