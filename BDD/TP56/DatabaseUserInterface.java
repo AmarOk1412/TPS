@@ -149,7 +149,7 @@ private void connectToDatabase(){
 			setStatus("Connected to the database");
 	} catch(Exception e){
 		System.err.println(e.getMessage());
-		setStatus("Connection failed");
+		setStatus("Connection failed" + e.toString());
 	}
 }
 
@@ -161,6 +161,12 @@ private void disconnectFromDatabase(){
 	try{
 	setStatus("Disconnected from the database");
 	} catch(Exception e){
+        if(conn!=null)
+			try {
+				conn.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		System.err.println(e.getMessage());
 		setStatus("Disconnection failed");
 	}
@@ -171,11 +177,31 @@ private void disconnectFromDatabase(){
  * display of the results here 
  */
 private void queryDatabase(){
-	setStatus("Querying the database");
-	mRes.setText("The query result is presented here.\n");
-	mRes.append("Joe\n");
-	mRes.append("John\n");
-	mRes.append("...\n");
+	System.out.println("Creating statement...");
+    try {
+		stmt = conn.createStatement();
+	    String sql;
+	    sql = "SELECT * FROM TP5";
+	    ResultSet rs = stmt.executeQuery(sql);
+	    
+
+		mRes.setText("The query result is presented here.\n");
+	    //STEP 5: Extract data from result set
+	    while(rs.next()){
+	       //Retrieve by column name
+	       String nom = rs.getString("Nom");
+	       String age = rs.getString("Age");
+	       String color = rs.getString("Color");
+	
+	       //Display values
+	       mRes.append("Nom: " + nom);
+	       mRes.append(", Age: " + age);
+	       mRes.append(", Color: " + color + "\n");
+	    }
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
 }
 
 /**
@@ -183,11 +209,17 @@ private void queryDatabase(){
  */
 private void insertDatabase(){
 	try{
+		System.out.println("Creating statement...");
+	    stmt = conn.createStatement();
+	    String sql;
 		String name = m1.getText();
 		String age = m2.getText();
 		String color = m3.getText();
+	    sql = "INSERT INTO TP5 VALUES( '" + name + "', '" + age + "', '" + color + "' );";
+	    stmt.executeUpdate(sql);
 		setStatus("Inserting --( " + name + ", " + age + ", " + color + " )-- to the database");
-		} catch(Exception e){
+		stmt.close();
+	} catch(Exception e){
 			System.err.println(e.getMessage());
 			setStatus("Insertion failed");
 		}
