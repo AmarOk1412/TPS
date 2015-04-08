@@ -1,6 +1,7 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 /**
  * This is a skeleton for realizing a very simple database user interface in java. 
@@ -18,6 +19,17 @@ public class DatabaseUserInterface extends java.applet.Applet implements ActionL
 TextArea mRes;
  private Button b1, b2, b3, b4;
  private static final long serialVersionUID = 1L; 
+ 
+ // JDBC driver name and database URL
+   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+   static final String DB_URL = "jdbc:mysql://mysql.istic.univ-rennes1.fr:3306/base_13002155";
+
+   //  Database credentials
+   static final String USER = "user_13002155";
+   static final String PASS = "55espece99";  
+   
+		Connection conn = null;
+		Statement stmt = null;
  
  
  /**
@@ -127,7 +139,14 @@ private void setStatus(String text){
  */
 private void connectToDatabase(){
 	try{
-	setStatus("Connected to the database");
+		//STEP 2: Register JDBC driver
+		Class.forName("com.mysql.jdbc.Driver");
+
+		//STEP 3: Open a connection
+		System.out.println("Connecting to database...");
+		conn = DriverManager.getConnection(DB_URL,USER,PASS);
+		if(conn != null)
+			setStatus("Connected to the database");
 	} catch(Exception e){
 		System.err.println(e.getMessage());
 		setStatus("Connection failed");
