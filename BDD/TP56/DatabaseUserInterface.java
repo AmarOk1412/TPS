@@ -198,7 +198,9 @@ private void queryDatabase(){
 	       mRes.append(", Age: " + age);
 	       mRes.append(", Color: " + color + "\n");
 	    }
-
+	    
+	    stmt.close();
+	    rs.close();
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
