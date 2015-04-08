@@ -15,11 +15,10 @@ lecteur_fichier::lecteur_fichier(std::string nom, unsigned int nbCanaux) : produ
 	char * cnom = new char [nom.length()+1];
   std::strcpy (cnom, nom.c_str());
   _ifs.open(nom.c_str(), std::ios::in | std::ios::binary);
-  if(!_ifs.good())
-  {
-  	composant_exception exc("Fichier non trouvé");
-  	exc.what();
-  }
+  if(!_ifs.good()) {
+  	composant_exception exc("Fichier non trouvé (" + nom + ")");  	
+		throw exc;
+	}
 }
 
 lecteur_fichier::~lecteur_fichier()
@@ -30,19 +29,18 @@ void lecteur_fichier::calculer()
 		if(!_ifs.eof())
 			for(unsigned int i = 0; i < _nbCanaux; ++i)
 			{
-				int echantillon(0);
-				_ifs.read((char *)&echantillon, sizeof(int));
-				if(!_ifs.good())
-				{
+				short int echantillon(0);
+				_ifs.read((char *)&echantillon, sizeof(short int));
+				if(!_ifs.good() && !_ifs.eof()) {
 					composant_exception exc("Échec de lecture");
-					exc.what();
+					throw exc;
 				}
-				double e = (double)echantillon/(double)INT_MAX;
+				double e = (double)echantillon/(double)SHRT_MAX - 0.5;
 				_sorties[i]->inserer(e);
 			}
 		else
 		{
-			composant_exception exc("Fin de fichier atteint");
-			exc.what();
+			composant_exception exc("Fin de fichier atteint ("+_nom+")");
+			throw exc;
 		}
 }

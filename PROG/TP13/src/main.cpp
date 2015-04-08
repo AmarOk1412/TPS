@@ -126,25 +126,40 @@ void q15_Mixeur()
 
 void q16_MixeurSignaux()
 {
-	lecteur_fichier l1("raw/mono.raw",1);
-	lecteur_fichier l2("raw/stereo.raw",2);
-
-  double t[] =  {0, 1, 1};
-  Mixeur m(3, t);
-  m.connecterEntree(l1.getSortie(0), 0);
-  m.connecterEntree(l2.getSortie(0), 1);
-  m.connecterEntree(l2.getSortie(1), 2);
-
-	enregistreur_fichier enr("16_mixeurSignaux.raw", 1);
-	enr.connecterEntree(m.getSortie(0), 0);
-
-	for (unsigned long int i = 0; i < 2.5 * MixageSonore::frequency; ++i)
+	try
 	{
-		l1.calculer();
-	  l2.calculer();
-	  m.calculer();
-	  enr.calculer();
+		lecteur_fichier l1("raw/mono.raw",1);
+		lecteur_fichier l2("raw/stereo.raw",2);
+		
+		double t[] =  {1, 0, 0};
+		Mixeur m(3, t);
+		m.connecterEntree(l1.getSortie(0), 0);
+		m.connecterEntree(l2.getSortie(0), 1);
+		m.connecterEntree(l2.getSortie(1), 2);
+
+		enregistreur_fichier enr("16_mixeurSignaux.raw", 1);
+		enr.connecterEntree(m.getSortie(0), 0);
+
+		for (unsigned long int i = 0; i < 10 * MixageSonore::frequency; ++i)
+		{
+			try
+			{
+				l1.calculer();
+				l2.calculer();
+			}
+			catch (std::exception& e)
+		  {
+		    std::cerr << e.what() << '\n';
+		    break;
+		  }
+			m.calculer();
+			enr.calculer();
+		}
 	}
+	catch (std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
 }
 
 void FadeInf()
@@ -185,20 +200,35 @@ void Compresse()
 
 void Echof()
 {
-	lecteur_fichier l1("raw/mono.raw",1);
-	Echo e(0.5);
-
-	e.connecterEntree(l1.getSortie(0), 0);
-
-	enregistreur_fichier enr("Echo.raw", 1);
-	enr.connecterEntree(e.getSortie(0), 0);
-
-	for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
+	try
 	{
-		l1.calculer();
-		e.calculer();
-		enr.calculer();
-	}
+		lecteur_fichier l1("raw/mono.raw",1);
+		Echo e(0.5);
+
+		e.connecterEntree(l1.getSortie(0), 0);
+
+		enregistreur_fichier enr("Echo.raw", 1);
+		enr.connecterEntree(e.getSortie(0), 0);
+
+		for (unsigned long int i = 0; i < 2 * MixageSonore::frequency; ++i)
+		{
+			try
+			{
+				l1.calculer();
+			}
+			catch (std::exception& e)
+		  {
+		    std::cerr << e.what() << '\n';
+		    break;
+		  }
+			e.calculer();
+			enr.calculer();
+		}
+	}	
+	catch (std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
 }
 
 int
