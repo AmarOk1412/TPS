@@ -44,3 +44,24 @@ void lecteur_fichier::calculer()
 			throw exc;
 		}
 }
+
+void lecteur_fichier::ElectroSummerMixCalc()
+{
+		if(!_ifs.eof())
+			for(unsigned int i = 0; i < _nbCanaux; ++i)
+			{
+				long echantillon(0);
+				_ifs.read((char *)&echantillon, sizeof(long));
+				if(!_ifs.good() && !_ifs.eof()) {
+					composant_exception exc("Échec de lecture");
+					throw exc;
+				}
+				double e = (double)echantillon/(double)LONG_MAX;
+				_sorties[i]->inserer(e);
+			}
+		else
+		{
+			composant_exception exc("Fin de fichier atteint ("+_nom+")");
+			throw exc;
+		}
+}

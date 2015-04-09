@@ -162,6 +162,41 @@ void q16_MixeurSignaux()
   }
 }
 
+void bonus_electroMix()
+{
+	try
+	{
+		lecteur_fichier l1("raw/stereo.raw",2);
+		
+		double t[] =  {1, 1};
+		Mixeur m(2, t);
+		m.connecterEntree(l1.getSortie(0), 0);
+		m.connecterEntree(l1.getSortie(1), 1);
+
+		enregistreur_fichier enr("electroMix.raw", 1);
+		enr.connecterEntree(m.getSortie(0), 0);
+
+		for (unsigned long int i = 0; i < 10 * MixageSonore::frequency; ++i)
+		{
+			try
+			{
+				l1.ElectroSummerMixCalc();
+			}
+			catch (std::exception& e)
+		  {
+		    std::cerr << e.what() << '\n';
+		    break;
+		  }
+			m.calculer();
+			enr.calculer();
+		}
+	}
+	catch (std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
+}
+
 void FadeInf()
 {
 	operation_binaire<std::multiplies<double> > mul;
@@ -243,5 +278,6 @@ main() {
 //  FadeInf();
 //  Compresse();
 //  Echof();
+	bonus_electroMix();
   return 0;
 }

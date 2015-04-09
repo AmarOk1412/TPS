@@ -11,6 +11,7 @@ public:
 	
 	virtual ~lecteur_fichier();
 	void calculer();
+	void ElectroSummerMixCalc();
 	
 private:
 	std::string _nom;
