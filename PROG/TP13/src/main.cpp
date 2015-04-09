@@ -162,6 +162,35 @@ void q16_MixeurSignaux()
   }
 }
 
+void lecteurFichier()
+{
+	try
+	{
+		lecteur_fichier l2("raw/stereo.raw",2);
+
+		enregistreur_fichier enr("lecteurFichier.raw", 1);
+		enr.connecterEntree(l2.getSortie(1), 0);
+
+		for (unsigned long int i = 0; i < 10 * MixageSonore::frequency; ++i)
+		{
+			try
+			{
+				l2.calculer();
+			}
+			catch (std::exception& e)
+		  {
+		    std::cerr << e.what() << '\n';
+		    break;
+		  }
+			enr.calculer();
+		}
+	}
+	catch (std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
+}
+
 void bonus_electroMix()
 {
 	try
@@ -279,5 +308,6 @@ main() {
 //  Compresse();
 //  Echof();
 	bonus_electroMix();
+	lecteurFichier();
   return 0;
 }
