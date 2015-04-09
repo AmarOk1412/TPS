@@ -1,8 +1,12 @@
 #include "Echo.h"
 
+//constructeur
 Echo::Echo(double delay): filtre_base(1, 1), buff(delay), _size(MixageSonore::frequency*delay)
 { }
 
+/**
+   * @brief	Effectue les calculs associes au composant.
+   */
 void Echo::calculer()
 {
 	if(yaDesEchantillons())

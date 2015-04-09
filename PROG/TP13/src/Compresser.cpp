@@ -2,9 +2,16 @@
 #include <math.h>
 #include <iostream>
 
+/** 
+ * Initialise un filtre qui compresse un flot 
+ * @param taux : le taux de compression
+*/
 Compresser::Compresser(float taux) : filtre_base(1, 1), _taux(taux)
 { }
 
+/**
+ * @brief	Effectue les calculs associes au composant.
+ */
 void Compresser::calculer()
 {
 	if(yaDesEchantillons())
