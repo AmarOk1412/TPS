@@ -35,7 +35,7 @@ void lecteur_fichier::calculer()
 					composant_exception exc("Échec de lecture");
 					throw exc;
 				}
-				double e = (double)echantillon/(double)SHRT_MAX - 0.5;
+				double e = (double)echantillon/(double)SHRT_MAX;
 				_sorties[i]->inserer(e);
 			}
 		else

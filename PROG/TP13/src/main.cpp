@@ -128,14 +128,16 @@ void q16_MixeurSignaux()
 {
 	try
 	{
-		//lecteur_fichier l1("raw/mono.raw",1);
+		lecteur_fichier l1("raw/mono.raw",1);
 		lecteur_fichier l2("raw/stereo.raw",2);
+		lecteur_fichier l3("raw/mono.raw",1);
 		
-		double t[] =  { 1, 1};
-		Mixeur m(2, t);
-		m.connecterEntree(l2.getSortie(0), 0);
-		m.connecterEntree(l2.getSortie(1), 1);
-	//	m.connecterEntree(l2.getSortie(1), 2);
+		double t[] =  {0, 0, 1, 1};
+		Mixeur m(4, t);
+		m.connecterEntree(l1.getSortie(0), 0);
+		m.connecterEntree(l2.getSortie(0), 1);
+		m.connecterEntree(l2.getSortie(1), 2);
+		m.connecterEntree(l3.getSortie(0), 3);
 
 		enregistreur_fichier enr("16_mixeurSignaux.raw", 1);
 		enr.connecterEntree(m.getSortie(0), 0);
@@ -144,8 +146,9 @@ void q16_MixeurSignaux()
 		{
 			try
 			{
-			//	l1.calculer();
+				l1.calculer();
 				l2.calculer();
+				l3.calculer();
 			}
 			catch (std::exception& e)
 		  {
