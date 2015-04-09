@@ -2,6 +2,10 @@
 #include "impl_flot.h"
 #include <iostream>
 
+/**
+ * Initialiser un producteur de base
+ * @param nbSorties : le nombre de sorties du producteur
+ */
 producteur_base::producteur_base(unsigned int nbSorties) : _nbSorties(nbSorties), _sorties()
 {
   for(unsigned int i = 0; i < nbSorties; ++i)

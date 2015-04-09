@@ -6,6 +6,11 @@
 #include <functional>
 #include <vector>
 
+/**
+ * Initialise un mixeur
+ * @param nbEntrees : le nombre d'entrées du filtre
+ * @param volumes : tableau contenant les valeurs de volume pour chaque entrée
+ */
 Mixeur::Mixeur(unsigned int nbEntrees, double volumes[]) : filtre_compose(nbEntrees,1)
 {
 	//Première colonne de multiplicateur

@@ -10,6 +10,11 @@
 #include <iostream>
 #include <climits>
 
+/**
+ * Initialise un lecteur de fichier
+ * @param nom : nom du fichier
+ * @param nbCanaux : le nombre de sorties 
+ */
 lecteur_fichier::lecteur_fichier(std::string nom, unsigned int nbCanaux) : producteur_base(nbCanaux), _nom(nom), _nbCanaux(nbCanaux)
 {
 	char * cnom = new char [nom.length()+1];
@@ -21,9 +26,13 @@ lecteur_fichier::lecteur_fichier(std::string nom, unsigned int nbCanaux) : produ
 	}
 }
 
+//destructeur
 lecteur_fichier::~lecteur_fichier()
 { _ifs.close(); }
 
+/**
+ * @brief	Effectue les calculs associes au composant.
+ */
 void lecteur_fichier::calculer()
 {
 		if(!_ifs.eof())
@@ -45,6 +54,9 @@ void lecteur_fichier::calculer()
 		}
 }
 
+/**
+ * Calcule la version "Hit Summer" de l'échantillon
+ */
 void lecteur_fichier::ElectroSummerMixCalc()
 {
 		if(!_ifs.eof())
