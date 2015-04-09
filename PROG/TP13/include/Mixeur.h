@@ -10,7 +10,7 @@ public:
 	/**
 	 * Initialise un mixeur
 	 * @param nbEntrees : le nombre d'entrées du filtre
-	 * @param volumes : 
+	 * @param volumes : tableau contenant les valeurs de volume pour chaque entrée
 	*/
 	Mixeur(unsigned int nbEntrees, double volumes[]);
 	
