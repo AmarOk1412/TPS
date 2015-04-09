@@ -9,7 +9,12 @@
 
 class FadeIn : virtual public producteur_base {
 public:
+	/**
+	 * Initialise un producteur qui produit un flot avec un effet de fondu en ouverture
+	 * @param duree : la durée du fondu en ouverture
+	*/
   FadeIn(unsigned int duree);
+  //destructeur
   virtual ~FadeIn() {}
   virtual void calculer();
   

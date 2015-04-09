@@ -5,7 +5,12 @@
 
 class Compresser : public filtre_base {
 public:
+	/** 
+	 * Initialise un filtre qui compresse un flot 
+	 * @param taux : le taux de compression
+	*/
 	Compresser(float taux);
+	//destructeur
   virtual ~Compresser() {}
   virtual void calculer();
   

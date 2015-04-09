@@ -7,7 +7,13 @@
 
 class VolumeCompose: public filtre_compose {
 public:
+	/**
+	 * Initialise un filtre composé qui modifie le volume d'un flot
+	 * @param vol : valeur du signal constant du filtre
+	*/
 	VolumeCompose(double vol);
+	
+	//destructeur
 	virtual ~VolumeCompose() {}
 };
 

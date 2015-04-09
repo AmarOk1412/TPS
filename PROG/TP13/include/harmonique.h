@@ -9,6 +9,11 @@
 
 class harmonique : virtual public producteur_base {
 public:
+	/**
+	 * Initialise un producteur qui produit une harmonique
+	 * @param frequence
+	 * @param phi
+	*/
   harmonique(unsigned int frequence, double phi = 0);
   virtual ~harmonique() {}
 

@@ -7,7 +7,12 @@
 
 class Echo : public filtre_base {
 public:
+	/**
+	 * Initialise un filtre qui applique un effet d'écho à un flot
+	 * @param delay : le delai de l'écho
+	*/
 	Echo(double delay);
+	//destructeur
   virtual ~Echo() {}
   virtual void calculer();
   

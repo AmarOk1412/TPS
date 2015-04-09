@@ -8,8 +8,12 @@
 
 class signal_constant : public producteur_base {
 public:
-
+	/**
+	 * Initialise un producteur qui produit un signal constant
+	 * @param outVal
+	*/
   signal_constant(double outVal);
+  //destructeur
   ~signal_constant();
   
   /**
@@ -17,6 +21,10 @@ public:
    */
   void calculer();
   
+  /**
+   * Modifie la valeur du signal constant
+   * @param newVal : un réel
+   */
   void setOutVal(double newVal) { _outVal = newVal; }
   
 private:
