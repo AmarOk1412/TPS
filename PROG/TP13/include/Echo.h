@@ -14,6 +14,9 @@ public:
 	Echo(double delay);
 	//destructeur
   virtual ~Echo() {}
+  /**
+   * @brief	Effectue les calculs associes au composant.
+   */
   virtual void calculer();
   
   private:

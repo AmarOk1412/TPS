@@ -8,6 +8,7 @@ class lecteur_fichier : public producteur_base {
 public:
 	/**
 	 * Initialise un lecteur de fichier
+	 * @param nom : nom du fichier
 	 * @param nbCanaux : le nombre de sorties 
 	*/
 	lecteur_fichier(std::string nom, unsigned int nbCanaux);
