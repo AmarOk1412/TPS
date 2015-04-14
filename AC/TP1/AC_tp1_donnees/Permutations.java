@@ -3,7 +3,7 @@ public class Permutations {
 	    int i;
 	    String target1, original1;
 	    if (original.length() == 0 && afficher){
-	        System.out.println(target);
+	        //System.out.println(target);
 	    }
 		else {
 			i = 0;
@@ -18,9 +18,15 @@ public class Permutations {
 	public static void main(String[] args) {
 		String x="";
 		String alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		int n=3;
+		int n=10;
+		
+		long date1 = System.currentTimeMillis(); //on lance le chrono
+			
 		String y=alphabet.substring(0, n);
 		permutation(x,y,true);
+			long date2 = System.currentTimeMillis(); //on arrete le chrono
+			System.out.println("Croissant : Temps de calcul pour n="+n+" : ");
+			System.out.println(date2 - date1);
 	}
 
 }
