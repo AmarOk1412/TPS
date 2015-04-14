@@ -1,6 +1,35 @@
 /**** on va ici implémenter la transformée de Fourier rapide 1D ****/
 import java.lang.Math;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import static java.lang.Math.pow;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+
 public class FFT_1D {
+
+public static void tab_to_matlab(String nomFichier, List<Integer> tab) {
+		Iterator<Integer> i = tab.iterator();
+		String s="T_"+nomFichier+"=[";
+		while(i.hasNext())
+				s += i.next()+" ";
+		s += "];";
+		PrintWriter fich;
+		try {
+			fich = new PrintWriter(new BufferedWriter (new FileWriter(nomFichier+".m")));
+			fich.println(s);
+		    fich.close();
+		} catch (IOException e) {
+			System.err.println("Probleme: " + e.getMessage()) ;
+		    System.exit(2) ;
+		}
+	}
 	
 	//"combine" c1 et c2 selon la formule vue en TD
 	// c1 et c2 sont de même taille
@@ -145,10 +174,31 @@ public class FFT_1D {
 		System.out.print(  "mult via coeff -> ");afficher(multiplication_polynome_viaCoeff(t5, t6));
 		
 		// Pour étude du temps de calcul 
-		int n = 1024;  // taille des polynômes à multiplier (testez différentes valeurs en gardant des multiples de 2)
-		int taille = 1;
+		int n = 16384;  // taille des polynômes à multiplier (testez différentes valeurs en gardant des multiples de 2)
 		
+		List<Integer> tab_temps = new ArrayList<Integer>();
+		List<Integer> tab_taille = new ArrayList<Integer>();
+		for(int taille = 1; taille <= n; taille*=2)
+		{
+			double[] tab1 = new double[taille];
+			double[] tab2 = new double[taille];
+			for(int i = 0; i < taille; ++i)
+			{
+				tab1[i] = Math.random()*100;
+				tab2[i] = Math.random()*100;
+			}
+			long date1 = System.currentTimeMillis(); //on lance le chrono
+//			multiplication_polynome_viaCoeff(tab1, tab2); //on trie le tableau 
+			multiplication_polynome_viaFFT(tab1, tab2);
+			long date2 = System.currentTimeMillis(); //on arrete le chrono
+			tab_temps.add((int)(date2 - date1)); //on sauvegarde le temps
+			tab_taille.add(taille);
+			System.out.println(taille);
+			
+		}
 
+		tab_to_matlab("tailles", tab_taille); 
+		tab_to_matlab("temps", tab_temps);
 	}
 
 }
