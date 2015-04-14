@@ -1,5 +1,5 @@
 /**** on va ici implémenter la transformée de Fourier rapide 1D ****/
-
+import java.lang.Math;
 public class FFT_1D {
 	
 	//"combine" c1 et c2 selon la formule vue en TD
@@ -7,20 +7,49 @@ public class FFT_1D {
 	// la taille du résultat est le double de la taille de c1
 	public static CpxTab combine(CpxTab c1, CpxTab c2) {
 		assert (c1.taille()==c2.taille()) : "combine: c1 et c2 ne sont pas de même taille, taille c1="+c1.taille()+" taille c2="+c2.taille();
-		//A FAIRE
-		return null;
+		int taille = c1.taille()+c2.taille();
+		CpxTab res = new CpxTab(taille);
+		for(int i=0; i<c1.taille(); i++)
+		{
+			//première partie du tableau
+			double termeReel =c2.get_p_reel(i)*Math.cos(2*Math.PI*i/taille)-c2.get_p_imag(i)*Math.sin(2*Math.PI*i/taille);
+			double termeImag = c2.get_p_imag(i)*Math.cos(2*Math.PI*i/taille)+c2.get_p_reel(i)*Math.sin(2*Math.PI*i/taille);
+			
+			res.set_p_reel(i,c1.get_p_reel(i)+termeReel);
+			res.set_p_imag(i,c1.get_p_imag(i)+termeImag);
+			//deuxième partie du tableau
+			res.set_p_reel(c1.taille()+i,c1.get_p_reel(i)-termeReel);
+			res.set_p_imag(c1.taille()+i,c1.get_p_imag(i)-termeImag);
+			
+		}
+		return res;
 	}
 
 	//renvoie la TFD d'un tableau de complexes
 	//la taille de x doit être une puissance de 2
 	public static CpxTab FFT(CpxTab x) {
 		//A FAIRE : Test d'arrêt
-
+		if(x.taille()==1)
+		  return x;
 		assert (x.taille()%2==0) : "FFT: la taille de x doit être une puissance de 2";
 		
-		//A FAIRE : Décomposition en "pair" et "impair" et appel récursif
+		CpxTab pair = new CpxTab(x.taille()/2);
+		CpxTab impair = new CpxTab(x.taille()/2);
+		for(int i=0; i<x.taille(); i++)
+		{
+			if(i%2==0)
+			{
+				pair.set_p_reel(i,x.get_p_reel(i));
+				pair.set_p_imag(i,x.get_p_imag(i));
+			}
+			else
+			{
+				impair.set_p_reel(i,x.get_p_reel(i));
+				impair.set_p_imag(i,x.get_p_imag(i));
+			}
+		}
 
-		return null;
+		return combine(FFT(pair), FFT(impair));
 	}
 
 	//renvoie la TFD d'un tableau de réels
@@ -94,7 +123,9 @@ public class FFT_1D {
 	
 	public static void main(String[] args) {
 		/* Pour tester exo 2: calculez et affichez TFD(1,2,3,4) */
-			//A FAIRE
+		double [] t1 = {1,2,3,4};
+		CpxTab T = FFT(t1);
+		System.out.println(T.toString());
 		/* Pour tester exo 3: calculez et affichez TFD_inverse(TFD(1,2,3,4)) */
 			//A FAIRE		
 		/* Pour tester Partie 3 : multiplication polynomiale */
