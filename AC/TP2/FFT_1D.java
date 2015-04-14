@@ -39,13 +39,13 @@ public class FFT_1D {
 		{
 			if(i%2==0)
 			{
-				pair.set_p_reel(i,x.get_p_reel(i));
-				pair.set_p_imag(i,x.get_p_imag(i));
+				pair.set_p_reel(i/2,x.get_p_reel(i));
+				pair.set_p_imag(i/2,x.get_p_imag(i));
 			}
 			else
 			{
-				impair.set_p_reel(i,x.get_p_reel(i));
-				impair.set_p_imag(i,x.get_p_imag(i));
+				impair.set_p_reel((i-1)/2,x.get_p_reel(i));
+				impair.set_p_imag((i-1)/2,x.get_p_imag(i));
 			}
 		}
 
@@ -61,7 +61,10 @@ public class FFT_1D {
 	//renvoie la transformée de Fourier inverse de y
 	public static CpxTab FFT_inverse(CpxTab y) {
 		//A FAIRE
-		return null;
+		CpxTab t = new CpxTab(y.taille());
+		for(int i = 0; i < y.taille(); ++i)
+			t.set_p_reel(i, 1./(double)y.taille());
+		return CpxTab.multiplie(t, (FFT(y.conjuge())).conjuge());
 	}
 	
 	//calcule le produit de deux polynômes en utilisant la FFT
@@ -75,9 +78,12 @@ public class FFT_1D {
 			t1[i] = tab1[i];
 			t2[i] = tab2[i];
 		}
-
-		//A COMPLETER !!
-		return null;
+		CpxTab fftTab1 = FFT(t1);
+		CpxTab fftTab2 = FFT(t2);
+		
+		CpxTab toInv = CpxTab.multiplie(fftTab1, fftTab2);
+		
+		return FFT_inverse(toInv);
 	}
 
 	
@@ -127,9 +133,10 @@ public class FFT_1D {
 		CpxTab T = FFT(t1);
 		System.out.println(T.toString());
 		/* Pour tester exo 3: calculez et affichez TFD_inverse(TFD(1,2,3,4)) */
-			//A FAIRE		
+		CpxTab Tinv = FFT_inverse(T);
+		System.out.println(Tinv.toString());
 		/* Pour tester Partie 3 : multiplication polynomiale */
-	/*
+	
 		System.out.println("-----------------------------------------------------");
 		System.out.println("   Comparaison des 2 méthodes de multiplications polynomiales");
 		double[] t5 = {1,2,3,4};
@@ -139,7 +146,8 @@ public class FFT_1D {
 		
 		// Pour étude du temps de calcul 
 		int n = 1024;  // taille des polynômes à multiplier (testez différentes valeurs en gardant des multiples de 2)
-	*/
+		int taille = 1;
+		
 
 	}
 
