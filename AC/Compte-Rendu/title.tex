@@ -23,7 +23,7 @@
 		\large{Parcours Informatique}\\
 		\vspace{0.5cm}\hrule\vspace{0.5cm}
 		\LARGE{\textbf{Algorithmie et complexité}}\\
-		\Large{Compte-Rendu TP1 \& 2}
+		\Large{Compte-Rendu TP1}
 		\vspace{0.5cm}\hrule
 		\vfill
 		\vfill
@@ -36,10 +36,9 @@
 	\vfill
 \end{titlepage}
 
-\section{TP1}
-\subsection{Objectif}
+\section{Objectif}
 Ce premier TP d'Algorithmie et Complexité a pour objectif de comparer 2 algorithmes de tri de 2 complexités différentes. Le premier (tri par insertion) a en effet une complexité théorique en $O(n^2)$, contre $O(nlogn)$ pour le second tri étudié (tri fusion). La dernière partie du TP consistait à examiner un programme et de regarder sa complexité.
-\subsection{Moyens mis en \oe uvre}
+\section{Moyens mis en \oe uvre}
 Pour réaliser ce TP, nous avions à disposition un fichier JAVA à compléter qui s'occupait de l'implementation des tris ainsi que la mesure du temps de calcul. Puis un programme Matlab pour l'affichage des graphes de résultats.\\
 Voici notre implémentation du tri insertion :\\
 \begin{verbatim}
@@ -69,7 +68,7 @@ private static void triFusion(int[] t, int debut, int fin){
   }
 }
 \end{verbatim}
-\subsection{Résultats}
+\section{Résultats}
 Pour le tri insertion, pour trier 60 000 000 de résultats il faut :
 \begin{itemize}
   \item 33 ms dans le meilleur cas (croissant)
@@ -104,14 +103,8 @@ Pour le tri fusion, on obtient un temps < 10 secondes :
 	\end{center}
 \end{figure}
 L'analyse de l'algorithme de permutation (qui cherche toutes les combinaisons avec les n premières lettres de l'alphabet) de la partie 3 nous a donné une complexité factorielle. On remarque qu'elle est très difficile à tracer et que son temps est très vite insupportable.
-\subsection{Conclusion}
+\section{Conclusion}
 Dans ce TP, nous avons donc pu découvrir et implémenter 3 algorithmes de complexité différentes. Nous pouvons en conclure que $O(n!) >>>> O(n^2) >>>> O(nlogn) > O(n)$
 
-%\section{TP2}
-%\subsection{Objectif}
-%\subsection{Moyens mis en \oe uvre}
-%\subsection{Résultats}
-
-%\subsection{Conclusion}
 \end{document}
 
