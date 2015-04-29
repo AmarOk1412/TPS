@@ -1,13 +1,13 @@
 /********************************************************
-/*   La classe CpxTab représente une image carré 
- * (n x n) dont les éléments sont des nombres complexes
+/*   La classe CpxTab represente une image carre 
+ * (n x n) dont les elements sont des nombres complexes
  ********************************************************/
 
 public class CpxImg {
 
 
 	/******** ATTRIBUT **********/
-	// lignes[k] est la kème ligne de l'image
+	// lignes[k] est la keme ligne de l'image
 	private CpxTab[] lignes;
 	
 	/******** CONSTRUCTEURS **********/
@@ -18,10 +18,10 @@ public class CpxImg {
 			lignes[k] = new CpxTab(n);
 	}
 	
-	//construit un CpxImg à partir d'un BytePixmap
+	//construit un CpxImg a partir d'un BytePixmap
 	public CpxImg(BytePixmap p) {
 		this(p.height);
-		assert (p.height==p.width) : "CpxImg à partir de BytePixmap : p.height!=p.width";
+		assert (p.height==p.width) : "CpxImg a partir de BytePixmap : p.height!=p.width";
 
 		double[] t = p.getDoubles();
 		for (int k = 0; k < this.taille(); k++) 
@@ -35,7 +35,7 @@ public class CpxImg {
 	int taille(){
 		return lignes.length;
 	}
-	//renvoie la partie réelle du pixel d'indice (k,l) 
+	//renvoie la partie reelle du pixel d'indice (k,l) 
 	double get_p_reel(int k, int l){
 		return lignes[k].get_p_reel(l);
 	}
@@ -44,21 +44,21 @@ public class CpxImg {
 		return lignes[k].get_p_imag(l);
 	}
 	
-	//renvoie la k-ième ligne
+	//renvoie la k-ieme ligne
 	CpxTab get_line(int k){
 		return lignes[k];
 	}
 	
-	//modifie la partie réelle du  k-ième complexes
+	//modifie la partie reelle du  k-ieme complexes
 	void set_p_reel(int k, int l, double x){
 		lignes[k].set_p_reel(l, x);
 	}
-	//modifie la partie imaginaire du  k-ième complexes
+	//modifie la partie imaginaire du  k-ieme complexes
 	void set_p_imag(int k, int l, double x){
 		lignes[k].set_p_imag(l, x);
 	}
 	
-	//modifie la k-ième ligne
+	//modifie la k-ieme ligne
 	void set_line(int k, CpxTab line){
 		lignes[k] = line;
 	}
@@ -79,7 +79,7 @@ public class CpxImg {
 		}
 	}
 	
-	//multiplie chaque élément par x
+	//multiplie chaque element par x
 	public void multiply(double x){
 		for (int k = 0; k < this.taille(); k++) {
 			for (int l = 0; l < this.taille(); l++) {
@@ -116,7 +116,7 @@ public class CpxImg {
 			for (int l = 0; l < n; l++) {
 				double reel = this.get_p_reel(k, l);
 				double img  = this.get_p_imag(k, l);
-				double module = Math.sqrt(reel*reel + img*img);				
+				double module = Math.sqrt(reel*reel + img*img);
 				byte module_b = ((byte) Math.max(0,Math.min(255,module)));
 				b[k * n + l] = module_b;
 				//b[k * n + l] = ((byte) Math.sqrt(reel * reel + img*img) > 255 ? (byte) 255 : (byte) Math.sqrt(reel*reel+img*img));
