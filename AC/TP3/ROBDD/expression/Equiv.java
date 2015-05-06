@@ -26,19 +26,19 @@ public class Equiv extends Expression {
 		return this;
 	}
 
-	public boolean evalue() throws RuntimeException {
-		//TODO
-		return false;
+	public boolean evalue() throws 
+		return e1.evalue() == e2.evalue();
 	}
 
 	public Set<String> atomes() {
-		//TODO
-		return null;
+		Set<String> s = new HashSet<String>();
+		s.addAll(e1.atomes());
+		s.addAll(e2.atomes());
+		return s;
 	}
 
 	public Expression remplace(String s, boolean b) {
-		//TODO
-		return null;
+		return new Equiv(e1.remplace(s, b),e2.remplace(s, b));
 	}
 
 }
