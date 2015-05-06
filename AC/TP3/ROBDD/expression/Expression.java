@@ -67,7 +67,10 @@ public abstract class Expression {
 	
 	//fonction récursive qui renvoie le noeud ROBDD associé à l'expression courante et construit le ROBDD (représenté par la liste G)
 	private int construireROBDD(ROBDD G, List<String> atomes_ordonnes){
-		// TODO
+		simplifier();
+		if(estFaux()) return new FeuilleShannon(false);
+		if(estVrai()) return new FeuilleShannon(true);
+		
 		return -1;
 	}
 
