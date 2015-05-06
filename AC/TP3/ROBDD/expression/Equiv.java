@@ -26,7 +26,7 @@ public class Equiv extends Expression {
 		return this;
 	}
 
-	public boolean evalue() throws 
+	public boolean evalue() throws RuntimeException {
 		return e1.evalue() == e2.evalue();
 	}
 
