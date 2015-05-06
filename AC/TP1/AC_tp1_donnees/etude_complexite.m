@@ -11,8 +11,8 @@ clear;close all; clc;
 
 % remarque: les fichiers tailles.m et temps.m (generes par tab_to_matlab)
 % doivent être dans le repertoire courant
-tailles; % execution du script tailles.m 
-temps;   % execution du script temps.m
+taillesFFT; % execution du script tailles.m 
+tempsFFT;   % execution du script temps.m
 
 x = T_tailles;
 y = T_temps;
