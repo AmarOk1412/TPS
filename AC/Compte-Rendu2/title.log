@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.4.13)  3 MAY 2015 12:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.4.13)  6 MAY 2015 10:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -480,26 +480,7 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 45.
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-Overfull \hbox (300.82072pt too wide) in paragraph at lines 68--68
-[]    \T1/cmtt/m/n/10 assert (c1.taille()==c2.taille()) : "combine: c1 et c2 ne
- sont pas de même taille, taille c1="+c1.taille()+" taille c2="+c2.taille();[] 
-
- []
-
-
-Overfull \hbox (190.59764pt too wide) in paragraph at lines 68--68
-[]      \T1/cmtt/m/n/10 double termeReel =c2.get_p_reel(i)*Math.cos(2*Math.PI*i
-/taille)-c2.get_p_imag(i)*Math.sin(2*Math.PI*i/taille);[] 
- []
-
-
-Overfull \hbox (195.84636pt too wide) in paragraph at lines 68--68
-[]      \T1/cmtt/m/n/10 double termeImag = c2.get_p_imag(i)*Math.cos(2*Math.PI*
-i/taille)+c2.get_p_reel(i)*Math.sin(2*Math.PI*i/taille);[] 
- []
-
-
-Overfull \hbox (12.14122pt too wide) in paragraph at lines 97--97
+Overfull \hbox (12.14122pt too wide) in paragraph at lines 101--101
 []    \T1/cmtt/m/n/10 assert (x.taille()%2==0) : "FFT: la taille de x doit être
  une puissance de 2";[] 
  []
@@ -507,125 +488,140 @@ Overfull \hbox (12.14122pt too wide) in paragraph at lines 97--97
 [1] <FFTSmall.png, id=22, 578.16pt x 433.62pt>
 File: FFTSmall.png Graphic file (type png)
  <use FFTSmall.png>
-Package pdftex.def Info: FFTSmall.png used on input line 114.
-(pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
+Package pdftex.def Info: FFTSmall.png used on input line 118.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
 <NoFFTSmall.png, id=23, 578.16pt x 433.62pt>
 File: NoFFTSmall.png Graphic file (type png)
  <use NoFFTSmall.png>
-Package pdftex.def Info: NoFFTSmall.png used on input line 120.
-(pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
+Package pdftex.def Info: NoFFTSmall.png used on input line 124.
+(pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
 <mire1.png, id=24, 128.48pt x 128.48pt>
 File: mire1.png Graphic file (type png)
  <use mire1.png>
-Package pdftex.def Info: mire1.png used on input line 134.
+Package pdftex.def Info: mire1.png used on input line 138.
 (pdftex.def)             Requested size: 89.93538pt x 89.93538pt.
 
 <mire1_FFT.png, id=25, 128.48pt x 128.48pt>
 File: mire1_FFT.png Graphic file (type png)
  <use mire1_FFT.png>
-Package pdftex.def Info: mire1_FFT.png used on input line 140.
+Package pdftex.def Info: mire1_FFT.png used on input line 144.
 (pdftex.def)             Requested size: 89.93538pt x 89.93538pt.
 
-<fingerprint.png, id=26, 513.92pt x 513.92pt>
+<mire3.png, id=26, 128.48pt x 128.48pt>
+File: mire3.png Graphic file (type png)
+ <use mire3.png>
+Package pdftex.def Info: mire3.png used on input line 150.
+(pdftex.def)             Requested size: 89.93538pt x 89.93538pt.
+
+<mire3_FFT.png, id=27, 128.48pt x 128.48pt>
+File: mire3_FFT.png Graphic file (type png)
+ <use mire3_FFT.png>
+Package pdftex.def Info: mire3_FFT.png used on input line 156.
+(pdftex.def)             Requested size: 89.93538pt x 89.93538pt.
+
+<fingerprint.png, id=28, 513.92pt x 513.92pt>
 File: fingerprint.png Graphic file (type png)
  <use fingerprint.png>
-Package pdftex.def Info: fingerprint.png used on input line 146.
+Package pdftex.def Info: fingerprint.png used on input line 162.
 (pdftex.def)             Requested size: 205.56435pt x 205.56435pt.
 
-<fingerprint_FFT.png, id=27, 513.92pt x 513.92pt>
+<fingerprint_FFT.png, id=29, 513.92pt x 513.92pt>
 File: fingerprint_FFT.png Graphic file (type png)
  <use fingerprint_FFT.png>
-Package pdftex.def Info: fingerprint_FFT.png used on input line 152.
+Package pdftex.def Info: fingerprint_FFT.png used on input line 168.
 (pdftex.def)             Requested size: 205.56435pt x 205.56435pt.
 
-<barbara_512.png, id=28, 513.92pt x 513.92pt>
+<barbara_512.png, id=30, 513.92pt x 513.92pt>
 File: barbara_512.png Graphic file (type png)
  <use barbara_512.png>
-Package pdftex.def Info: barbara_512.png used on input line 158.
+Package pdftex.def Info: barbara_512.png used on input line 174.
 (pdftex.def)             Requested size: 205.56435pt x 205.56435pt.
 
-<barbara_FFT.png, id=29, 513.92pt x 513.92pt>
+<barbara_FFT.png, id=31, 513.92pt x 513.92pt>
 File: barbara_FFT.png Graphic file (type png)
  <use barbara_FFT.png>
-Package pdftex.def Info: barbara_FFT.png used on input line 164.
+Package pdftex.def Info: barbara_FFT.png used on input line 180.
 (pdftex.def)             Requested size: 205.56435pt x 205.56435pt.
 
-<tigre_512.png, id=30, 513.92pt x 513.92pt>
+<tigre_512.png, id=32, 513.92pt x 513.92pt>
 File: tigre_512.png Graphic file (type png)
  <use tigre_512.png>
-Package pdftex.def Info: tigre_512.png used on input line 171.
+Package pdftex.def Info: tigre_512.png used on input line 187.
 (pdftex.def)             Requested size: 205.56435pt x 205.56435pt.
 
-<tigre_compresse.png, id=31, 513.92pt x 513.92pt>
+<tigre_compresse.png, id=33, 513.92pt x 513.92pt>
 File: tigre_compresse.png Graphic file (type png)
  <use tigre_compresse.png>
-Package pdftex.def Info: tigre_compresse.png used on input line 177.
+Package pdftex.def Info: tigre_compresse.png used on input line 193.
 (pdftex.def)             Requested size: 205.56435pt x 205.56435pt.
 
-<tigre_compresse_seuil.png, id=32, 513.92pt x 513.92pt>
+<tigre_compresse_seuil.png, id=34, 513.92pt x 513.92pt>
 File: tigre_compresse_seuil.png Graphic file (type png)
 
 <use tigre_compresse_seuil.png>
-Package pdftex.def Info: tigre_compresse_seuil.png used on input line 183.
+Package pdftex.def Info: tigre_compresse_seuil.png used on input line 199.
 (pdftex.def)             Requested size: 205.56435pt x 205.56435pt.
 
-<lena_compresse.png, id=33, 513.92pt x 513.92pt>
+<lena_compresse.png, id=35, 513.92pt x 513.92pt>
 File: lena_compresse.png Graphic file (type png)
  <use lena_compresse.png>
-Package pdftex.def Info: lena_compresse.png used on input line 189.
+Package pdftex.def Info: lena_compresse.png used on input line 205.
 (pdftex.def)             Requested size: 205.56435pt x 205.56435pt.
 
-<lena_compresse_seuil.png, id=34, 513.92pt x 513.92pt>
+<lena_compresse_seuil.png, id=36, 513.92pt x 513.92pt>
 File: lena_compresse_seuil.png Graphic file (type png)
 
 <use lena_compresse_seuil.png>
-Package pdftex.def Info: lena_compresse_seuil.png used on input line 195.
+Package pdftex.def Info: lena_compresse_seuil.png used on input line 211.
 (pdftex.def)             Requested size: 205.56435pt x 205.56435pt.
 
-<barbara_compresse.png, id=35, 513.92pt x 513.92pt>
+<barbara_compresse.png, id=37, 513.92pt x 513.92pt>
 File: barbara_compresse.png Graphic file (type png)
 
 <use barbara_compresse.png>
-Package pdftex.def Info: barbara_compresse.png used on input line 201.
+Package pdftex.def Info: barbara_compresse.png used on input line 217.
 (pdftex.def)             Requested size: 205.56435pt x 205.56435pt.
 
-Overfull \hbox (6.61479pt too wide) in paragraph at lines 130--205
+Overfull \hbox (6.61479pt too wide) in paragraph at lines 134--221
 \T1/cmr/m/n/10 Enfin pour finir sur les exemples, barbara contient énormément d
 e rayures dans certaines directions,
  []
 
-[2] [3 <./FFTSmall.png (PNG copy)>] [4 <./NoFFTSmall.png (PNG copy)>] [5 <./mir
-e1.png (PNG copy)> <./mire1_FFT.png (PNG copy)>] [6 <./fingerprint.png (PNG cop
-y)> <./fingerprint_FFT.png (PNG copy)>] [7 <./barbara_512.png (PNG copy)> <./ba
-rbara_FFT.png (PNG copy)>] [8 <./tigre_512.png (PNG copy)> <./tigre_compresse.p
-ng (PNG copy)>] [9 <./tigre_compresse_seuil.png (PNG copy)> <./lena_compresse.p
-ng (PNG copy)>] [10 <./lena_compresse_seuil.png (PNG copy)> <./barbara_compress
-e.png (PNG copy)>] (./title.aux) ) 
+[2] [3 <./FFTSmall.png (PNG copy)> <./NoFFTSmall.png (PNG copy)>] [4 <./mire1.p
+ng (PNG copy)> <./mire1_FFT.png (PNG copy)> <./mire3.png (PNG copy)>] [5 <./mir
+e3_FFT.png (PNG copy)> <./fingerprint.png (PNG copy)> <./fingerprint_FFT.png (P
+NG copy)>] [6 <./barbara_512.png (PNG copy)> <./barbara_FFT.png (PNG copy)>]
+[7 <./tigre_512.png (PNG copy)>] [8 <./tigre_compresse.png (PNG copy)> <./tigre
+_compresse_seuil.png (PNG copy)>] [9 <./lena_compresse.png (PNG copy)> <./lena_
+compresse_seuil.png (PNG copy)>] [10 <./barbara_compresse.png (PNG copy)>]
+(./title.aux) ) 
 Here is how much of TeX's memory you used:
- 3477 strings out of 495025
- 47979 string characters out of 6181515
- 118994 words of memory out of 5000000
- 6639 multiletter control sequences out of 15000+600000
+ 3487 strings out of 495025
+ 48127 string characters out of 6181515
+ 120994 words of memory out of 5000000
+ 6647 multiletter control sequences out of 15000+600000
  10789 words of font info for 24 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,7n,30p,665b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvip
-s/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/cm
--super/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/
-sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx172
-8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/cm-super/sfrm2488.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/cm-super/sftt1000.pfb>
-Output written on title.pdf (11 pages, 1445966 bytes).
+ 38i,7n,30p,821b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super
+-t1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/cm-super/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/cm-super/sfrm1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-s
+uper/sfrm1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sf
+rm2488.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sftt1000.
+pfb>
+Output written on title.pdf (11 pages, 1467059 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
+ 108 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

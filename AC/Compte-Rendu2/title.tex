@@ -47,14 +47,18 @@ Pour la partie implémentation, nous nous sommes basés sur l'algorithme donné 
   // c1 et c2 sont de même taille
   // la taille du résultat est le double de la taille de c1
   public static CpxTab combine(CpxTab c1, CpxTab c2) {
-    assert (c1.taille()==c2.taille()) : "combine: c1 et c2 ne sont pas de même taille, taille c1="+c1.taille()+" taille c2="+c2.taille();
+    assert (c1.taille()==c2.taille()) : 
+    "combine: c1 et c2 ne sont pas de même taille, taille c1="
+    +c1.taille()+" taille c2="+c2.taille();
     int taille = c1.taille()+c2.taille();
     CpxTab res = new CpxTab(taille);
     for(int i=0; i<c1.taille(); i++)
     {
       //première partie du tableau
-      double termeReel =c2.get_p_reel(i)*Math.cos(2*Math.PI*i/taille)-c2.get_p_imag(i)*Math.sin(2*Math.PI*i/taille);
-      double termeImag = c2.get_p_imag(i)*Math.cos(2*Math.PI*i/taille)+c2.get_p_reel(i)*Math.sin(2*Math.PI*i/taille);
+      double termeReel =c2.get_p_reel(i)*Math.cos(2*Math.PI*i/taille)
+      -c2.get_p_imag(i)*Math.sin(2*Math.PI*i/taille);
+      double termeImag = c2.get_p_imag(i)*Math.cos(2*Math.PI*i/taille)
+      +c2.get_p_reel(i)*Math.sin(2*Math.PI*i/taille);
       
       res.set_p_reel(i,c1.get_p_reel(i)+termeReel);
       res.set_p_imag(i,c1.get_p_imag(i)+termeImag);
@@ -111,24 +115,24 @@ Nous l'avons ensuite testé sur des polynômes pour comparer les méthodes avec 
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[scale=0.7]{FFTSmall}\\
+		\includegraphics[scale=0.5]{FFTSmall}\\
 		Avec FFT
 	\end{center}
 \end{figure}
 \begin{figure}
 	\begin{center}
-		\includegraphics[scale=0.7]{NoFFTSmall}\\
+		\includegraphics[scale=0.5]{NoFFTSmall}\\
 		Sans FFT
 	\end{center}
 \end{figure}
-On remarque que la méthode avec transformée de Fourier est plus rapide pour un polynôme a 4000 coefficients. En dessous, les méthodes sont à peu prêt équivalents niveau temps.
+On remarque que la méthode avec transformée de Fourier est plus rapide pour un polynôme a 4000 coefficients. En dessous, les méthodes sont à peu prêt équivalentes au niveau du temps.
 
 \section{Compression d'images}
 \subsection{Moyens mis en \oe uvre}
-Dans la seconde partie de ce TP nous avons tout d'abord calculé la TFD de différents signaux (constant, sinusoides, etc.). Nous avons alors remarqué que la TFD nous donne la fréquence. Par exemple pour un signal constant, le tableau de sortie nous donne seulement la première valeur. Pour une sinusoide, on obtient 2 valeurs par symétrique, etc. Nous avons ensuite appliqué la transformée en 2 dimensions sur des images.
+Dans la seconde partie de ce TP nous avons tout d'abord calculé la TFD de différents signaux (constant, sinusoides, etc.). Nous avons alors remarqué que la TFD nous donne la fréquence. Par exemple pour un signal constant, le tableau de sortie nous donne seulement la première valeur ($[16.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]$). Pour une sinusoide, on obtient 2 valeurs par symétrique ($[0,8.0,0,0,0,0,0,0,0,0,0,0,0,0,0,8.0]$), etc. Nous avons ensuite appliqué la transformée en 2 dimensions sur des images.
 \subsection{Résultats}
-Tout d'abord, pour l'image mire1, nous remarquons qu'elle ressemble fortement à une onde de fréquence fixe qui se propage horizontalement. Du coup, sa transformée contiendra 3 points (le centre qui est la somme de toutes les valeurs, une qui représente la fréquence sur l'horizontale et son symétrique). Fingerprint a quand à elle, beaucoup de basses fréquences dans tous les sens, d'où sa transformée en forme de cercle.\\
-Enfin pour finir sur les exemples, barbara contient énormément de rayures dans certaines directions, d'où les sortes d'halo sur l'extérieure de l'image. La barre horizontale représentant ses vêtements.\\
+Tout d'abord, pour l'image mire1, nous remarquons qu'elle ressemble fortement à une onde de fréquence fixe qui se propage horizontalement. Du coup, sa transformée contiendra 3 points (le centre qui est la somme de toutes les valeurs, une qui représente la fréquence sur l'horizontale et son symétrique). Mire3 contient 2 fréquences. Sa transformée de Fourier aura donc 5 points (le point central, plus 2 points symétriques pour chaque fréquence). Fingerprint a quand à elle, beaucoup de basses fréquences dans tous les sens, d'où sa transformée en forme de cercle.\\
+Enfin pour finir sur les exemples, barbara contient énormément de rayures dans certaines directions, d'où les halos sur l'extérieure de l'image. La barre horizontale représentant ses vêtements.\\
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.7]{mire1}\\
@@ -139,6 +143,18 @@ Enfin pour finir sur les exemples, barbara contient énormément de rayures dans
 	\begin{center}
 		\includegraphics[scale=0.7]{mire1_FFT}\\
 		FFT mire1
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.7]{mire3}\\
+		mire3
+	\end{center}
+\end{figure}
+\begin{figure}
+	\begin{center}
+		\includegraphics[scale=0.7]{mire3_FFT}\\
+		FFT mire3
 	\end{center}
 \end{figure}
 \begin{figure}
@@ -165,7 +181,7 @@ Enfin pour finir sur les exemples, barbara contient énormément de rayures dans
 		FFT barbara
 	\end{center}
 \end{figure}
-Pour la compression, il y a 2 méthodes. Soit on décide d'enlever toutes les hautes fréquences. On a juste à sélectionner la partie centrale de l'image et enlever tout le reste, notre oeil étant sensible aux basses fréquences. Ou d'enlever toutes les images en dessous d'un seuil fixé. Ainsi dans le cas des fréquences, la compression fini par montrer visuellement les différentes ondes (cf tigre compresse) alors que la compression par seuil va appliquer un effet de grain (cf tigre compresse seuil). Parfois, la compression peut donner des résultats assez marrants, en enlevant par exemple les rayures de l'image de barbara.
+Pour la compression, il y a 2 méthodes. Soit on décide d'enlever toutes les hautes fréquences. On a juste à sélectionner la partie centrale de l'image et enlever tout le reste, notre oeil étant sensible aux basses fréquences. Ou d'enlever toutes les images en dessous d'un seuil fixé. Ainsi dans le cas des fréquences, la compression finie par montrer visuellement les différentes ondes (cf tigre compresse) alors que la compression par seuil va appliquer un effet de grain (cf tigre compresse seuil). Parfois, la compression peut donner des résultats surprenants, en enlevant par exemple les rayures de l'image de barbara. En effet, comme les fréquences décrivant ces rayures se trouvent à l'extérieure de l'image, la sélection par fréquence supprime les rayures de barbara.
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.4]{tigre_512}\\
@@ -203,7 +219,8 @@ Pour la compression, il y a 2 méthodes. Soit on décide d'enlever toutes les ha
 	\end{center}
 \end{figure}
 \section{Conclusion}
-On remarque donc que la transformée de Fourier est très présente dès qu'il y a un traitement sur un signal à réaliser. Ici, nous n'avons vu qu'une toute petite partie de ses applications.
+Dans ce tp, on peut voir qu'il est parfois plus rapide de changer la forme des données pour travailler dessus (multiplication de polynomes ou la compression d'images ne sont que 2 exemples). La transformation prend du temps, mais ce temps est gagné par la suite avec des traitements rendus plus facile.
+De plus, on remarque donc que la transformée de Fourier est très présente dès qu'il y a un traitement sur un signal à réaliser. Ici, nous n'avons vu qu'une toute petite partie de ses applications.
 
 \end{document}
 
