@@ -19,6 +19,12 @@ public class Main {
 											new Equiv(new Atome("x1"),new Atome("y1")), 
 											new Equiv(new Atome("x2"),new Atome("y2"))
 										);
+		System.out.println(ex2.atomes());
+		ex2 = ex2.remplace("x1",true);
+		ex2 = ex2.remplace("y1",true);
+		ex2 = ex2.remplace("x2",false);
+		ex2 = ex2.remplace("y2",false);
+		System.out.println(ex2.evalue());
 		
 		//Affichage de l'arbre associé à l'expression exp pour l'ordre x > y 
 //		List<String> ordre_atomes = new LinkedList<String>();
