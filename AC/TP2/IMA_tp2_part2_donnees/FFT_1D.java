@@ -214,15 +214,15 @@ public static void tab_to_matlab(String nomFichier, List<Integer> tab) {
 //		System.out.println(Tinv.toString());
 
 //Sinusoide pure
-//		int n = 16;
-//		int a = 1;
-//		double [] t1 = new double[n];
-//		for(int i = 0; i < n; ++i)
-//			t1[i] = Math.cos((2*Math.PI*a*i)/n);
-//		CpxTab T = FFT(t1);
-//		CpxTab Tinv = FFT_inverse(T);
-//		System.out.println(T.toString());
-//		System.out.println(Tinv.toString());
+		int n = 16;
+		int a = 1;
+		double [] t1 = new double[n];
+		for(int i = 0; i < n; ++i)
+			t1[i] = Math.cos((2*Math.PI*a*i)/n);
+		CpxTab T = FFT(t1);
+		CpxTab Tinv = FFT_inverse(T);
+		System.out.println(T.toString());
+		System.out.println(Tinv.toString());
 
 //2 sinusoides
 //		int n = 16;

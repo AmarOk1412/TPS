@@ -92,18 +92,18 @@ public class FFT_2D {
 		try {			
 			//PLACEZ ICI VOS TESTS en 2D
 			//Exemple, lecture
-			BytePixmap BP = new BytePixmap("barbara_512.pgm");
+			BytePixmap BP = new BytePixmap("mire3.pgm");
 			CpxImg I = new CpxImg(BP);
 			I = FFT(I);
 			//Exemple, ecriture
 			compression(I, 35);
 //			System.out.println(compression_seuil(I, 15));
 			BP = I.convert_to_BytePixmap();
-			BP.write("barbara_512_compresse.pgm");
+			BP.write("mire3_compresse.pgm");
 			I = FFT_inverse(I);
 			//Exemple, ecriture
 			BP = I.convert_to_BytePixmap();
-			BP.write("barbara_512_FFT_Inv_compresse.pgm");
+			BP.write("mire3_FFT_Inv_compresse.pgm");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
