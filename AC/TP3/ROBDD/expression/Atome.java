@@ -16,13 +16,16 @@ public class Atome extends Expression {
 	}
 
 	public Set<String> atomes() {
-		//TODO
-		return null;
+		Set<String> s = new HashSet<String>();
+		s.addAll(name);
+		return s;
 	}
 
 	public Expression remplace(String s, boolean b) {
-		//TODO
-		return null;
+		if (name==s)
+			name="true";
+		else
+			name="false";
 	}
 
 	public Expression simplifier(){
