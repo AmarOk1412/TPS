@@ -29,13 +29,11 @@ public abstract class Expression {
 
 
 	public boolean estVrai(){
-	 if (this.atomes().equals(new HashSet<String>()))
-	 	return this.evalue();
+	 	return (this.atomes().equals(new HashSet<String>())) && this.evalue();
 	}
 	
 	public boolean estFaux(){
-		if (this.atomes().equals(new HashSet<String>()))
-		 	return !this.evalue();
+		 	return (this.atomes().equals(new HashSet<String>())) && !this.evalue();
 	}
 
 	//construit l'arbre de shannon correspondant à l'expression courante en prenant comme ordre l'ordre indiqué par l'argument ordre_atomes

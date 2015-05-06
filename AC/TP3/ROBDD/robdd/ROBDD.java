@@ -34,10 +34,18 @@ public class ROBDD {
 		return R.toString();
 	}
 	
-	// renvoie l'index, dans la liste R,  du noeud BDD associé à la variable nom et dont les fils droit et gauche sont d'indices respectifs fd et fg.
+	// renvoie l'index, dans la liste R,  du noeud BDD associé à la variable nom et dont les fils droit et gauche sont d'indices respectifs fd et fg.
 	// Si ce noeud n'existe pas dans le diagramme, la fonction renvoie -1.
 	public int obtenirROBDDIndex(String nom, int fg, int fd) {
-		// TODO
+		int index = 0;
+		Iterator<Noeud_ROBDD> it = R.listIterator(0);
+		while(it.hasNext())
+		{
+			if(it.next().getNom().equals(nom) && it.next().getIdFilsGauche() == fg && it.next().getIdFilsDroit() == fd)
+			  return index;
+			it = R.listIterator(index);
+			++index;
+		}
 		return -1;
 	}
 }

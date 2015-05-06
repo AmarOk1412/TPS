@@ -25,6 +25,8 @@ public class Main {
 		ex2 = ex2.remplace("x2",false);
 		ex2 = ex2.remplace("y2",false);
 		System.out.println(ex2.evalue());
+		System.out.println(ex2.estVrai());
+		System.out.println(ex2.estFaux());
 		
 		//Affichage de l'arbre associé à l'expression exp pour l'ordre x > y 
 //		List<String> ordre_atomes = new LinkedList<String>();
