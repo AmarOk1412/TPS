@@ -157,93 +157,89 @@ public static void tab_to_matlab(String nomFichier, List<Integer> tab) {
 	}
 	
 	public static void main(String[] args) {
-//		/* Pour tester exo 2: calculez et affichez TFD(1,2,3,4) */
-//		double [] t1 = {1,2,3,4};
-//		CpxTab T = FFT(t1);
-//		System.out.println(T.toString());
-//		/* Pour tester exo 3: calculez et affichez TFD_inverse(TFD(1,2,3,4)) */
-//		CpxTab Tinv = FFT_inverse(T);
-//		System.out.println(Tinv.toString());
-//		/* Pour tester Partie 3 : multiplication polynomiale */
-//	
-//		System.out.println("-----------------------------------------------------");
-//		System.out.println("   Comparaison des 2 méthodes de multiplications polynomiales");
-//		double[] t5 = {1,2,3,4};
-//		double[] t6 = {-3,2,0,-5};
-//		System.out.println("mult via FFT  --> "+multiplication_polynome_viaFFT(t5, t6));
-//		System.out.print(  "mult via coeff -> ");afficher(multiplication_polynome_viaCoeff(t5, t6));
-//		
-//		// Pour étude du temps de calcul 
-//		int n = 16384;  // taille des polynômes à multiplier (testez différentes valeurs en gardant des multiples de 2)
-//		
-//		List<Integer> tab_temps = new ArrayList<Integer>();
-//		List<Integer> tab_taille = new ArrayList<Integer>();
-//		for(int taille = 1; taille <= n; taille*=2)
-//		{
-//			double[] tab1 = new double[taille];
-//			double[] tab2 = new double[taille];
-//			for(int i = 0; i < taille; ++i)
-//			{
-//				tab1[i] = Math.random()*100;
-//				tab2[i] = Math.random()*100;
-//			}
-//			long date1 = System.currentTimeMillis(); //on lance le chrono
-////			multiplication_polynome_viaCoeff(tab1, tab2); //on trie le tableau 
-//			multiplication_polynome_viaFFT(tab1, tab2);
-//			long date2 = System.currentTimeMillis(); //on arrete le chrono
-//			tab_temps.add((int)(date2 - date1)); //on sauvegarde le temps
-//			tab_taille.add(taille);
-//			System.out.println(taille);
-//			
-//		}
+		/* Pour tester exo 2: calculez et affichez TFD(1,2,3,4) */
+		double [] t1 = {1,2,3,4};
+		CpxTab T = FFT(t1);
+		System.out.println(T.toString());
+		/* Pour tester exo 3: calculez et affichez TFD_inverse(TFD(1,2,3,4)) */
+		CpxTab Tinv = FFT_inverse(T);
+		System.out.println(Tinv.toString());
+		/* Pour tester Partie 3 : multiplication polynomiale */
+	
+		System.out.println("-----------------------------------------------------");
+		System.out.println("   Comparaison des 2 méthodes de multiplications polynomiales");
+		double[] t5 = {1,2,3,4};
+		double[] t6 = {-3,2,0,-5};
+		System.out.println("mult via FFT  --> "+multiplication_polynome_viaFFT(t5, t6));
+		System.out.print(  "mult via coeff -> ");afficher(multiplication_polynome_viaCoeff(t5, t6));
+		
+		// Pour étude du temps de calcul 
+		int n = 16384;  // taille des polynômes à multiplier (testez différentes valeurs en gardant des multiples de 2)
+		
+		List<Integer> tab_temps = new ArrayList<Integer>();
+		List<Integer> tab_taille = new ArrayList<Integer>();
+		for(int taille = 1; taille <= n; taille*=2)
+		{
+			double[] tab1 = new double[taille];
+			double[] tab2 = new double[taille];
+			for(int i = 0; i < taille; ++i)
+			{
+				tab1[i] = Math.random()*100;
+				tab2[i] = Math.random()*100;
+			}
+			long date1 = System.currentTimeMillis(); //on lance le chrono
+//			multiplication_polynome_viaCoeff(tab1, tab2); //on trie le tableau 
+			multiplication_polynome_viaFFT(tab1, tab2);
+			long date2 = System.currentTimeMillis(); //on arrete le chrono
+			tab_temps.add((int)(date2 - date1)); //on sauvegarde le temps
+			tab_taille.add(taille);
+			System.out.println(taille);
+			
+		}
 
-//		tab_to_matlab("tailles", tab_taille); 
-//		tab_to_matlab("temps", tab_temps);
+		tab_to_matlab("tailles", tab_taille); 
+		tab_to_matlab("temps", tab_temps);
 
 
 //TP2 :
 // vecteur constant
-//		int n = 16;
-//		int a = 1;
-//		double [] t1 = new double[n];
-//		for(int i = 0; i < n; ++i)
-//			t1[i] = a;
-//		CpxTab T = FFT(t1);
-//		CpxTab Tinv = FFT_inverse(T);
-//		System.out.println(T.toString());
-//		System.out.println(Tinv.toString());
+		n = 16;
+		int a = 1;
+		t1 = new double[n];
+		for(int i = 0; i < n; ++i)
+			t1[i] = a;
+		T = FFT(t1);
+		Tinv = FFT_inverse(T);
+		System.out.println(T.toString());
+		System.out.println(Tinv.toString());
 
 //Sinusoide pure
-		int n = 16;
-		int a = 1;
-		double [] t1 = new double[n];
+		t1 = new double[n];
 		for(int i = 0; i < n; ++i)
 			t1[i] = Math.cos((2*Math.PI*a*i)/n);
-		CpxTab T = FFT(t1);
-		CpxTab Tinv = FFT_inverse(T);
+		T = FFT(t1);
+		Tinv = FFT_inverse(T);
 		System.out.println(T.toString());
 		System.out.println(Tinv.toString());
 
 //2 sinusoides
-//		int n = 16;
-//		double [] t1 = new double[n];
-//		for(int i = 0; i < n; ++i)
-//			t1[i] = Math.cos((2*Math.PI*i)/n) + (1/2)*Math.cos((6*Math.PI*i)/n);
-//		CpxTab T = FFT(t1);
-//		CpxTab Tinv = FFT_inverse(T);
-//		System.out.println(T.toString());
-//		System.out.println(Tinv.toString());
+		t1 = new double[n];
+		for(int i = 0; i < n; ++i)
+			t1[i] = Math.cos((2*Math.PI*i)/n) + (1/2)*Math.cos((6*Math.PI*i)/n);
+		T = FFT(t1);
+		Tinv = FFT_inverse(T);
+		System.out.println(T.toString());
+		System.out.println(Tinv.toString());
 		
 		
 //2 sinusoides
-//		int n = 16;
-//		double [] t1 = new double[n];
-//		for(int i = 0; i < n; ++i)
-//			t1[i] = 4 + 2*Math.sin(4*Math.PI*i/n) + Math.cos(14*Math.PI*i/n);
-//		CpxTab T = FFT(t1);
-//		CpxTab Tinv = FFT_inverse(T);
-//		System.out.println(T.toString());
-//		System.out.println(Tinv.toString());
+		t1 = new double[n];
+		for(int i = 0; i < n; ++i)
+			t1[i] = 4 + 2*Math.sin(4*Math.PI*i/n) + Math.cos(14*Math.PI*i/n);
+		T = FFT(t1);
+		Tinv = FFT_inverse(T);
+		System.out.println(T.toString());
+		System.out.println(Tinv.toString());
 	}
 
 }
