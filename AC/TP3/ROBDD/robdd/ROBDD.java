@@ -37,15 +37,38 @@ public class ROBDD {
 	// renvoie l'index, dans la liste R,  du noeud BDD associé à la variable nom et dont les fils droit et gauche sont d'indices respectifs fd et fg.
 	// Si ce noeud n'existe pas dans le diagramme, la fonction renvoie -1.
 	public int obtenirROBDDIndex(String nom, int fg, int fd) {
-		int index = 0;
-		Iterator<Noeud_ROBDD> it = R.listIterator(0);
+		Iterator<Noeud_ROBDD> it = R.iterator();
 		while(it.hasNext())
 		{
-			if(it.next().getNom().equals(nom) && it.next().getIdFilsGauche() == fg && it.next().getIdFilsDroit() == fd)
-			  return index;
-			it = R.listIterator(index);
-			++index;
+			Noeud_ROBDD n = it.next();
+			if(n.getNom().equals(nom) && n.getIdFilsGauche() == fg && n.getIdFilsDroit() == fd)
+			  return n.getId();
 		}
 		return -1;
+	}
+	
+	public String trouve_sat()
+	{
+	  String ret = "";
+	  Iterator<Noeud_ROBDD> it = R.iterator();
+	  int toSearch = 1;
+		while(it.hasNext())
+		{
+			Noeud_ROBDD n = it.next();
+			if(n.getIdFilsGauche() == toSearch)
+			{
+				toSearch = n.getId();
+				ret += "non " + n.getNom() + ".";
+			}
+			if(n.getIdFilsDroit() == toSearch)
+			{
+				toSearch = n.getId();
+				ret += n.getNom() + ".";
+			}
+		}
+		if(toSearch == 1)
+			return "Non SAT";
+		else
+			return ret;
 	}
 }

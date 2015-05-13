@@ -67,11 +67,28 @@ public abstract class Expression {
 	
 	//fonction récursive qui renvoie le noeud ROBDD associé à l'expression courante et construit le ROBDD (représenté par la liste G)
 	private int construireROBDD(ROBDD G, List<String> atomes_ordonnes){
-		simplifier();
-		if(estFaux()) return new FeuilleShannon(false);
-		if(estVrai()) return new FeuilleShannon(true);
+		List<String> atomes_ordonnes_copie = new LinkedList(atomes_ordonnes);
+		Expression e = simplifier();
+		if(e.estFaux()) return 0;
+		if(e.estVrai()) return 1;
 		
-		return -1;
+		String p = atomes_ordonnes_copie.remove(0);
+		Expression exp = e.remplace(p, false);
+		Expression exn = e.remplace(p, true);
+		
+		int n1 = exp.construireROBDD(G, atomes_ordonnes_copie);
+		int n2 = exn.construireROBDD(G, atomes_ordonnes_copie);
+		
+		if(n1==n2)
+			return n1;
+		if(G.obtenirROBDDIndex(p, n1, n2) != -1)
+			return G.obtenirROBDDIndex(p, n1, n2);
+		else
+		{
+			Noeud_ROBDD n = new Noeud_ROBDD(p,n1,n2);
+			G.ajouter(n);
+			return n.getId();
+		}
 	}
 
 	//renvoie le ROBDD correspondant à l'expression courante avec un ordre aléatoire (donné par this.atomes())

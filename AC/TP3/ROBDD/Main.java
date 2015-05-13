@@ -19,21 +19,35 @@ public class Main {
 											new Equiv(new Atome("x1"),new Atome("y1")), 
 											new Equiv(new Atome("x2"),new Atome("y2"))
 										);
+		
+		ROBDD ro = ex2.robdd();
+		System.out.println(ro);
 		System.out.println(ex2.atomes());
-		ex2 = ex2.remplace("x1",true);
-		ex2 = ex2.remplace("y1",true);
-		ex2 = ex2.remplace("x2",false);
-		ex2 = ex2.remplace("y2",false);
-		System.out.println(ex2.evalue());
-		System.out.println(ex2.estVrai());
-		System.out.println(ex2.estFaux());
+//		ex2 = ex2.remplace("x1",true);
+//		ex2 = ex2.remplace("y1",true);
+//		ex2 = ex2.remplace("x2",false);
+//		ex2 = ex2.remplace("y2",false);
+//		System.out.println(ex2.evalue());
+//		System.out.println(ex2.estVrai());
+//		System.out.println(ex2.estFaux());
+		List<String> ordre_atomes = new LinkedList<String>();
+		ordre_atomes.add("x1");
+		ordre_atomes.add("y1");
+		ordre_atomes.add("x2");
+		ordre_atomes.add("y2");
+		System.out.println("\n Arbre de ex2 : \n" + ex2.arbre(ordre_atomes)); // <- que se passe-t-il ? 
+		
+		System.out.println(ex2.robdd().trouve_sat());
+		
 		
 		//Affichage de l'arbre associé à l'expression exp pour l'ordre x > y 
-		List<String> ordre_atomes = new LinkedList<String>();
+		ordre_atomes = new LinkedList<String>();
 		ordre_atomes.add("x");
 		ordre_atomes.add("y");
 		System.out.println("\n Arbre de exp : \n" + exp.arbre(ordre_atomes)); // <- que se passe-t-il ? 
-		Expression exp2 = new Et(new Atome("x"),new Atome("y")); // représente (x ^ y)
-		System.out.println("\n Arbre de exp2 : \n" + exp2.arbre(ordre_atomes));		
+		Expression exp2 = new Et(new Atome("x"), new Non(new Atome("y"))); // représente (x ^ y)
+		System.out.println("\n Arbre de exp2 : \n" + exp2.arbre(ordre_atomes));
+		System.out.println(exp2.robdd().trouve_sat());
+		
 	}
 }
