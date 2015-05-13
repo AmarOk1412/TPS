@@ -49,5 +49,66 @@ public class Main {
 		System.out.println("\n Arbre de exp2 : \n" + exp2.arbre(ordre_atomes));
 		System.out.println(exp2.robdd().trouve_sat());
 		
+		
+		//2:
+		int n = 4;
+		Expression expDame = new Atome("true");
+		//Au moins une dame par ligne
+		for(int i = 0; i < n; ++i)
+		{
+			Expression temp2 = new Atome("false");
+			for(int k = 0; k < n; ++k)
+			{
+				Expression temp = new Atome("true");
+				for(int j = 0; j < n; ++j)
+				{
+					if(j != k)
+						temp = new Et(new Non(new Atome("x"+ i + j)), temp);
+					else
+						temp = new Et(new Atome("x"+ i + j), temp);
+				}
+				temp2 = new Ou(temp2, temp);
+			}
+			expDame = new Et(expDame, temp2);
+		}
+		
+		
+		//Au moins une dame par colonne
+		for(int j = 0; j < n; ++j)
+		{
+			Expression temp2 = new Atome("false");
+			for(int k = 0; k < n; ++k)
+			{
+				Expression temp = new Atome("true");
+				for(int i = 0; i < n; ++i)
+				{
+					if(i != k)
+						temp = new Et(new Non(new Atome("x"+ i + j)), temp);
+					else
+						temp = new Et(new Atome("x"+ i + j), temp);
+				}
+				temp2 = new Ou(temp2, temp);
+			}
+			expDame = new Et(expDame, temp2);
+		}
+		
+		//Diagonales !
+		for(int j = 0; j < n; ++j)
+		{
+			Expression temp2 = new Atome("false");
+			for(int k = 0; k < n; ++k)
+			{
+				Expression temp = new Atome("x"+ k + j);
+				for(int i = n; j+k-i < n; --i)
+				{
+					if(i != k)
+						temp = new Et(new Non(new Atome("x"+ k + Integer.toString(j+k-i))), temp);
+				}
+				temp2 = new Implique(temp2, temp);
+			}
+			expDame = new Et(expDame, temp2);
+		}
+		
+		System.out.println(expDame.robdd().trouve_sat());
 	}
 }

@@ -58,7 +58,7 @@ public class ROBDD {
 			if(n.getIdFilsGauche() == toSearch)
 			{
 				toSearch = n.getId();
-				ret += "non " + n.getNom() + ".";
+				//ret += "non " + n.getNom() + ".";
 			}
 			if(n.getIdFilsDroit() == toSearch)
 			{

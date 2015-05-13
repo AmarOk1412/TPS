@@ -5,6 +5,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[frenchb]{babel}
 \usepackage[a4paper]{geometry}
+\usepackage{minted}
 
 \begin{document}
 %title
@@ -42,7 +43,7 @@ Ce premier TP d'Algorithmie et Complexité a pour objectif de comparer 2 algorit
 \section{Moyens mis en \oe uvre}
 Pour réaliser ce TP, nous avions à disposition un fichier JAVA à compléter qui s'occupait de l'implementation des tris ainsi que la mesure du temps de calcul. Puis un programme Matlab pour l'affichage des graphes de résultats.\\
 Voici notre implémentation du tri insertion :\\
-\begin{verbatim}
+\begin{minted}{java}
 public static void triInsertion(int[] t){
     for (int i = 1; i < t.length; i++) {
       int valueToSort = t[i];
@@ -53,9 +54,9 @@ public static void triInsertion(int[] t){
       t[j] = valueToSort;
     }
   }
-\end{verbatim}
+\end{minted}
 Et le tri fusion :
-\begin{verbatim}
+\begin{minted}{java}
 /* Sous-fonction (recursive) pour le tri fusion
    * Trie le sous-tableau t[debut]..t[fin]
    */
@@ -68,7 +69,7 @@ private static void triFusion(int[] t, int debut, int fin){
     fusionner(t, debut, milieu, fin);
   }
 }
-\end{verbatim}
+\end{minted}
 \section{Résultats}
 Pour le tri insertion, pour trier 60 000 000 de résultats il faut :
 \begin{itemize}

@@ -1,10 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.4.13)  23 APR 2015 18:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.4.13)  12 MAY 2015 23:24
 entering extended mode
- restricted \write18 enabled.
- file:line:error style messages enabled.
+ \write18 enabled.
  %&-line parsing enabled.
-**\input ./title.tex
-(./title.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+**title.tex
+(./title.tex
+LaTeX2e <2011/06/27>
+Babel <3.9k> and hyphenation patterns for 2 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
@@ -342,36 +344,66 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layouthoffset=\dimen114
 \Gm@layoutvoffset=\dimen115
 \Gm@dimlist=\toks17
-) (./title.aux)
-\openout1 = `title.aux'.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2011/09/17 v1.7 Yet another Pygments shim for LaTeX
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2008/02/07
 
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count95
-\scratchdimen=\dimen116
-\scratchbox=\box26
-\nofMPsegments=\count96
-\nofMParguments=\count97
-\everyMPshowfont=\toks18
-\MPscratchCnt=\count98
-\MPscratchDim=\dimen117
-\MPnumerator=\count99
-\makeMPintoPDFobject=\count100
-\everyMPtoPDFconversion=\toks19
-) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count95
+\FV@InFile=\read1
+\FV@TabBox=\box26
+\c@FancyVerbLine=\count96
+\FV@StepNumber=\count97
+\FV@OutFile=\write3
+) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count98
+\float@exts=\toks18
+\float@box=\box27
+\@float@everytoks=\toks19
+\@floatcapt=\box28
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count99
+\calc@Bcount=\count100
+\calc@Adimen=\dimen116
+\calc@Bdimen=\dimen117
+\calc@Askip=\skip49
+\calc@Bskip=\skip50
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count101
+\calc@Cskip=\skip51
+)
+(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2010/10/22 v0.4 Testing for the operating system
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
 
@@ -384,7 +416,60 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+Package: catchfile 2011/03/01 v1.6 Catch the contents of a file (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+))
+runsystem(uname -s > "title.w18")...executed.
+
+ (./title.w18)
+runsystem(rm -- "title.w18")...executed.
+
+)
+\minted@bgbox=\box29
+\minted@code=\write4
+\@float@every@listing=\toks20
+\c@listing=\count102
+)
+runsystem(which pygmentize && touch title.aex)...executed.
+
+runsystem(rm title.aex)...executed.
+
+ (./title.aux)
+\openout1 = `title.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count103
+\scratchdimen=\dimen118
+\scratchbox=\box30
+\nofMPsegments=\count104
+\nofMParguments=\count105
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count106
+\MPscratchDim=\dimen119
+\MPnumerator=\count107
+\makeMPintoPDFobject=\count108
+\everyMPtoPDFconversion=\toks22
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -398,14 +483,7 @@ Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
 Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
+))
 Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
@@ -415,9 +493,9 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \degres on input line 9.
-LaTeX Info: Redefining \dots on input line 9.
-LaTeX Info: Redefining \up on input line 9.
+LaTeX Info: Redefining \degres on input line 10.
+LaTeX Info: Redefining \dots on input line 10.
+LaTeX Info: Redefining \up on input line 10.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -453,17 +531,20 @@ LaTeX Info: Redefining \up on input line 9.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+runsystem(pygmentize -S default -f latex > title.pyg)...executed.
+
+(./title.pyg)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 13.
+(Font)              <7> on input line 14.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 13.
-<esir.png, id=1, 1284.8pt x 568.1225pt>
+(Font)              <5> on input line 14.
+ <esir.png, id=1, 1284.8pt x 568.1225pt>
 File: esir.png Graphic file (type png)
  <use esir.png>
-Package pdftex.def Info: esir.png used on input line 17.
+Package pdftex.def Info: esir.png used on input line 18.
 (pdftex.def)             Requested size: 128.48752pt x 56.81557pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--18
+Underfull \hbox (badness 10000) in paragraph at lines 14--19
 
  []
 
@@ -471,47 +552,71 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--18
 
 {/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map} <./esir.png>
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 43--45
+\openout3 = `title.pyg'.
+
+runsystem(pygmentize -l java -f latex -F tokenmerge             -P "verboptions
+= " -o title.out.pyg title.pyg)...executed.
+
+ (./title.out.pyg
+Underfull \hbox (badness 10000) in paragraph at lines 44--1
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 45.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 1.
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 2.
+)
+runsystem(rm title.out.pyg)...executed.
+
+runsystem(rm title.pyg)...executed.
+
+\openout3 = `title.pyg'.
+
+runsystem(pygmentize -l java -f latex -F tokenmerge             -P "verboptions
+= " -o title.out.pyg title.pyg)...executed.
+
+ (./title.out.pyg)
+runsystem(rm title.out.pyg)...executed.
+
+runsystem(rm title.pyg)...executed.
+
+
 <croissant.png, id=16, 578.16pt x 433.62pt>
 File: croissant.png Graphic file (type png)
  <use croissant.png>
-Package pdftex.def Info: croissant.png used on input line 82.
+Package pdftex.def Info: croissant.png used on input line 83.
 (pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
 
 <random.png, id=17, 578.16pt x 433.62pt>
 File: random.png Graphic file (type png)
  <use random.png>
-Package pdftex.def Info: random.png used on input line 88.
+Package pdftex.def Info: random.png used on input line 89.
 (pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
 
 <decroissant.png, id=18, 578.16pt x 433.62pt>
 File: decroissant.png Graphic file (type png)
  <use decroissant.png>
-Package pdftex.def Info: decroissant.png used on input line 94.
+Package pdftex.def Info: decroissant.png used on input line 95.
 (pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
 
 <fusion.png, id=19, 578.16pt x 433.62pt>
 File: fusion.png Graphic file (type png)
  <use fusion.png>
-Package pdftex.def Info: fusion.png used on input line 102.
+Package pdftex.def Info: fusion.png used on input line 103.
 (pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
  [1] [2 <./croissant.png (PNG copy)>] [3 <./random.png (PNG copy)>] [4 <./decro
 issant.png (PNG copy)>] [5 <./fusion.png (PNG copy)>] [6] (./title.aux) ) 
 Here is how much of TeX's memory you used:
- 3427 strings out of 495025
- 46870 string characters out of 6181515
- 115994 words of memory out of 5000000
- 6600 multiletter control sequences out of 15000+600000
- 10013 words of font info for 23 fonts, out of 8000000 for 9000
+ 4746 strings out of 495025
+ 64846 string characters out of 6181515
+ 141030 words of memory out of 5000000
+ 7871 multiletter control sequences out of 15000+600000
+ 10328 words of font info for 24 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,7n,30p,387b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,8n,37p,378b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/
 share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive
@@ -520,15 +625,16 @@ dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/cm-super/sfbx1440.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/cm-super/sfbx1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/cm-super/sfcc1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-su
-per/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfr
-m1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1440.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on title.pdf (7 pages, 315684 bytes).
+per/sfit1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfr
+m1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on title.pdf (7 pages, 332235 bytes).
 PDF statistics:
- 84 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
