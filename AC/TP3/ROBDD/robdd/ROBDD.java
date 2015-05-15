@@ -55,15 +55,17 @@ public class ROBDD {
 		while(it.hasNext())
 		{
 			Noeud_ROBDD n = it.next();
-			if(n.getIdFilsGauche() == toSearch)
-			{
-				toSearch = n.getId();
-				//ret += "non " + n.getNom() + ".";
-			}
 			if(n.getIdFilsDroit() == toSearch)
 			{
 				toSearch = n.getId();
 				ret += n.getNom() + ".";
+				it = R.iterator();
+			}
+			if(n.getIdFilsGauche() == toSearch)
+			{
+				toSearch = n.getId();
+				it = R.iterator();
+				//ret += "non " + n.getNom() + ".";
 			}
 		}
 		if(toSearch == 1)

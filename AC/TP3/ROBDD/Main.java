@@ -52,14 +52,14 @@ public class Main {
 		
 		//2:
 		int n = 4;
-		Expression expDame = new Atome("true");
+		Expression expDame = new Constante(true);
 		//Au moins une dame par ligne
 		for(int i = 0; i < n; ++i)
 		{
-			Expression temp2 = new Atome("false");
+			Expression temp2 = new Constante(false);
 			for(int k = 0; k < n; ++k)
 			{
-				Expression temp = new Atome("true");
+				Expression temp = new Constante(true);
 				for(int j = 0; j < n; ++j)
 				{
 					if(j != k)
@@ -76,10 +76,10 @@ public class Main {
 		//Au moins une dame par colonne
 		for(int j = 0; j < n; ++j)
 		{
-			Expression temp2 = new Atome("false");
+			Expression temp2 = new Constante(false);
 			for(int k = 0; k < n; ++k)
 			{
-				Expression temp = new Atome("true");
+				Expression temp = new Constante(true);
 				for(int i = 0; i < n; ++i)
 				{
 					if(i != k)
@@ -95,20 +95,44 @@ public class Main {
 		//Diagonales !
 		for(int j = 0; j < n; ++j)
 		{
-			Expression temp2 = new Atome("false");
+			Expression temp2 = new Constante(false);
 			for(int k = 0; k < n; ++k)
 			{
-				Expression temp = new Atome("x"+ k + j);
-				for(int i = n; j+k-i < n; --i)
+				Expression temp = new Constante(true);
+				for(int i = 0; i < n; ++i)
 				{
-					if(i != k)
-						temp = new Et(new Non(new Atome("x"+ k + Integer.toString(j+k-i))), temp);
+					int v = j+k-i;
+					if(i != k && v < n && v >= 0)
+						temp = new Et(new Non(new Atome("x"+ k + v)), temp);
+					else
+						temp = new Et(new Atome("x"+ i + j), temp);
 				}
-				temp2 = new Implique(temp2, temp);
+				temp2 = new Ou(temp2, temp);
 			}
 			expDame = new Et(expDame, temp2);
 		}
 		
+		//Ne marche qu'avec une boucle pour les diagonales...
+//		for(int j = 0; j < n; ++j)
+//		{
+//			Expression temp2 = new Constante(false);
+//			for(int k = 0; k < n; ++k)
+//			{
+//				Expression temp = new Constante(true);
+//				for(int i = 0; i < n; ++i)
+//				{
+//					int v = i+j-k;
+//					if(i != k && v < n && v >= 0)
+//						temp = new Et(new Non(new Atome("x"+ k + v)), temp);
+//					else
+//						temp = new Et(new Atome("x"+ i + j), temp);
+//				}
+//				temp2 = new Ou(temp2, temp);
+//			}
+//			expDame = new Et(expDame, temp2);
+//		}
+		
+		System.out.println(expDame.robdd());
 		System.out.println(expDame.robdd().trouve_sat());
 	}
 }
