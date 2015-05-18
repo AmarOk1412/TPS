@@ -7,6 +7,15 @@ import expression.*;
 public class Main {
 
 	public static void main(String[] args) {
+		System.out.println("PARTIE I :");
+		Partie1();
+		//2:
+		System.out.println("PARTIE II :");
+		NQueensProblem(6);
+	}
+	
+	static void Partie1()
+	{
 		//EXEMPLE 
 		Expression exp = new Et(new Atome("x"),new Atome("y")); // représente (x ^ y)
 		System.out.println(exp.atomes()); // affiche la liste des atomes (=variables booléennes) présents dans exp
@@ -14,7 +23,8 @@ public class Main {
 		//System.out.println(exp.evalue()); // <- erreur car (true ^ y) ne peut pas être évalué
 		exp = exp.remplace("y",false); // exp vaut maintenant (true ^ false)
 		System.out.println(exp.evalue());
-		
+	
+		//Construction d'un ROBBD
 		Expression ex2 = new Et(
 											new Equiv(new Atome("x1"),new Atome("y1")), 
 											new Equiv(new Atome("x2"),new Atome("y2"))
@@ -30,6 +40,7 @@ public class Main {
 //		System.out.println(ex2.evalue());
 //		System.out.println(ex2.estVrai());
 //		System.out.println(ex2.estFaux());
+		//Affichage
 		List<String> ordre_atomes = new LinkedList<String>();
 		ordre_atomes.add("x1");
 		ordre_atomes.add("y1");
@@ -44,16 +55,16 @@ public class Main {
 		ordre_atomes = new LinkedList<String>();
 		ordre_atomes.add("x");
 		ordre_atomes.add("y");
-		System.out.println("\n Arbre de exp : \n" + exp.arbre(ordre_atomes)); // <- que se passe-t-il ? 
+		System.out.println("\n Arbre de exp : \n" + exp.arbre(ordre_atomes)); // <- que se passe-t-il ? Simplification 
 		Expression exp2 = new Et(new Atome("x"), new Non(new Atome("y"))); // représente (x ^ y)
 		System.out.println("\n Arbre de exp2 : \n" + exp2.arbre(ordre_atomes));
 		System.out.println(exp2.robdd().trouve_sat());
-		
-		
-		//2:
-		int n = 7;
+	}
+	
+	static void NQueensProblem(int n)
+	{
 		Expression expDame = new Constante(true);
-		//Au moins une dame par ligne
+		//Une dame par ligne
 		for(int i = 0; i < n; ++i)
 		{
 			Expression temp2 = new Constante(false);
@@ -73,7 +84,7 @@ public class Main {
 		}
 		
 		
-		//Au moins une dame par colonne
+		//Une dame par colonne
 		for(int j = 0; j < n; ++j)
 		{
 			Expression temp2 = new Constante(false);
@@ -92,7 +103,7 @@ public class Main {
 			expDame = new Et(expDame, temp2);
 		}
 		
-		//Diagonales 
+		//Traitement des diagonales 
 		for(int i = 0; i < n; ++i)
 		{
 			Expression temp2 = new Constante(false);
@@ -115,6 +126,9 @@ public class Main {
 			}
 			expDame = new Et(expDame, temp2);
 		}
+		//La réponse fournit par un String
 		System.out.println(expDame.robdd().trouve_sat());
+		//Ou par affichage visuel
+		expDame.robdd().reines_affiche_sat(n);
 	}
 }

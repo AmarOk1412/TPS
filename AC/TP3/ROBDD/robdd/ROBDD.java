@@ -4,6 +4,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+// Pour l'affichage
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 //Représente un ROBDD sous forme de liste de Noeud_ROBDD
 public class ROBDD {
 
@@ -47,6 +51,7 @@ public class ROBDD {
 		return -1;
 	}
 	
+	//Trouve une solution si c'est SAT
 	public String trouve_sat()
 	{
 	  String ret = "";
@@ -59,18 +64,62 @@ public class ROBDD {
 			{
 				toSearch = n.getId();
 				ret += n.getNom() + ".";
-				it = R.iterator();
 			}
 			if(n.getIdFilsGauche() == toSearch)
-			{
 				toSearch = n.getId();
-				it = R.iterator();
-				//ret += "non " + n.getNom() + ".";
-			}
 		}
+		
 		if(toSearch == 1)
 			return "Non SAT";
 		else
 			return ret;
+	}
+
+	//Affiche le tableau solution pour le probleme des dames
+	public void reines_affiche_sat(int n)
+	{
+		//Le tableau contenant true pour les cases possédant une dame
+		boolean[] solution = new boolean[n*n];
+	  Iterator<Noeud_ROBDD> it = R.iterator();
+	  int toSearch = 1;
+		while(it.hasNext())
+		{
+			Noeud_ROBDD node = it.next();
+			if(node.getIdFilsDroit() == toSearch)
+			{
+				toSearch = node.getId();
+				try
+				{
+					//Pour savoir quelle variable correspond à quelle case
+					Pattern p = Pattern.compile("x([0-9])([0-9])");
+					Matcher m = p.matcher(node.getNom());
+					m.matches();
+					solution[Integer.parseInt(m.group(1))*n+Integer.parseInt(m.group(2))] = true;
+				}
+				catch (Exception e)
+				{
+				
+				}
+			}
+			if(node.getIdFilsGauche() == toSearch)
+				toSearch = node.getId();
+		}
+		
+	/**Affichage**/
+	for(int i = 0; i < n; ++i)
+	{
+		for(int j = 0; j < 3*n; ++j)
+			System.out.print("_");
+		System.out.print("\n");
+		for(int j = 0; j < n; ++j)
+			if(solution[i*n+j])
+				System.out.print("|X|");
+			else
+				System.out.print("| |");
+		System.out.print("\n");
+	}
+	for(int j = 0; j < 3*n; ++j)
+		System.out.print("_");
+	System.out.print("\n");
 	}
 }
