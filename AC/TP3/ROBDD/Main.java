@@ -51,7 +51,7 @@ public class Main {
 		
 		
 		//2:
-		int n = 4;
+		int n = 3;
 		Expression expDame = new Constante(true);
 		//Au moins une dame par ligne
 		for(int i = 0; i < n; ++i)
@@ -93,24 +93,24 @@ public class Main {
 		}
 		
 		//Diagonales !
-		for(int j = 0; j < n; ++j)
-		{
-			Expression temp2 = new Constante(false);
-			for(int k = 0; k < n; ++k)
-			{
-				Expression temp = new Constante(true);
-				for(int i = 0; i < n; ++i)
-				{
-					int v = j+k-i;
-					if(i != k && v < n && v >= 0)
-						temp = new Et(new Non(new Atome("x"+ k + v)), temp);
-					else
-						temp = new Et(new Atome("x"+ i + j), temp);
-				}
-				temp2 = new Ou(temp2, temp);
-			}
-			expDame = new Et(expDame, temp2);
-		}
+//		for(int j = 0; j < n; ++j)
+//		{
+//			Expression temp2 = new Constante(false);
+//			for(int k = 0; k < n; ++k)
+//			{
+//				Expression temp = new Constante(true);
+//				for(int i = 0; i < n; ++i)
+//				{
+//					int v = j+k-i;
+//					if(i != k && v < n && v >= 0)
+//						temp = new Et(new Non(new Atome("x"+ k + v)), temp);
+//					else
+//						temp = new Et(new Atome("x"+ i + j), temp);
+//				}
+//				temp2 = new Ou(temp2, temp);
+//			}
+//			expDame = new Et(expDame, temp2);
+//		}
 		
 		//Ne marche qu'avec une boucle pour les diagonales...
 //		for(int j = 0; j < n; ++j)
@@ -131,6 +131,30 @@ public class Main {
 //			}
 //			expDame = new Et(expDame, temp2);
 //		}
+		
+		//Diagonales 
+		for(int i = 0; i < n; ++i)
+		{
+			Expression temp2 = new Constante(false);
+			for(int j = 0; j < n; ++j)
+			{
+				Expression temp = new Constante(true);
+				for(int k = 0; k < n; ++k)
+				{
+					int v = j+k-i;
+					int w = j+i-k;
+					if(i != k && v < n && v >= 0)
+						temp = new Et(new Non(new Atome("x" + k + v)), temp);
+					else if(i!=k && w < n && w >= 0)
+						temp = new Et(new Non(new Atome("x" + k + w)), temp);
+					else
+						temp = new Et(new Atome("x" + i + j), temp);
+						
+				}
+				temp2 = new Ou(temp2, temp);
+			}
+			expDame = new Et(expDame, temp2);
+		}
 		
 		System.out.println(expDame.robdd());
 		System.out.println(expDame.robdd().trouve_sat());
