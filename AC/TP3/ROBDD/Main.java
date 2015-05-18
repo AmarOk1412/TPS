@@ -11,7 +11,7 @@ public class Main {
 		Partie1();
 		//2:
 		System.out.println("PARTIE II :");
-		NQueensProblem(6);
+		NQueensProblem(7);
 	}
 	
 	static void Partie1()
