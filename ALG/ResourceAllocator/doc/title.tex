@@ -42,12 +42,7 @@
 \section{Règles et définitions supplémentaires}
 \begin{itemize}
   \bitem \textbf{R12} : En cas d'interblocage, le processus ayant créé la demande menant à cet interblocage est détruit.
-  \bitem \textbf{R13} : Un processus actif peut demander de nouvelles ressources.
-  \bitem \textbf{R14} : Un processus actif peut libérer une ressource.
-  \bitem \textbf{R15} : Un processus actif peut se détruire.
-  \bitem \textbf{R16} : Un processus bloqué peut pas se détruire.
-  \bitem \textbf{R17} : Un processus bloqué ne peut pas demander une nouvelle ressource.
-  \bitem \textbf{R18} : Un processus bloqué ne peut pas libérer une ressource.
+  \bitem \textbf{R13} : Un processus actif peut demander de nouvelles ressources même si ça mène à un interblocage.
 \end{itemize}
 
 \section{Règles de modélisation}
@@ -143,7 +138,7 @@ Nous considérons un allocateur disposant des ressources R1,R2 :\\
   \bitem graphe = P1, P2, P3, R1, R2
   \bitem file R1 = P1, P2
   \bitem file R2 = P2, P3, P1
-  \bitem règles = R1, R4, R7, MV5
+  \bitem règles = R1, R4, R7, R13, MV5
   \bitem \includegraphics[scale=0.5]{images/acte8}
 \end{itemize}
 \subsection{Acte 9}
@@ -160,7 +155,7 @@ Nous considérons un allocateur disposant des ressources R1,R2 :\\
   \bitem graphe = P2, P3, R1, R2
   \bitem file R1 = P2
   \bitem file R2 = P2, P3
-  \bitem règles = R7, R11, MV2, MV3
+  \bitem règles = R7, R11, R12, MV2, MV3
   \bitem \includegraphics[scale=0.5]{images/acte10}
 \end{itemize}
 \subsection{Acte 11}
