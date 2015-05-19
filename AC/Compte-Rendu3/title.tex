@@ -44,7 +44,7 @@
 Dans la seconde partie de ce TP, nous devions utiliser les ROBDD pour pouvoir résoudre un problème. Le problème consiste à trouver une combinaison de cases où placer N dames sur un plateau de taille NxN pour ne pas qu'elles puissent se menacer mutuellement. Donc qu'il y en ait une par colonne, une par ligne, et pas 2 sur la même diagonale.\\
 La solution consiste donc à modéliser une équation booléenne modélisant les conditions en prenant chaque case comme une variable.
 \subsection{Moyens mis en \oe uvre}
-L'expression finale est un ET logique entre 3 sous équations.\\
+L'expression finale est un ET logique entre 3 sous équations, puisque nous souhaitons avoir une dame par ligne ET une dame par colonne ET au maximum une dame par diagonale.\\
 La première sous-équation décrit le fait qu'il y ait une dame par ligne.
 \begin{minted}{java}
 for(int i = 0; i < n; ++i)
@@ -65,8 +65,8 @@ for(int i = 0; i < n; ++i)
 	expDame = new Et(expDame, temp2);
 }
 \end{minted}
-Ce qui peut se traduire par $x_{ij}\Rightarrow \wedge_{1\geq l\geq N, l\neq j}\neg x_{il}$. Même si dans notre code, nous le modélisons à l'aide de Et et de Ou logique.\\
-Pour les colonnes, c'est à peut prêt la même méthode, il suffit d'échanger 2 boucles.
+Ce qui peut se traduire par $\vee_{(1 \geq i \geq N, 1 \geq j \geq N)}[x_{ij}\Rightarrow \wedge_{(1\geq l\geq N, l\neq j)}\neg x_{il}]$ avec au moins un $x_{ij}$ vrai. Même si dans notre code, nous le modélisons à l'aide de Et et de Ou logique.\\
+Pour les colonnes, c'est à peut prêt la même méthode, il suffit d'échanger 2 boucles, on peut considérer le problème comme celui de résoudre une dame par ligne avec un plateau à 90 degrés.
 \begin{minted}{java}
 for(int j = 0; j < n; ++j)
 {
@@ -86,7 +86,7 @@ for(int j = 0; j < n; ++j)
 	expDame = new Et(expDame, temp2);
 }
 \end{minted}
-Le traitement des diagonales est un peu différent. Ici, il faut considérer des droites et prendre seulement les cases dans le plateau. L'équation nous donne : $x_{ij}\Rightarrow \wedge_{1\geq k\geq N, 1\geq j+k-i\geq N, k\neq i}\neg x_{k,j+k-i}$ dans un sens, $x_{ij}\Rightarrow \wedge_{1\geq k\geq N, 1\geq j+i-k\geq N, k\neq i}\neg x_{k,j+i-k}$ pour l'autre sens.
+Le traitement des diagonales est un peu différent. Ici, il faut considérer des droites et prendre seulement les cases dans le plateau. L'équation nous donne : $x_{ij}\Rightarrow \wedge_{(1\geq k\geq N, 1\geq j+k-i\geq N, k\neq i)}\neg x_{k,j+k-i}$ dans un sens, $x_{ij}\Rightarrow \wedge_{(1\geq k\geq N, 1\geq j+i-k\geq N, k\neq i)}\neg x_{k,j+i-k}$ pour l'autre sens.
 \begin{minted}{java}
 //Traitement des diagonales 
 for(int i = 0; i < n; ++i)
@@ -111,7 +111,8 @@ for(int i = 0; i < n; ++i)
 	expDame = new Et(expDame, temp2);
 }
 \end{minted}
-Enfin, pour la partie de l'affichage, il suffit de trouver une solution (première partie de la fonction) et de stocker les cases où les dames sont présentes à true. Puis on dessine avec la seconde partie de la fonction.
+Ce qui nous permet de modéliser une équation booléenne représentant le fait de n'avoir qu'une dame par ligne, une par colonne et au maximum une par diagonale.\\
+Enfin, pour la partie de l'affichage, il suffit de trouver une solution (première partie de la fonction) en parcourant le ROBDD de l'expression précédement créée et de stocker les cases où les dames sont présentes à true (via un tableau représentant linéairement le plateau). Puis on dessine avec la seconde partie de la fonction.
 \begin{minted}{java}
 //Affiche le tableau solution pour le probleme des dames
 public void reines_affiche_sat(int n)
@@ -165,22 +166,22 @@ public void reines_affiche_sat(int n)
 \subsection{Résultats}
 Pour un plateau de où N = :
 \begin{itemize}
-  \item 1 : le problème est SAT
+  \item 1 : x00
   \item 2, 3 : NON SAT
   \item 4 : x13.x01.x20.x32.
   \item 5 : x02.x21.x40.x14.x33.
   \item 6 : x02.x21.x40.x15.x34.x53.
   \item 7 : x01.x40.x32.x24.x63.x16.x55.
-  \item 8 : x06.x43.x30.x71.x22.x64.x15.x57.
+  \item 8 : x06.x43.x30.x71.x22.x64.x15.x57. => Nous remarquons un bug dans notre implémentation (x06, x15)
 \end{itemize}
-Pour 8, la résolution commence à être longue, mais le ROBDD est conséquent.
+Pour N=8, la résolution commence à être longue, mais le ROBDD construit est de taille conséquente.
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.7]{sevenkingdom}\\
-		Solution pour 7 reines
+		Solution fournie par l'algorithme n=7 reines
 	\end{center}
 \end{figure}
 \section{Conclusion}
-TODO : ROBDD bonne forme pour résoudre des problemes comme SAT
+Pour conclure, nous pouvons remarquer que choisir une représentation d'un problème de type SAT avec un ROBDD est une méthode qui fonctionne bien et dont le parcourt afin de trouver une solution est relativement rapide. Par contre, la taille du ROBDD peut très vite exploser.
 \end{document}
 
