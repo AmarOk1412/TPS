@@ -11,7 +11,7 @@ public class Main {
 		Partie1();
 		//2:
 		System.out.println("PARTIE II :");
-		NQueensProblem(7);
+		NQueensProblem(4);
 	}
 	
 	static void Partie1()
@@ -114,11 +114,18 @@ public class Main {
 				{
 					int v = j+k-i;
 					int w = j+i-k;
+					boolean find = false;
 					if(i != k && v < n && v >= 0)
+					{
 						temp = new Et(new Non(new Atome("x" + k + v)), temp);
-					else if(i!=k && w < n && w >= 0)
+						find = true;
+					}
+					if(i!=k && w < n && w >= 0)
+					{
 						temp = new Et(new Non(new Atome("x" + k + w)), temp);
-					else
+						find = true;
+					}
+					if(!find)
 						temp = new Et(new Atome("x" + i + j), temp);
 						
 				}

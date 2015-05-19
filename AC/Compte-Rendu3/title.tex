@@ -88,7 +88,6 @@ for(int j = 0; j < n; ++j)
 \end{minted}
 Le traitement des diagonales est un peu différent. Ici, il faut considérer des droites et prendre seulement les cases dans le plateau. L'équation nous donne : $x_{ij}\Rightarrow \wedge_{(1\geq k\geq N, 1\geq j+k-i\geq N, k\neq i)}\neg x_{k,j+k-i}$ dans un sens, $x_{ij}\Rightarrow \wedge_{(1\geq k\geq N, 1\geq j+i-k\geq N, k\neq i)}\neg x_{k,j+i-k}$ pour l'autre sens.
 \begin{minted}{java}
-//Traitement des diagonales 
 for(int i = 0; i < n; ++i)
 {
 	Expression temp2 = new Constante(false);
@@ -99,11 +98,18 @@ for(int i = 0; i < n; ++i)
 		{
 			int v = j+k-i;
 			int w = j+i-k;
+			boolean find = false;
 			if(i != k && v < n && v >= 0)
+			{
 				temp = new Et(new Non(new Atome("x" + k + v)), temp);
-			else if(i!=k && w < n && w >= 0)
+				find = true;
+			}
+			if(i!=k && w < n && w >= 0)
+			{
 				temp = new Et(new Non(new Atome("x" + k + w)), temp);
-			else
+				find = true;
+			}
+			if(!find)
 				temp = new Et(new Atome("x" + i + j), temp);
 		}
 		temp2 = new Ou(temp2, temp);
@@ -172,7 +178,7 @@ Pour un plateau de où N = :
   \item 5 : x02.x21.x40.x14.x33.
   \item 6 : x02.x21.x40.x15.x34.x53.
   \item 7 : x01.x40.x32.x24.x63.x16.x55.
-  \item 8 : x06.x43.x30.x71.x22.x64.x15.x57. => Nous remarquons un bug dans notre implémentation (x06, x15)
+  \item 8 : x03.x41.x34.x76.x20.x62.x15.x57
 \end{itemize}
 Pour N=8, la résolution commence à être longue, mais le ROBDD construit est de taille conséquente.
 \begin{figure}
