@@ -14,7 +14,7 @@ public class Racine {
 
     public static void main(String[] args) {
 	try {
-	    System.out.println("Création de l'allocateur");
+	    System.out.println("CrÃ©ation de l'allocateur");
 	    System.out.print("Nombre maximum de processus ? ");
 	    int nmaxProc = lireEntier();
 	    System.out.print("Nombre de ressources ? ");
@@ -54,14 +54,14 @@ public class Racine {
 	System.out.println("Choisir une action : ");
 	System.out.println("====================");
 	System.out.println("  0 : sortir");
-	System.out.println("  1 : création d'un processus");
+	System.out.println("  1 : crÃ©ation d'un processus");
 	System.out.println("  2 : destruction d'un processus");
 	System.out.println("  3 : demande de ressource(s) par un processus");
-	System.out.println("  4 : libération d'une ressource par un processus");
+	System.out.println("  4 : libÃ©ration d'une ressource par un processus");
 	System.out.println("  5 : affichage des files d'attente par ressource");
 	System.out.println("  6 : affichage des processus actifs");
 	System.out.println("  7 : affichage des attentes entre processus");
-	System.out.println("  8 : affichage des processus concernés par un interblocage");
+	System.out.println("  8 : affichage des processus concernÃ©s par un interblocage");
 	try {
 	    choix = lireEntier();
 	    //toNextLine() ;
@@ -89,7 +89,7 @@ public class Racine {
 
     private static void cmdCreer() {
 	try {
-	    System.out.print("Numéro du processus à créer : ");
+	    System.out.print("NumÃ©ro du processus Ã  crÃ©er : ");
 	    int p = lireEntier();
 	    a.creerProc(p);
 	}
@@ -100,7 +100,7 @@ public class Racine {
 
     private static void cmdDetruire() {
 	try {
-	    System.out.print("Numéro du processus à détruire : ");
+	    System.out.print("NumÃ©ro du processus Ã  dÃ©truire : ");
 	    int p = lireEntier();
 	    a.detruireProc(p);
 	}
@@ -112,9 +112,9 @@ public class Racine {
     private static void cmdDemander() {
 	Integer r;
 	try {
-	    System.out.print("Numéro du processus demandeur : ");
+	    System.out.print("NumÃ©ro du processus demandeur : ");
 	    int p = lireEntier();
-	    System.out.println("Liste des ressources demandées (séparées par des blancs et terminée par une ligne vide) : ");
+	    System.out.println("Liste des ressources demandÃ©es (sÃ©parÃ©es par des blancs et terminÃ©e par une ligne vide) : ");
 	    Set lr = new TreeSet();
 	    try {
 		while (true) {
@@ -132,9 +132,9 @@ public class Racine {
 
     private static void cmdLiberer() {
 	try {
-	    System.out.print("Numéro du processus libérateur : ");
+	    System.out.print("NumÃ©ro du processus libÃ©rateur : ");
 	    int p = lireEntier();
-	    System.out.print("Numéro de la ressource libérée : ");
+	    System.out.print("NumÃ©ro de la ressource libÃ©rÃ©e : ");
 	    int r = lireEntier();
 	    a.libererRess(p,r);
 	}
@@ -162,7 +162,7 @@ public class Racine {
     }
 
     private static void cmdAfficherInterblocages() {
-	System.out.println("Processus concernés par un interblocage : ");
+	System.out.println("Processus concernÃ©s par un interblocage : ");
 	a.afficherInterblocages();
 	System.out.println();
     }
