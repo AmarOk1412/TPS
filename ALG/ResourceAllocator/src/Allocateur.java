@@ -20,10 +20,10 @@ public class Allocateur {
 
 	// attributs
 
-	private Graphe _alloc;
+	private Graphe _alloc; //l'allocateur
 	private int max_proc; // nombre maximum de processus
 	private int nb_proc; // nombre effectif de processus
-	private int nb_ress;
+	private int nb_ress; //nombre effectif de ressources
 
 	// constructeurs
 
@@ -106,11 +106,11 @@ public class Allocateur {
 		try {
 			nb_proc--;
 			//Suppression des arcs entre le proccessus p et l'ensemble de ses successeurs
-			Set<Integer> successeurs = _alloc.ensSucc(p);
-			for(Integer e : successeurs)
-			{
-				_alloc.oterArc(p, e);
-			}
+//			Set<Integer> successeurs = _alloc.ensSucc(p);
+//			for(Integer e : successeurs)
+//			{
+//				_alloc.oterArc(p, e);
+//			}
 			_alloc.oterSom(p);
 			System.out.println("Destruction du processus " + p);
 		} catch (Exception e) {
@@ -191,7 +191,29 @@ public class Allocateur {
        O4: Liberation d'une ressource 'r' par le processus 'p'.
 	 */
 	public void libererRess(int p, int r) {
-		// a completer
+		Set<Integer> ensProcActifs = _alloc.ensPtsEntree();
+		//On teste si le processus et la ressource existent et si la proccessus est un processus actif
+		try {
+			if((!validProc(nb_ress+p) || !validProc(r)) && !ensProcActifs.contains(p))
+			{
+				System.out.println("La libération est impossible !");
+				return;
+			}
+		} catch (Exception e) {
+			System.out.println("Erreur lors de la vérification de la présence du processus et de la ressource");
+		} 
+		//Si la libération est possible, on ôte les arcs
+		try {
+			_alloc.oterArc(p, r);
+			Set<Integer> ensProcPred = _alloc.ensPred(r);
+			for(int e : ensProcPred)
+			{
+				if(_alloc.validArc(p, e))
+					_alloc.oterArc(p, e);
+			}
+		} catch (Exception e1) {
+			System.out.println("Erreur lors de la libération de la ressource " + r + "par le proccessus " + p);
+		}
 		System.out.println("Liberation de la ressource " + r + " par le processus " + p);
 	}
 
