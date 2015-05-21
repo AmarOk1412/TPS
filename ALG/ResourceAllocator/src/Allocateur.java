@@ -20,8 +20,10 @@ public class Allocateur {
 
     // attributs
 
+	private Graphe _alloc;
     private int max_proc; // nombre maximum de processus
     private int nb_proc; // nombre effectif de processus
+    private int nb_ress;
 
     // constructeurs
 
@@ -30,7 +32,10 @@ public class Allocateur {
        et exactement 'nRess' ressources (numerotees de 0 a (nRess-1).
     */
     public Allocateur(int nmaxProc, int nRess) {
-	// a completer
+    	max_proc = nmaxProc;
+    	nb_proc = 0;
+    	nb_ress = nRess;
+		_alloc = new GrapheDicoSucc(nmaxProc+nRess);
     }
 
     // methodes
