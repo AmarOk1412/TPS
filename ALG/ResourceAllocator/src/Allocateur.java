@@ -71,14 +71,14 @@ public class Allocateur {
 	 */
 	public void creerProc(int p) {
 		try {
+			//Si le processus a déjà été créé
 			if(validProc(nb_ress + p))
 			{
 				System.out.println("Le processus a déjà été créé");
 				return;
 			}
 		} catch (Exception e1) {
-			// TODO Bloc catch généré automatiquement
-			e1.printStackTrace();
+			System.out.println("Erreur lors de la vérification de présence du processus");
 		}
 		try {
 			_alloc.ajoutSom(nb_ress + p);
@@ -145,8 +145,13 @@ public class Allocateur {
        O6: Affichage des processus actifs.
 	 */
 	public void afficherActifs() {
-		// a completer
-		System.out.println("Affichage des processus actifs");
+		System.out.println("Affichage des processus actifs :");
+		Iterator<Integer> iterator = _alloc.ensPtsEntree().iterator();
+	    while (iterator.hasNext()) {
+	      Integer element = iterator.next();
+	      if(element >= nb_ress)
+	      System.out.println(new Integer(element.intValue()-nb_ress) + " est un processus actif");
+	    }
 	}
 
 	/**
