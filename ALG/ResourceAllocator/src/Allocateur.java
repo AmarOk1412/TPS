@@ -97,6 +97,7 @@ public class Allocateur {
 			if(!validProc(nb_ress + p))
 			{
 				System.out.println("Le processus à détruire n'existe pas !");
+				return;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -121,8 +122,69 @@ public class Allocateur {
        O3: Demande d'un ensemble de ressources 'lr' par le processus 'p'.
 	 */
 	public void demanderRess(int p, Set lr) {
-		// a completer
 		System.out.println("Demande de " + lr.size() + " ressource(s) par le processus " + p);
+		try {
+			if(!validProc(p+nb_ress))
+			{
+				System.out.println("Erreur : Processus invalide !");
+				return;
+			}
+		} catch (Exception e) {
+			System.out.println("Erreur lors de la vérification de la validité du processus !");
+		}
+
+		Set<Integer> lesRessources = lr;
+		for(Integer rsc : lesRessources)
+		{
+			//On vérifie si la ressource est valide
+			if(rsc > nb_ress)
+			{
+				System.out.println("Quit : Ressource invalide ! (" + rsc + ")");
+				return;
+			}
+			//Si la ressource est valide, on trace un arc du sommet à la ressource
+			try {
+				_alloc.ajoutArc(p+nb_ress, rsc);
+				System.out.println("Arc créé : " + p + " - R" + rsc);
+			} catch (Exception e) {
+				System.out.println("Erreur lors de l'ajout de l'arc");
+			}
+
+			//On se met dans la liste d'attente.
+			try {
+				Iterator<Integer> iterator = _alloc.ensPred(rsc).iterator();// Pour chaque prédécesseur du sommet ressource, 
+				while (iterator.hasNext()) {
+					Integer element = iterator.next();
+					System.out.println("ELEMENT : " + element);
+					try {
+						Iterator<Integer> iteratorSucc = _alloc.ensSucc(element).iterator();
+						boolean fullRes = true;
+						//On vérifie s'il est en bout de file d'attente
+						while(iteratorSucc.hasNext())
+						{
+							Integer temp = iterator.next();
+							System.out.println("TEMP : " + temp);
+							if(temp >= nb_ress)
+							{
+								fullRes = false;
+								break;
+							}
+						}
+						if(fullRes)
+						{
+							// si il n'y a pas de successeurs on trace l'arc
+							_alloc.ajoutArc(element, p+nb_ress);  
+							System.out.println("Arc créé : " + element + " - " + p);
+							break;
+						}
+					} catch (Exception e) {
+						System.out.println("Erreur lors de la mise en fin de file d'attente du processus");
+					}
+				}
+			} catch (Exception e1) {
+
+			}
+		}
 	}
 
 	/**
@@ -147,11 +209,11 @@ public class Allocateur {
 	public void afficherActifs() {
 		System.out.println("Affichage des processus actifs :");
 		Iterator<Integer> iterator = _alloc.ensPtsEntree().iterator();
-	    while (iterator.hasNext()) {
-	      Integer element = iterator.next();
-	      if(element >= nb_ress)
-	      System.out.println(new Integer(element.intValue()-nb_ress) + " est un processus actif");
-	    }
+		while (iterator.hasNext()) {
+			Integer element = iterator.next();
+			if(element >= nb_ress)
+				System.out.println(new Integer(element.intValue()-nb_ress) + " est un processus actif");
+		}
 	}
 
 	/**
