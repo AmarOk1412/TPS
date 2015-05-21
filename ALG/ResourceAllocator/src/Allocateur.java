@@ -52,18 +52,18 @@ public class Allocateur {
 
     /**
        Retourne vrai si et seulement si 'p' est un processus connu de l'allocateur
+     * @throws Exception 
     */
-    public boolean validProc(int p) {
-	// a completer
-	return false;
+    public boolean validProc(int p) throws Exception {
+	return _alloc.validSom(p);
     }
 
     /**
        Retourne vrai si et seulement si 'r' est une ressource connue de l'allocateur
+     * @throws Exception 
     */
-    public boolean validRess(int r) {
-	// a completer
-	return false;
+    public boolean validRess(int r) throws Exception {
+	return _alloc.validSom(r);
     }
 
     /**
