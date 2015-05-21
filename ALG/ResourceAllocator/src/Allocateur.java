@@ -36,6 +36,16 @@ public class Allocateur {
     	nb_proc = 0;
     	nb_ress = nRess;
 		_alloc = new GrapheDicoSucc(nmaxProc+nRess);
+		
+		//À la création du graphe, nous créons un sommet par ressource.
+		for(int i = 0; i < nRess; ++i)
+		{
+			try {
+				_alloc.ajoutSom(i);
+			} catch (Exception e) {
+				System.out.println("Erreur lors de la création de la ressource");
+			}
+		}
     }
 
     // methodes
