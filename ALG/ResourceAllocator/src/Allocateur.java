@@ -93,8 +93,28 @@ public class Allocateur {
        O2: Destruction du processus 'p'.
 	 */
 	public void detruireProc(int p) {
-		// a completer
-		System.out.println("Destruction du processus " + p);
+		try {
+			if(!validProc(nb_ress + p))
+			{
+				System.out.println("Le processus à détruire n'existe pas !");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			nb_proc--;
+			//Suppression des arcs entre le proccessus p et l'ensemble de ses successeurs
+			Set<Integer> successeurs = _alloc.ensSucc(p);
+			for(Integer e : successeurs)
+			{
+				_alloc.oterArc(p, e);
+			}
+			_alloc.oterSom(p);
+			System.out.println("Destruction du processus " + p);
+		} catch (Exception e) {
+			System.out.println("Erreur lors de la destruction du processus " + p);
+		}
 	}
 
 	/**
