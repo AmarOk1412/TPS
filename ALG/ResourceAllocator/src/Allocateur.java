@@ -145,7 +145,6 @@ public class Allocateur {
 			}
 			
 			//On se met dans la liste d'attente.
-			//TODO : améliorer (il dans le cas (1 - R1, 2 - R1,R2, 3 - R2, 4-R1?)
 			try {
 				//On prends la liste des prédecesseurs de la ressource
 				Iterator<Integer> iterator = _alloc.ensPred(rsc).iterator();
@@ -160,7 +159,7 @@ public class Allocateur {
 						while(iteratorSucc.hasNext())
 						{
 							Integer temp = iteratorSucc.next();
-							if(temp >= nb_ress)
+							if(temp >= nb_ress && _alloc.ensSucc(temp).contains(rsc))
 							{
 								fullRes = false;
 								break;
