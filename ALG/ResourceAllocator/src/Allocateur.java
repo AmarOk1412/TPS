@@ -111,7 +111,7 @@ public class Allocateur {
 //			{
 //				_alloc.oterArc(p, e);
 //			}
-			_alloc.oterSom(p);
+			_alloc.oterSom(p+nb_ress);
 			System.out.println("Destruction du processus " + p);
 		} catch (Exception e) {
 			System.out.println("Erreur lors de la destruction du processus " + p);
@@ -123,6 +123,7 @@ public class Allocateur {
 	 */
 	public void demanderRess(int p, Set lr) {
 		System.out.println("Demande de " + lr.size() + " ressource(s) par le processus " + p);
+		//On vérifie que p est bien un processus
 		try {
 			if(!validProc(p+nb_ress))
 			{
@@ -142,39 +143,35 @@ public class Allocateur {
 				System.out.println("Quit : Ressource invalide ! (" + rsc + ")");
 				return;
 			}
-			//Si la ressource est valide, on trace un arc du sommet à la ressource
-			try {
-				_alloc.ajoutArc(p+nb_ress, rsc);
-				System.out.println("Arc créé : " + p + " - R" + rsc);
-			} catch (Exception e) {
-				System.out.println("Erreur lors de l'ajout de l'arc");
-			}
-
+			
 			//On se met dans la liste d'attente.
+			//TODO : améliorer (il dans le cas (1 - R1, 2 - R1,R2, 3 - R2, 4-R1?)
 			try {
-				Iterator<Integer> iterator = _alloc.ensPred(rsc).iterator();// Pour chaque prédécesseur du sommet ressource, 
+				//On prends la liste des prédecesseurs de la ressource
+				Iterator<Integer> iterator = _alloc.ensPred(rsc).iterator();
+				
 				while (iterator.hasNext()) {
+					//Pour chaque prédecesseur
 					Integer element = iterator.next();
-					System.out.println("ELEMENT : " + element);
 					try {
 						Iterator<Integer> iteratorSucc = _alloc.ensSucc(element).iterator();
 						boolean fullRes = true;
 						//On vérifie s'il est en bout de file d'attente
 						while(iteratorSucc.hasNext())
 						{
-							Integer temp = iterator.next();
-							System.out.println("TEMP : " + temp);
+							Integer temp = iteratorSucc.next();
 							if(temp >= nb_ress)
 							{
 								fullRes = false;
 								break;
 							}
 						}
+						//Si le processus trouvé est le dernier de la file d'attente
 						if(fullRes)
 						{
 							// si il n'y a pas de successeurs on trace l'arc
 							_alloc.ajoutArc(element, p+nb_ress);  
-							System.out.println("Arc créé : " + element + " - " + p);
+							System.out.println("Arc créé : " + new Integer(element - nb_ress) + " - " + p);
 							break;
 						}
 					} catch (Exception e) {
@@ -183,6 +180,14 @@ public class Allocateur {
 				}
 			} catch (Exception e1) {
 
+			}
+
+			//Si la ressource est valide, on trace un arc du sommet à la ressource
+			try {
+				_alloc.ajoutArc(p+nb_ress, rsc);
+				System.out.println("Arc créé : " + p + " - R" + rsc);
+			} catch (Exception e) {
+				System.out.println("Erreur lors de l'ajout de l'arc");
 			}
 		}
 	}
