@@ -38,7 +38,198 @@
 	\vfill
 \end{titlepage}
 
+L'objectif de ce TP 3 est de créer un programme qui calcule le ROBDD assocciée à une expression booléenne et de comparer ses performances à celles d'un arbre de décision (arbre de Shannon).
+\section{Prise en main des expressions booléennes}
+\subsection{Objectif}
+Le but de cette partie est de se familiariser avec les classes proposées pour créer des expressions booléennes (Et, Ou, Non, et Implique) et apprendre à les manipuler.
+\subsection{Programmation des méthodes dans les classes Atome et Equiv}
+\subsubsection{La classe Equiv}
+\begin{minted}{java}
+public boolean evalue() throws RuntimeException {
+		return e1.evalue() == e2.evalue();
+	}
 
+	public Set<String> atomes() {
+		Set<String> s = new HashSet<String>();
+		s.addAll(e1.atomes());
+		s.addAll(e2.atomes());
+		return s;
+	}
+
+	public Expression remplace(String s, boolean b) {
+		return new Equiv(e1.remplace(s, b),e2.remplace(s, b));
+	}
+\end{minted}
+\subsubsection{La classe Atome}
+\begin{minted}{java}
+public Set<String> atomes() {
+		Set<String> s = new HashSet<String>();
+		s.add(name);
+		return s;
+	}
+
+	public Expression remplace(String s, boolean b) {
+		if (name.equals(s))
+			return new Constante(b);
+		else
+			return this;
+	}
+
+	public Expression simplifier(){
+		return this;
+	}
+\end{minted}
+\subsection{Résultats}
+Afin de tester les différentes fonctions de la classe Expression, nous avons créé l'expression booléenne suivante : \\
+\begin{verbatim}
+Expression ex2 = new Et(
+                      new Equiv(new Atome("x1"),new Atome("y1")), 
+                      new Equiv(new Atome("x2"),new Atome("y2"))
+                      );
+\end{verbatim}
+***Insérer la fonction mathématique***\\
+On peut remplacer les atomes par des valeurs booléennes puis, évaluer l'expression :
+\begin{minted}{java}
+ex2 = ex2.remplace("x1",true);
+ex2 = ex2.remplace("y1",true);
+ex2 = ex2.remplace("x2",false);
+ex2 = ex2.remplace("y2",false);
+System.out.println(ex2.evalue());
+\end{minted}
+L'évaluation de cette expression nous renvoie true.\\
+Ensuite, on créé un ordre des atomes :
+\begin{minted}{java}
+List<String> ordre_atomes = new LinkedList<String>();
+ordre_atomes.add("x1");
+ordre_atomes.add("y1");
+ordre_atomes.add("x2");
+ordre_atomes.add("y2");
+\end{minted}
+Affichage de l'arbre pour cet ordre : \\
+Arbre de ex2 : \\
+\begin{verbatim}
+x1
+|->y1
+|   |->x2
+|   |   |->y2
+|   |   |   |->1
+|   |   |   |->0
+|   |   |->y2
+|   |   |   |->0
+|   |   |   |->1
+|   |->x2
+|   |   |->y2
+|   |   |   |->0
+|   |   |   |->0
+|   |   |->y2
+|   |   |   |->0
+|   |   |   |->0
+|->y1
+|   |->x2
+|   |   |->y2
+|   |   |   |->0
+|   |   |   |->0
+|   |   |->y2
+|   |   |   |->0
+|   |   |   |->0
+|   |->x2
+|   |   |->y2
+|   |   |   |->1
+|   |   |   |->0
+|   |   |->y2
+|   |   |   |->0
+|   |   |   |->1
+\end{verbatim}
+\subsection{Conclusion}
+Nous avons donc vu dans cette partie qu'il est possible de créer des expressions booléenes, de remplacer des atomes, d'évaluer des expressions et d'afficher les arbres de Shannon correspondants. 
+\section{Construction du ROBDD}
+\subsection{Objectif}
+Ici, nous allons voir comment construire le ROBDD d'une expression booléenne.
+\subsection{Programmation des méthodes}
+\subsubsection{Les fonctions estVrai() et estFaux()}
+\begin{minted}{java}
+public boolean estVrai(){
+ 	return (this.atomes().equals(new HashSet<String>())) && this.evalue();
+}
+
+public boolean estFaux(){
+	 	return (this.atomes().equals(new HashSet<String>())) && !this.evalue();
+}
+\end{minted}
+\subsubsection{La fonction obtenirROBDDIndex}
+\begin{minted}{java}
+public int obtenirROBDDIndex(String nom, int fg, int fd) {
+	Iterator<Noeud_ROBDD> it = R.iterator();
+	while(it.hasNext())
+	{
+		Noeud_ROBDD n = it.next();
+		if(n.getNom().equals(nom) && n.getIdFilsGauche() == fg 
+                                    && n.getIdFilsDroit() == fd)
+		  return n.getId();
+	}
+	return -1;
+}
+\end{minted}
+\subsubsection{La fonction construireROBDD}
+\begin{minted}{java}
+private int construireROBDD(ROBDD G, List<String> atomes_ordonnes){
+	List<String> atomes_ordonnes_copie = new LinkedList(atomes_ordonnes);
+	Expression e = simplifier();
+	if(e.estFaux()) return 0;
+	if(e.estVrai()) return 1;
+	
+	String p = atomes_ordonnes_copie.remove(0);
+	Expression exp = e.remplace(p, false);
+	Expression exn = e.remplace(p, true);
+	
+	int n1 = exp.construireROBDD(G, atomes_ordonnes_copie);
+	int n2 = exn.construireROBDD(G, atomes_ordonnes_copie);
+	
+	if(n1==n2)
+		return n1;
+	if(G.obtenirROBDDIndex(p, n1, n2) != -1)
+		return G.obtenirROBDDIndex(p, n1, n2);
+	else
+	{
+		Noeud_ROBDD n = new Noeud_ROBDD(p,n1,n2);
+		G.ajouter(n);
+		return n.getId();
+	}
+}
+\end{minted}
+
+Nous avons vérifié le bon fonctionnement de la fonction sur l'expression de l'exercice 2.\\
+On obtient le résultat suivant : [2:bdd(x2,1,0), 3:bdd(x2,0,1), 4:bdd(y2,2,3), 5:bdd(x1,4,6:bdd(x1,0,4), 7:bdd(y1,5,6)]
+\subsubsection{La fonction trouve\_sat}
+\begin{minted}{java}
+public String trouve_sat()
+{
+  String ret = "";
+  Iterator<Noeud_ROBDD> it = R.iterator();
+  int toSearch = 1;
+	while(it.hasNext())
+	{
+		Noeud_ROBDD n = it.next();
+		if(n.getIdFilsDroit() == toSearch)
+		{
+			toSearch = n.getId();
+			ret += n.getNom() + ".";
+		}
+		if(n.getIdFilsGauche() == toSearch)
+			toSearch = n.getId();
+	}
+	
+	if(toSearch == 1)
+		return "Non SAT";
+	else
+		return ret;
+}
+}
+\end{minted}
+Nous avons testé cette fonction sur l'expression créée à l'exercice 2.
+On obtient le résultat suivant : ***A faire***
+\subsection{Conclusion}
+On a donc créé une fonction qui permet d'obtenir le ROBDD d'une fonction boléenne en implémentant l'algorithme récursif vu en TD. Pour cela, nous avons programmez des fonctions auxiliaires : estVrai(), estFaux() et obtenirROBDDIndex(). De plus, nous avons créé une fonction qui permet de parcourir un ROBDD et dire s'il est satisfaisable ou non.
 \section{Problème des N reines}
 \subsection{Objectif}
 Dans la seconde partie de ce TP, nous devions utiliser les ROBDD pour pouvoir résoudre un problème. Le problème consiste à trouver une combinaison de cases où placer N dames sur un plateau de taille NxN pour ne pas qu'elles puissent se menacer mutuellement. Donc qu'il y en ait une par colonne, une par ligne, et pas 2 sur la même diagonale.\\
