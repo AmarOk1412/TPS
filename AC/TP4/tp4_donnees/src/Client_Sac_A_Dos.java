@@ -38,11 +38,11 @@ public class Client_Sac_A_Dos {
 		/* On initialise les poids en lisant un fichier 
 		 */
 		
-//		int nbr_objets=28;
-//		int capacite=1581;
+		int nbr_objets=28;
+		int capacite=1581;
 		
-		int nbr_objets=70;
-		int capacite=350;		
+//		int nbr_objets=70;
+//		int capacite=350;		
 		
 		double[] poids = charge_poids("../data_sad/nbrobj"+nbr_objets+"_capacite"+capacite+".txt",nbr_objets);
 		
@@ -63,14 +63,13 @@ public class Client_Sac_A_Dos {
 		 * le résultat est alors donné par l'individu maximal de la dernière génération
 		 */
 		int it = 0;
-		double probaRep = 0.5;
 		double best = -1;
 		while(it < 10000 && best < capacite)
 		{
 			System.out.println("Génération " + it);
 			System.out.println("Adaptation moyenne : " + _p.adaptation_moyenne());
 			System.out.println("Adaptation maximale : " + _p.adaptation_maximale());
-			_p.reproduction(probaRep);
+			_p.reproduction(prob_mut);
 			best = _p.individu_maximal().adaptation();
 			++it;
 		}
