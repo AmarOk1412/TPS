@@ -225,7 +225,17 @@ public class Allocateur {
        O5: Affichage des files d'attentes des ressources.
 	 */
 	public void afficherFiles() {
-		// a completer
+		for(int i = 0; i < nb_ress; ++i)
+		{
+			System.out.println("File des processus en attente de la ressource "+i);
+			try {
+				for(Integer p : (Set<Integer>)_alloc.ensPred(i))
+					System.out.print(new Integer(p-nb_ress)+";");
+				System.out.print("\n");
+			} catch (Exception e) {
+				System.out.println("Erreur lors de l'affichage");
+			}
+		}
 		System.out.println("Affichage des files d'attentes");
 	}
 
