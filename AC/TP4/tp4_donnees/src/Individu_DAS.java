@@ -18,7 +18,16 @@ public interface Individu_SAD extends Individu {
 	/**
 	 * renvoie l'adaptation de cet individu
 	 */
-	public double adaptation();
+	public double adaptation()
+	{
+		double adapt = 0;
+		for(int i = 0; i < _individu.size(); ++i)
+			if(_individu[i])
+				adapt += _weights[i];
+		if(adapt > _capacite)
+			return 0;
+		return adapt;
+	}
 	
 	/**
 	 * renvoie un tableau de 2 individus constituant les
@@ -55,5 +64,10 @@ public interface Individu_SAD extends Individu {
 	 * applique l'opérateur de mutation
 	 * associé à la probabilité prob
 	 */
-	public void mutation(double prob);
+	public void mutation(double prob)
+	{
+		for(int i = 0; i < _individu.size(); ++i)
+			if(Math.random() < prob)
+				_individu[i] = !_individu[i];
+	}
 }
