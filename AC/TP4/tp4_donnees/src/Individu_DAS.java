@@ -26,7 +26,30 @@ public interface Individu_SAD extends Individu {
 	 * @param conjoint à accoupler avec l'objet courant
 	 * @return tableau des 2 enfants
 	 */
-	public Individu[] croisement(Individu conjoint);
+	public Individu[] croisement(Individu conjoint)
+	{
+		Individu[] crois = new Individu[2];
+		boolean[] res = new boolean[_individu.size()];
+		boolean[] res2 = new boolean[_individu.size()];
+		int index = 0;
+		Random random = new Random();
+		index = random.nextInt(_individu.size()-1);
+		for(int i = 0; i < index; ++i)
+		{
+			res[i] = _individu[i];
+			res2[i] = conjoint._individu[i];
+		}	
+		for(int i = index + 1; i < _individu.size(); ++i)
+		{
+			res[i] = conjoint._individu[i];
+			res2[i] = this._individu[i];
+		}
+		crois[0] = new Individu_SAD(_weights, _capacite);
+		crois[1] = new Individu_SAD(_weights, _capacite);
+		crois[0]._individu = res;
+		crois[1]._individu = res2;
+		return crois;
+	}
 	
 	/**
 	 * applique l'opérateur de mutation
