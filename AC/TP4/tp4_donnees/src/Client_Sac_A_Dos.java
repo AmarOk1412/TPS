@@ -38,19 +38,22 @@ public class Client_Sac_A_Dos {
 		/* On initialise les poids en lisant un fichier 
 		 */
 		
-		int nbr_objets=28;
-		int capacite=1581;
+//		int nbr_objets=28;
+//		int capacite=1581;
 		
-//		int nbr_objets=70;
-//		int capacite=350;		
+		int nbr_objets=70;
+		int capacite=350;		
 		
-		double[] poids = charge_poids("./data_sad/nbrobj"+nbr_objets+"_capacite"+capacite+".txt",nbr_objets);
+		double[] poids = charge_poids("../data_sad/nbrobj"+nbr_objets+"_capacite"+capacite+".txt",nbr_objets);
 		
 		
 		/* on crée une population (aléatoire)
 		 * de nbr_indiv individus de taille nbr_objets
 		 */
-		//TODO
+		Individu_SAD[] pop = new Individu_SAD[nbr_indiv];
+		for(int i = 0; i < nbr_indiv; ++i)
+			pop[i] = new Individu_SAD(poids, capacite);
+		Population _p = new Population(pop);
 
 		
 		/* on génére les générations successives
@@ -59,8 +62,24 @@ public class Client_Sac_A_Dos {
 		 * on s'arrête si on a atteint la capacité ou si on fait un nombre donné (paramètre) d'itérations
 		 * le résultat est alors donné par l'individu maximal de la dernière génération
 		 */
-		//TODO
-
+		int it = 0;
+		double probaRep = 0.5;
+		double best = -1;
+		while(it < 10000 && best < capacite)
+		{
+			System.out.println("Génération " + it);
+			System.out.println("Adaptation moyenne : " + _p.adaptation_moyenne());
+			System.out.println("Adaptation maximale : " + _p.adaptation_maximale());
+			_p.reproduction(probaRep);
+			best = _p.individu_maximal().adaptation();
+			++it;
+		}
+		
+		boolean[] val= ((Individu_SAD)_p.individu_maximal()).getIndividu();
+			System.out.println("Résultat : ");
+		for(boolean b : val)
+			System.out.print(b?"1":"0");
+		System.out.println("\nAvec un score de :"+_p.individu_maximal().adaptation());
 	}
 }
 

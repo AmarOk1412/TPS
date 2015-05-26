@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Population<Indiv extends Individu> {
 	
@@ -10,7 +11,7 @@ public class Population<Indiv extends Individu> {
 	/**
 	 * construit une population à partir d'un tableau d'individu
 	 */
-	public  Population(Indiv[] popu){
+	Population(Indiv[] popu){
 		population = new LinkedList<Indiv>();
 		for(Indiv i : popu)
 			population.add(i);
@@ -22,8 +23,12 @@ public class Population<Indiv extends Individu> {
 	 * @return indice de l'individu sélectionné
 	 */
 	public int selection(double adapt_totale){
-		//TODO
-		return -1;
+		while(true)
+		{
+			int i = (int)Math.random()*population.size();
+			if(Math.random() < population.get(i%population.size()).adaptation()/adapt_totale)
+				return i;
+		}
 	}
 	
 	/**
@@ -38,7 +43,7 @@ public class Population<Indiv extends Individu> {
 		List<Indiv> new_generation = new LinkedList<Indiv>();
 		
 		/* élitisme */
-		//TODO (dans un second temps)
+		new_generation.add(individu_maximal());
 
 		double adapt = 0;
 		for(Indiv i : population)
@@ -58,8 +63,12 @@ public class Population<Indiv extends Individu> {
 		}
 		
 		// on applique une éventuelle mutation à toute la nouvelle génération
+		boolean first = true;
 		for(Indiv i : new_generation)
+			if(!first)
 			i.mutation(prob_mut);
+			else
+			first = false;
 
 		//on remplace l'ancienne par la nouvelle
 		population = new_generation;
@@ -73,7 +82,10 @@ public class Population<Indiv extends Individu> {
 		double maxScore = 0;
 		for(Indiv i : population)
 			if(i.adaptation() > maxScore)
+			{
 				max = i;
+				maxScore = i.adaptation();
+			}
 		return max;
 	}
 
