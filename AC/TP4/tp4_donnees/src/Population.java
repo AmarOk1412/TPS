@@ -11,7 +11,9 @@ public class Population<Indiv extends Individu> {
 	 * construit une population à partir d'un tableau d'individu
 	 */
 	public  Population(Indiv[] popu){
-		//TODO
+		population = new LinkedList<Indiv>();
+		for(Indiv i : popu)
+			population.add(i);
 	}
 	
 	/**
@@ -37,22 +39,27 @@ public class Population<Indiv extends Individu> {
 		
 		/* élitisme */
 		//TODO (dans un second temps)
-		
 
+		double adapt = 0;
+		for(Indiv i : population)
+			adapt += i.adaptation();
 		// tant qu'on n'a pas le bon nombre 
 		while (new_generation.size()<population.size()){
 			// on sélectionne les parents
-			//TODO
+			Indiv p1 = population.get(selection(adapt));
+			Indiv p2 = population.get(selection(adapt));
 			
 			// ils se reproduisent
-			//TODO
+			Individu[] enfants = p1.croisement(p2);
 			
 			// on les ajoute à la nouvelle génération
-			//TODO
+			for(int i = 0; i < enfants.length; ++i)
+				new_generation.add((Indiv) enfants[i]);
 		}
 		
 		// on applique une éventuelle mutation à toute la nouvelle génération
-		//TODO
+		for(Indiv i : new_generation)
+			i.mutation(prob_mut);
 
 		//on remplace l'ancienne par la nouvelle
 		population = new_generation;
@@ -62,23 +69,28 @@ public class Population<Indiv extends Individu> {
 	 * renvoie l'individu de la population ayant l'adaptation maximale
 	 */	
 	public Indiv individu_maximal(){
-		//TODO
-		return null;
+		Indiv max = null;
+		double maxScore = 0;
+		for(Indiv i : population)
+			if(i.adaptation() > maxScore)
+				max = i;
+		return max;
 	}
 
 	/**
 	 * renvoie l'adaptation moyenne de la population
 	 */
 	public double adaptation_moyenne(){
-		//TODO
-		return -1;
+		double adapt = 0;
+		for(Indiv i : population)
+			adapt += i.adaptation();
+		return adapt/population.size();
 	}
 	
 	/**
 	 * renvoie l'adaptation maximale de la population
 	 */	
 	public double adaptation_maximale(){
-		//TODO
-		return -1;
+		return individu_maximal().adaptation();
 	}
 }
