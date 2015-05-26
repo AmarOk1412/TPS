@@ -208,12 +208,12 @@ public class Allocateur {
 		} 
 		//Si la libération est possible, on ôte les arcs
 		try {
-			_alloc.oterArc(p, r);
+			_alloc.oterArc(p+nb_ress, r);
 			Set<Integer> ensProcPred = _alloc.ensPred(r);
 			for(int e : ensProcPred)
 			{
-				if(_alloc.validArc(p, e))
-					_alloc.oterArc(p, e);
+				if(_alloc.validArc(p+nb_ress, e))
+					_alloc.oterArc(p+nb_ress, e);
 			}
 		} catch (Exception e1) {
 			System.out.println("Erreur lors de la libération de la ressource " + r + "par le proccessus " + p);
