@@ -236,7 +236,6 @@ public class Allocateur {
 				System.out.println("Erreur lors de l'affichage");
 			}
 		}
-		System.out.println("Affichage des files d'attentes");
 	}
 
 	/**
@@ -256,8 +255,21 @@ public class Allocateur {
        O7: Affichage des attentes entre processus.
 	 */
 	public void afficherAttentes() {
-		// a completer
 		System.out.println("Affichage des attentes entre processus");
+		for(int i = nb_ress; i <= nb_ress+nb_proc; ++i)
+		{
+			try {
+				if(validProc(i))
+				{
+					System.out.println("Le processus "+new Integer(i-nb_ress)+" attend :");
+					for(Integer p : (Set<Integer>)_alloc.ensPred(i))
+						System.out.print(new Integer(p-nb_ress)+";");
+					System.out.print("\n");
+				}
+			} catch (Exception e) {
+				System.out.println("Erreur lors de l'affichage");
+			}
+		}
 	}
 
 	/**
