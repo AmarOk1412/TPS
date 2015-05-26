@@ -46,38 +46,38 @@ Le but de cette partie est de se familiariser avec les classes proposées pour c
 \subsubsection{La classe Equiv}
 \begin{minted}{java}
 public boolean evalue() throws RuntimeException {
-		return e1.evalue() == e2.evalue();
-	}
+	return e1.evalue() == e2.evalue();
+}
 
-	public Set<String> atomes() {
-		Set<String> s = new HashSet<String>();
-		s.addAll(e1.atomes());
-		s.addAll(e2.atomes());
-		return s;
-	}
+public Set<String> atomes() {
+	Set<String> s = new HashSet<String>();
+	s.addAll(e1.atomes());
+	s.addAll(e2.atomes());
+	return s;
+}
 
-	public Expression remplace(String s, boolean b) {
-		return new Equiv(e1.remplace(s, b),e2.remplace(s, b));
-	}
+public Expression remplace(String s, boolean b) {
+	return new Equiv(e1.remplace(s, b),e2.remplace(s, b));
+}
 \end{minted}
 \subsubsection{La classe Atome}
 \begin{minted}{java}
 public Set<String> atomes() {
-		Set<String> s = new HashSet<String>();
-		s.add(name);
-		return s;
-	}
+	Set<String> s = new HashSet<String>();
+	s.add(name);
+	return s;
+}
 
-	public Expression remplace(String s, boolean b) {
-		if (name.equals(s))
-			return new Constante(b);
-		else
-			return this;
-	}
-
-	public Expression simplifier(){
+public Expression remplace(String s, boolean b) {
+	if (name.equals(s))
+		return new Constante(b);
+	else
 		return this;
-	}
+}
+
+public Expression simplifier(){
+	return this;
+}
 \end{minted}
 \subsection{Résultats}
 Afin de tester les différentes fonctions de la classe Expression, nous avons créé l'expression booléenne suivante : \\
@@ -87,7 +87,7 @@ Expression ex2 = new Et(
                       new Equiv(new Atome("x2"),new Atome("y2"))
                       );
 \end{verbatim}
-***Insérer la fonction mathématique***\\
+$x1\Longleftrightarrow y1\wedge x2\Longleftrightarrow y2$\\
 On peut remplacer les atomes par des valeurs booléennes puis, évaluer l'expression :
 \begin{minted}{java}
 ex2 = ex2.remplace("x1",true);
@@ -149,11 +149,11 @@ Ici, nous allons voir comment construire le ROBDD d'une expression booléenne.
 \subsubsection{Les fonctions estVrai() et estFaux()}
 \begin{minted}{java}
 public boolean estVrai(){
- 	return (this.atomes().equals(new HashSet<String>())) && this.evalue();
+	return (this.atomes().equals(new HashSet<String>())) && this.evalue();
 }
 
 public boolean estFaux(){
-	 	return (this.atomes().equals(new HashSet<String>())) && !this.evalue();
+	return (this.atomes().equals(new HashSet<String>())) && !this.evalue();
 }
 \end{minted}
 \subsubsection{La fonction obtenirROBDDIndex}
@@ -164,8 +164,8 @@ public int obtenirROBDDIndex(String nom, int fg, int fd) {
 	{
 		Noeud_ROBDD n = it.next();
 		if(n.getNom().equals(nom) && n.getIdFilsGauche() == fg 
-                                    && n.getIdFilsDroit() == fd)
-		  return n.getId();
+		&& n.getIdFilsDroit() == fd)
+			return n.getId();
 	}
 	return -1;
 }
@@ -204,9 +204,9 @@ On obtient le résultat suivant : [2:bdd(x2,1,0), 3:bdd(x2,0,1), 4:bdd(y2,2,3), 
 \begin{minted}{java}
 public String trouve_sat()
 {
-  String ret = "";
-  Iterator<Noeud_ROBDD> it = R.iterator();
-  int toSearch = 1;
+	String ret = "";
+	Iterator<Noeud_ROBDD> it = R.iterator();
+	int toSearch = 1;
 	while(it.hasNext())
 	{
 		Noeud_ROBDD n = it.next();
@@ -224,10 +224,9 @@ public String trouve_sat()
 	else
 		return ret;
 }
-}
 \end{minted}
 Nous avons testé cette fonction sur l'expression créée à l'exercice 2.
-On obtient le résultat suivant : ***A faire***
+On obtient le résultat suivant : non x1, non y1, non x2, non y2
 \subsection{Conclusion}
 On a donc créé une fonction qui permet d'obtenir le ROBDD d'une fonction boléenne en implémentant l'algorithme récursif vu en TD. Pour cela, nous avons programmez des fonctions auxiliaires : estVrai(), estFaux() et obtenirROBDDIndex(). De plus, nous avons créé une fonction qui permet de parcourir un ROBDD et dire s'il est satisfaisable ou non.
 \section{Problème des N reines}
@@ -371,7 +370,6 @@ Pour un plateau de où N = :
   \item 7 : x01.x40.x32.x24.x63.x16.x55.
   \item 8 : x03.x41.x34.x76.x20.x62.x15.x57
 \end{itemize}
-Pour N=8, la résolution commence à être longue, mais le ROBDD construit est de taille conséquente.
 \begin{figure}
 	\begin{center}
 		\includegraphics[scale=0.7]{sevenkingdom}\\
