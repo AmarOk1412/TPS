@@ -101,17 +101,10 @@ public class Allocateur {
 				return;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			nb_proc--;
-			//Suppression des arcs entre le proccessus p et l'ensemble de ses successeurs
-			//			Set<Integer> successeurs = _alloc.ensSucc(p);
-			//			for(Integer e : successeurs)
-			//			{
-			//				_alloc.oterArc(p, e);
-			//			}
 			_alloc.oterSom(p+nb_ress);
 			System.out.println("Destruction du processus " + p);
 		} catch (Exception e) {
@@ -293,8 +286,9 @@ public class Allocateur {
 	private boolean isCyclic()
 	{
 		Integer[] cfc = CFC();
-		for(Integer i : cfc)
-			System.out.print(i.toString() + ";");
+		for(int i = nb_ress ; i < cfc.length; ++i)
+			System.out.print(cfc[i].toString() + ";");
+		System.out.print("\n");
 		for(int i = 1; i <= nb_ress+nb_proc; ++i)
 		{
 			boolean p = false;
@@ -379,7 +373,6 @@ public class Allocateur {
 			else
 				_cfc[i] = 0;
 		} catch (Exception e) {
-			// TODO Bloc catch généré automatiquement
 			e.printStackTrace();
 		}
 		ret[0] = min;

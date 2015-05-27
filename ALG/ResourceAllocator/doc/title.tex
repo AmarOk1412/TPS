@@ -43,6 +43,7 @@
 \begin{itemize}
   \bitem \textbf{R12} : En cas d'interblocage, le processus ayant créé la demande menant à cet interblocage est détruit.
   \bitem \textbf{R13} : Un processus actif peut demander de nouvelles ressources même si ça mène à un interblocage.
+  \bitem \textbf{R14} : Un processus qui ne possède pas de ressources est actif (car toutes ses demandes sont satisfaites).
 \end{itemize}
 
 \section{Règles de modélisation}
@@ -56,7 +57,7 @@
   \bitem \textbf{MI5} : Une demande de ressource est représenté par un arc orienté entre un sommet-processus vers un sommet-ressource.
   \bitem \textbf{MI6} : Une attente entre processus est représenté par un arc orienté du sommet-processus s'éxécutant le premier vers un sommet-processus qui s'éxécutera plus tard.
   \bitem \textbf{MI7} : Une file d'attente d'une ressource est représenté par le chemin le plus long entre le sommet-processus actif de la ressource et celle-ci.
-  \bitem \textbf{MI8} : Un interblocage est modélisé par un cycle dans le graphe.
+  \bitem \textbf{MI8} : Un interblocage est modélisé par un cycle dans le graphe. Ce cycle est détecté a l'aide de l'algorithme de Tarjan qui montre les composantes fortement connexes.
   \bitem \textbf{MI9} : L'affichage décrit par (O5) est donné par la file d'attente de la ressource (sans les processus actifs).
   \bitem \textbf{MI10} : L'affichage des attentes d'un processus est donné par les parents de celui-ci.
 \end{itemize}
