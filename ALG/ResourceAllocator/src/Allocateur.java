@@ -173,6 +173,12 @@ public class Allocateur {
 							// si il n'y a pas de successeurs on trace l'arc
 							_alloc.ajoutArc(element, p+nb_ress);  
 							System.out.println("Arc créé : " + new Integer(element - nb_ress) + " - " + p);
+							if(isCyclic())
+							{
+								System.out.println("\nINTERBLOCAGE :");
+								detruireProc(p);
+								return;
+							}
 							break;
 						}
 					} catch (Exception e) {
