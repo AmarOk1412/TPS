@@ -123,12 +123,13 @@ public class Allocateur {
 	 */
 	public void demanderRess(int p, Set lr) {
 		System.out.println("Demande de " + lr.size() + " ressource(s) par le processus " + p);
-		//On vérifie que p est bien un processus
+		//On vérifie que p est bien un processus, sinon on le créé
 		try {
 			if(!validProc(p+nb_ress))
 			{
-				System.out.println("Erreur : Processus invalide !");
-				return;
+				creerProc(p);
+				//System.out.println("Erreur : Processus invalide !");
+				//return;
 			}
 		} catch (Exception e) {
 			System.out.println("Erreur lors de la vérification de la validité du processus !");
@@ -227,7 +228,7 @@ public class Allocateur {
 	public void afficherFiles() {
 		for(int i = 0; i < nb_ress; ++i)
 		{
-			System.out.println("File des processus en attente de la ressource "+i);
+			System.out.println("File des processus sur la ressource "+i);
 			try {
 				for(Integer p : (Set<Integer>)_alloc.ensPred(i))
 					System.out.print(new Integer(p-nb_ress)+";");
