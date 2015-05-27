@@ -24,7 +24,6 @@ public class Allocateur {
 	private int max_proc; // nombre maximum de processus
 	private int nb_proc; // nombre effectif de processus
 	private int nb_ress; //nombre effectif de ressources
-	private int NIL = -1;
 
 	// constructeurs
 
@@ -72,7 +71,7 @@ public class Allocateur {
 	 */
 	public void creerProc(int p) {
 		try {
-			//Si le processus a déjà été créé
+			//On regarde si le processus a déjà été créé
 			if(validProc(nb_ress + p))
 			{
 				System.out.println("Le processus a déjà été créé");
@@ -82,6 +81,7 @@ public class Allocateur {
 			System.out.println("Erreur lors de la vérification de présence du processus");
 		}
 		try {
+			//On créé un nouveau sommet et on incrémente le nombre de processus
 			_alloc.ajoutSom(nb_ress + p);
 			nb_proc++;
 			System.out.println("Creation du processus " + p);
@@ -95,6 +95,7 @@ public class Allocateur {
 	 */
 	public void detruireProc(int p) {
 		try {
+			//On vérifie si le processus à détruire existe
 			if(!validProc(nb_ress + p))
 			{
 				System.out.println("Le processus à détruire n'existe pas !");
@@ -117,7 +118,7 @@ public class Allocateur {
 	 */
 	public void demanderRess(int p, Set lr) {
 		System.out.println("Demande de " + lr.size() + " ressource(s) par le processus " + p);
-		//On vérifie que p est bien un processus, sinon on le créé
+		//On vérifie que p est un processus existant, sinon on le créé
 		try {
 			if(!validProc(p+nb_ress))
 				creerProc(p);
@@ -282,7 +283,10 @@ public class Allocateur {
 		System.out.println("Affichage des interblocages");
 		System.out.println("\nEst bloqué : "+isCyclic());
 	}
-
+	/**
+	 * Vérifie si le graphe contient un cycle
+	 * @return true si le graphe contient un cycle
+	 */
 	private boolean isCyclic()
 	{
 		Integer[] cfc = CFC();
@@ -302,7 +306,11 @@ public class Allocateur {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Integer[] CFC()
 	{
 		Integer date = 0;
@@ -324,7 +332,17 @@ public class Allocateur {
 			}
 		return _cfc;
 	}
-
+	
+	/**
+	 * 
+	 * @param i
+	 * @param date
+	 * @param DEBUT
+	 * @param stack
+	 * @param NCFC
+	 * @param _cfc
+	 * @return
+	 */
 	public Integer[] tarjan(Integer i, Integer date, Integer[] DEBUT, Deque<Integer> stack, Integer NCFC, Integer[] _cfc)
 	{
 		Integer[] ret = new Integer[3];
