@@ -215,12 +215,18 @@ public class Allocateur {
 			for(int e : ensProcPred)
 			{
 				if(_alloc.validArc(p+nb_ress, e))
+				{
 					_alloc.oterArc(p+nb_ress, e);
+					System.out.println("Liberation de la ressource " + r + " par le processus " + p);
+				}
+				else
+				{
+					System.out.println("Pas d'arcs entre ces 2 éléments");
+				}
 			}
 		} catch (Exception e1) {
 			System.out.println("Erreur lors de la libération de la ressource " + r + "par le proccessus " + p);
 		}
-		System.out.println("Liberation de la ressource " + r + " par le processus " + p);
 	}
 
 	/**
