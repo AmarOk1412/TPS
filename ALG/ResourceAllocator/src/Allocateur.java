@@ -200,7 +200,7 @@ public class Allocateur {
 		Set<Integer> ensProcActifs = _alloc.ensPtsEntree();
 		//On teste si le processus et la ressource existent et si la proccessus est un processus actif
 		try {
-			if((!validProc(nb_ress+p) || !validProc(r)) && !ensProcActifs.contains(p))
+			if(!validProc(nb_ress+p) || !validProc(r) || !ensProcActifs.contains(p+nb_ress))
 			{
 				System.out.println("La libération est impossible !");
 				return;
