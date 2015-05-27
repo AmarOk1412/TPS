@@ -24,6 +24,7 @@ public class Allocateur {
 	private int max_proc; // nombre maximum de processus
 	private int nb_proc; // nombre effectif de processus
 	private int nb_ress; //nombre effectif de ressources
+	private int NIL = -1;
 
 	// constructeurs
 
@@ -106,11 +107,11 @@ public class Allocateur {
 		try {
 			nb_proc--;
 			//Suppression des arcs entre le proccessus p et l'ensemble de ses successeurs
-//			Set<Integer> successeurs = _alloc.ensSucc(p);
-//			for(Integer e : successeurs)
-//			{
-//				_alloc.oterArc(p, e);
-//			}
+			//			Set<Integer> successeurs = _alloc.ensSucc(p);
+			//			for(Integer e : successeurs)
+			//			{
+			//				_alloc.oterArc(p, e);
+			//			}
 			_alloc.oterSom(p+nb_ress);
 			System.out.println("Destruction du processus " + p);
 		} catch (Exception e) {
@@ -144,12 +145,12 @@ public class Allocateur {
 				System.out.println("Quit : Ressource invalide ! (" + rsc + ")");
 				return;
 			}
-			
+
 			//On se met dans la liste d'attente.
 			try {
 				//On prends la liste des prédecesseurs de la ressource
 				Iterator<Integer> iterator = _alloc.ensPred(rsc).iterator();
-				
+
 				while (iterator.hasNext()) {
 					//Pour chaque prédecesseur
 					Integer element = iterator.next();
@@ -279,7 +280,105 @@ public class Allocateur {
 	public void afficherInterblocages() {
 		// a completer
 		System.out.println("Affichage des interblocages");
+		System.out.println("\nEst bloqué : "+isCyclic());
 	}
 
+	private boolean isCyclic()
+	{
+		Integer[] cfc = CFC();
+		for(Integer i : cfc)
+			System.out.print(i.toString() + ";");
+		for(int i = 1; i <= nb_ress+nb_proc; ++i)
+		{
+			boolean p = false;
+			for(int j = 0; j < cfc.length; ++j)
+			{
+				if(cfc[j] == i && p)
+					return true;
+				if(cfc[j] == i && !p)
+					p = true;
+			}
+		}
+		return false;
+	}
+
+	public Integer[] CFC()
+	{
+		Integer date = 0;
+		Integer[] DEBUT = new Integer[nb_ress+max_proc];
+		Deque<Integer> stack = new ArrayDeque<Integer>();
+		Integer NCFC = 0;
+		Integer[] _cfc = new Integer[nb_ress+max_proc];
+		for(int i = 0; i < nb_ress+max_proc; ++i)
+		{
+			DEBUT[i] = 0;
+			_cfc[i] = 0;
+		}
+		for(Integer i = 0; i < nb_ress + max_proc; ++i)
+			if(DEBUT[i] == 0)
+			{
+				Integer[] temp = tarjan(i, date, DEBUT, stack, NCFC, _cfc);
+				date = temp[2];
+				NCFC = temp[1];
+			}
+		return _cfc;
+	}
+
+	public Integer[] tarjan(Integer i, Integer date, Integer[] DEBUT, Deque<Integer> stack, Integer NCFC, Integer[] _cfc)
+	{
+		Integer[] ret = new Integer[3];
+		date+=1;
+		DEBUT[i]=date;
+		Integer min = date;
+		try {
+			if(i >= nb_ress && validProc(i))
+				stack.push(i);
+		} catch (Exception e1) {
+			// TODO Bloc catch généré automatiquement
+			e1.printStackTrace();
+		}
+		_cfc[i] = date;
+		try {
+			if(i >= nb_ress && validProc(i))
+			{
+				for(Integer adj : (Set<Integer>)_alloc.ensPred(i))
+				{
+					if(adj >= nb_ress && validProc(adj))
+					{
+						if(DEBUT[adj]==0)
+						{
+							Integer[] temp = tarjan(adj, date, DEBUT, stack, NCFC, _cfc);
+							NCFC = temp[1];
+							date = temp[2];
+							min = Math.min(temp[0], min);
+							System.out.println("Sommet:"+i+"min:"+min);
+						}
+						else if(_cfc[adj] == 0)
+							min = Math.min(DEBUT[adj], min);
+					}
+				}
+				if(min == DEBUT[i])
+				{
+					NCFC+=1;
+					int k;
+					if(!stack.isEmpty())
+					do
+					{
+						k = stack.pop();
+						_cfc[k] = NCFC;
+					}while(stack.peek() != i && !stack.isEmpty());
+				}
+			}
+			else
+				_cfc[i] = 0;
+		} catch (Exception e) {
+			// TODO Bloc catch généré automatiquement
+			e.printStackTrace();
+		}
+		ret[0] = min;
+		ret[1] = NCFC;
+		ret[2] = date;
+		return ret;
+	}
 } // class
 
