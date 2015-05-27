@@ -127,11 +127,7 @@ public class Allocateur {
 		//On vérifie que p est bien un processus, sinon on le créé
 		try {
 			if(!validProc(p+nb_ress))
-			{
 				creerProc(p);
-				//System.out.println("Erreur : Processus invalide !");
-				//return;
-			}
 		} catch (Exception e) {
 			System.out.println("Erreur lors de la vérification de la validité du processus !");
 		}
@@ -139,6 +135,11 @@ public class Allocateur {
 		Set<Integer> lesRessources = lr;
 		for(Integer rsc : lesRessources)
 		{
+			if(!_alloc.ensPtsEntree().contains(p+nb_ress))
+			{
+				System.out.println("Un processus bloqué ne peut pas demander de nouvelles ressources");
+				return;
+			}
 			//On vérifie si la ressource est valide
 			if(rsc > nb_ress)
 			{
