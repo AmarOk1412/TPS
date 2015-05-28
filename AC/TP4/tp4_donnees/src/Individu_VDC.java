@@ -1,4 +1,6 @@
 import java.util.Random;
+import java.util.Arrays;
+import java.util.List;
 
 public class Individu_VDC implements Individu {
 
@@ -16,7 +18,6 @@ public class Individu_VDC implements Individu {
 			_ind[i] = i;
 		}
 		shuffleArray(_ind);
-		System.out.println(_ind);
 	}
 
   // Implementing Fisher–Yates shuffle
@@ -40,28 +41,28 @@ public class Individu_VDC implements Individu {
 		double adapt = 0;
 		for(int i = 1; i < _ind.length; ++i)
 			adapt += Math.abs(Math.sqrt(Math.pow(_x[i-1]-_x[i],2)+Math.pow(_y[i-1]-_y[i],2)));
-		return adapt;
+		return 1/adapt;
 	}
 
 	@Override
 	public Individu[] croisement(Individu conjoint) {
-		Individu[] res = new Individu[];
+		Individu[] res = new Individu[1];
+		Individu_VDC ind = new Individu_VDC(_x,_y);
 		int index = 0;
 		Random random = new Random();
 		index = random.nextInt(_ind.length-1);
 		for(int i=0; i<=index; ++i)
-		{
-			res[i]=_ind[i];
-		}
+			((Individu_VDC)ind)._ind[i] =_ind[i];
 		++index;		
 		for(int i=0; i<_ind.length; ++i)
 		{
-			if(!Arrays.asList(res).contains(conjoint._ind[i])
+			if(!Arrays.asList(res).contains(((Individu_VDC)conjoint)._ind[i]))
 			{
-				res[index]=conjoint._ind[i];
+				((Individu_VDC)ind)._ind[index]=((Individu_VDC)conjoint)._ind[i];
 				++index;
 			}
 		}
+		res[0] = ind;
 		return res;
 	}
 	@Override
@@ -69,7 +70,7 @@ public class Individu_VDC implements Individu {
 		for(int i = 0; i < _ind.length; ++i)
 			if(Math.random() < prob)
 			{
-				int r = Math.random()*_ind.length;
+				int r = (int)(Math.random()*((double)_ind.length));
 				int temp = _ind[r];
 				_ind[r] = _ind[i];
 				_ind[i] = temp;
