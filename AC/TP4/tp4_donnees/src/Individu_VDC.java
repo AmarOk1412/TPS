@@ -42,8 +42,24 @@ public class Individu_VDC implements Individu {
 	}
 	@Override
 	public Individu[] croisement(Individu conjoint) {
-		// TODO 
-		return null;
+		Individu[] res = new Individu[];
+		int index = 0;
+		Random random = new Random();
+		index = random.nextInt(_ind.length-1);
+		for(int i=0; i<=index; ++i)
+		{
+			res[i]=_ind[i];
+		}
+		++index;		
+		for(int i=0; i<_ind.length; ++i)
+		{
+			if(!Arrays.asList(res).contains(conjoint._ind[i])
+			{
+				res[index]=conjoint._ind[i];
+				++index;
+			}
+		}
+		return res;
 	}
 	@Override
 	public void mutation(double prob) {
