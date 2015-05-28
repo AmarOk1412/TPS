@@ -32,7 +32,7 @@ public class Client_Voyageur_De_Commerce {
 		/* paramètres */ 
 		int nbr_indiv=100;
 		double prob_mut=0.008;
-		int nbr_villes = 250;
+		int nbr_villes = 64;
 		double[] coord_x = new double[nbr_villes];
 		double[] coord_y = new double[nbr_villes];
 		charge_coords("../data_vdc/"+nbr_villes+"coords.txt",nbr_villes, coord_x, coord_y);
@@ -59,20 +59,23 @@ public class Client_Voyageur_De_Commerce {
 		 */
 		int it = 0;
 		double best = -1;
+		Display_VDC disp = new Display_VDC((Individu_VDC)_p.individu_maximal());
 		while(it < 1000)
 		{
 			System.out.println("Génération " + it);
 			_p.reproduction(prob_mut);
 			best = 1/((Individu_VDC)_p.individu_maximal()).adaptation();
 			System.out.println("Score : " + best);
+			if(it%50 == 0)
+				disp.refresh((Individu_VDC)_p.individu_maximal());
 			++it;
 		}
-		
+		disp.refresh((Individu_VDC)_p.individu_maximal());
 		int[] val= ((Individu_VDC)_p.individu_maximal()).get_parcours();
 			System.out.println("Résultat : ");
 		for(int b : val)
 			System.out.print(b);
 		System.out.println("\nAvec un score de :"+_p.individu_maximal().adaptation());
-		Display_VDC disp = new Display_VDC((Individu_VDC)_p.individu_maximal());
+		
 	}
 }
