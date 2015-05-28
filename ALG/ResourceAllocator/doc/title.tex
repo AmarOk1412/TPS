@@ -176,5 +176,30 @@ Nous considérons un allocateur disposant des ressources R1,R2 :\\
   \bitem file R2 = P3
   \bitem règles = R6, MI3
 \end{itemize}
+
+\section{Tests}
+Tous les tests ont été passé avec succès. Exemple avec le test 5 (dans bin/tests/test5.entree)\\
+\includegraphics[scale=0.5]{images/test1}\\
+Création des processus\\
+\includegraphics[scale=0.5]{images/test2}\\
+Demande de ressources\\
+\includegraphics[scale=0.5]{images/test3}\\
+Demande de ressources\\
+\includegraphics[scale=0.5]{images/test4}\\
+Demande de ressources\\
+\includegraphics[scale=0.5]{images/test5}\\
+Blocage du processus 1 car la ressource 2 est occupée\\
+\includegraphics[scale=0.5]{images/test6}\\
+Blocage du processus 2 car la ressource 3 est occupée\\
+\includegraphics[scale=0.5]{images/test7}\\
+Interblocage\\
+\includegraphics[scale=0.5]{images/test8}\\
+Destruction du processus 3 causant l'interblocage\\
+\includegraphics[scale=0.5]{images/test9}\\
+Mise en attente d'un processus 4 car la ressource 5 demandée est déjà prise\\
+\includegraphics[scale=0.5]{images/test10}\\
+Interblocage\\
+\includegraphics[scale=0.5]{images/test11}\\
+Destruction du processus 5 causant l'interblocage
 \end{document}
 
