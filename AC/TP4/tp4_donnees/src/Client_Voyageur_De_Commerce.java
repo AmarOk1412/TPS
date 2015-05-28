@@ -31,19 +31,19 @@ public class Client_Voyageur_De_Commerce {
 
 		/* paramètres */ 
 		int nbr_indiv=100;
-		double prob_mut=0.1;
-		int nbr_villes = 16;
+		double prob_mut=0.008;
+		int nbr_villes = 250;
 		double[] coord_x = new double[nbr_villes];
 		double[] coord_y = new double[nbr_villes];
 		charge_coords("../data_vdc/"+nbr_villes+"coords.txt",nbr_villes, coord_x, coord_y);
 
 		/* Exemple d'utilisation de Display_VDCC (il faut d'abord faire le constructeur pour ce test fonctionne, ainsi que compléter les accesseurs)
 		 */
-		Individu_VDC ind1 = new Individu_VDC(coord_x, coord_y); //on crée un individu aléatoire
-		Display_VDC disp = new Display_VDC(ind1); //on l'affiche
-		Thread.sleep(1000); //pause de 1 seconde (pour avoir le temps de voir le premier affichage)
-		Individu_VDC ind2 = new Individu_VDC(coord_x, coord_y); //on en crée un autre
-		disp.refresh(ind2); //on met à jour l'affichage avec le nouveau
+//		Individu_VDC ind1 = new Individu_VDC(coord_x, coord_y); //on crée un individu aléatoire
+//		Display_VDC disp = new Display_VDC(ind1); //on l'affiche
+//		Thread.sleep(1000); //pause de 1 seconde (pour avoir le temps de voir le premier affichage)
+//		Individu_VDC ind2 = new Individu_VDC(coord_x, coord_y); //on en crée un autre
+//		disp.refresh(ind2); //on met à jour l'affichage avec le nouveau
 
 		Individu_VDC[] pop = new Individu_VDC[nbr_indiv];
 		for(int i = 0; i < nbr_indiv; ++i)
@@ -59,13 +59,12 @@ public class Client_Voyageur_De_Commerce {
 		 */
 		int it = 0;
 		double best = -1;
-		while(it < 100)
+		while(it < 1000)
 		{
 			System.out.println("Génération " + it);
-			System.out.println("Adaptation moyenne : " + _p.adaptation_moyenne());
-			System.out.println("Adaptation maximale : " + _p.adaptation_maximale());
 			_p.reproduction(prob_mut);
-			best = _p.individu_maximal().adaptation();
+			best = 1/((Individu_VDC)_p.individu_maximal()).adaptation();
+			System.out.println("Score : " + best);
 			++it;
 		}
 		
@@ -74,5 +73,6 @@ public class Client_Voyageur_De_Commerce {
 		for(int b : val)
 			System.out.print(b);
 		System.out.println("\nAvec un score de :"+_p.individu_maximal().adaptation());
+		Display_VDC disp = new Display_VDC((Individu_VDC)_p.individu_maximal());
 	}
 }

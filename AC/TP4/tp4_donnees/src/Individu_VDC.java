@@ -14,25 +14,26 @@ public class Individu_VDC implements Individu {
 		_y = coord_y;
 		_ind = new int[_x.length];
 		for(int i = 0; i < _ind.length; ++i)
-		{
 			_ind[i] = i;
-		}
 		shuffleArray(_ind);
 	}
 
-  // Implementing Fisher–Yates shuffle
-  static void shuffleArray(int[] ar)
-  {
-    Random rnd = new Random();
-    for (int i = ar.length - 1; i > 0; i--)
-    {
-      int index = rnd.nextInt(i + 1);
-      // Simple swap
-      int a = ar[index];
-      ar[index] = ar[i];
-      ar[i] = a;
+	public static void shuffleArray(int[] a) {
+    int n = a.length;
+    Random random = new Random();
+    random.nextInt();
+    for (int i = 0; i < n; i++) {
+      int change = i + random.nextInt(n - i);
+      swap(a, i, change);
     }
   }
+
+  private static void swap(int[] a, int i, int change) {
+    int helper = a[i];
+    a[i] = a[change];
+    a[change] = helper;
+  }
+
 
 	/* Classes de l'interface Individu
 	 */
@@ -40,7 +41,7 @@ public class Individu_VDC implements Individu {
 	public double adaptation() {
 		double adapt = 0;
 		for(int i = 1; i < _ind.length; ++i)
-			adapt += Math.abs(Math.sqrt(Math.pow(_x[i-1]-_x[i],2)+Math.pow(_y[i-1]-_y[i],2)));
+			adapt += Math.abs(Math.sqrt(Math.pow(_x[_ind[i-1]]-_x[_ind[i]],2)+Math.pow(_y[_ind[i-1]]-_y[_ind[i]],2)));
 		return 1/adapt;
 	}
 
@@ -51,17 +52,25 @@ public class Individu_VDC implements Individu {
 		int index = 0;
 		Random random = new Random();
 		index = random.nextInt(_ind.length-1);
+		//On copie la première partie du parent 1
+		for(int i=0; i<_ind.length; ++i)
+			ind._ind[i] = -1;
 		for(int i=0; i<=index; ++i)
-			((Individu_VDC)ind)._ind[i] =_ind[i];
-		++index;		
+			ind._ind[i] =_ind[i];
+		++index;
 		for(int i=0; i<_ind.length; ++i)
 		{
-			if(!Arrays.asList(res).contains(((Individu_VDC)conjoint)._ind[i]))
+			boolean p = false;
+			for(int t : ind._ind)
+				if(t == ((Individu_VDC)conjoint)._ind[i])
+					p = true;
+			if(!p)
 			{
-				((Individu_VDC)ind)._ind[index]=((Individu_VDC)conjoint)._ind[i];
+				ind._ind[index]=((Individu_VDC)conjoint)._ind[i];
 				++index;
 			}
 		}
+
 		res[0] = ind;
 		return res;
 	}
