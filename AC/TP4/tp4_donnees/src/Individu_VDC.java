@@ -37,9 +37,12 @@ public class Individu_VDC implements Individu {
 	 */
 	@Override
 	public double adaptation() {
-		// TODO 
-		return 0;
+		double adapt = 0;
+		for(int i = 1; i < _ind.length; ++i)
+			adapt += Math.abs(Math.sqrt(Math.pow(_x[i-1]-_x[i],2)+Math.pow(_y[i-1]-_y[i],2)));
+		return adapt;
 	}
+
 	@Override
 	public Individu[] croisement(Individu conjoint) {
 		// TODO 
