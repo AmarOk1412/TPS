@@ -314,8 +314,8 @@ public class Allocateur {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Calcule le numéro de la composante fortement connexe pour chaque processus
+	 * @return un tableau d'entiers
 	 */
 	public Integer[] CFC()
 	{
@@ -340,14 +340,16 @@ public class Allocateur {
 	}
 	
 	/**
-	 * 
-	 * @param i
-	 * @param date
-	 * @param DEBUT
-	 * @param stack
-	 * @param NCFC
-	 * @param _cfc
-	 * @return
+	 * Calcule le min, le NCFC (le numéro de la composante fortement connexe), ainsi que la date  
+	 * après application de l'algorithme de Tarjan au sommet i
+	 * @param i : indice désignant le numéro d'un sommet
+	 * @param date : la date de découverte d'un sommet
+	 * @param DEBUT : tableau contenant la date de première visite de chaque sommet
+	 * @param stack : la pile
+	 * @param NCFC : le numéro de la composante fortement connexe
+	 * @param _cfc : tableau des numéros de composantes fortement connexes 
+	 * 							 avec pour indice le numéro du sommet
+	 * @return un tableau d'entiers
 	 */
 	public Integer[] tarjan(Integer i, Integer date, Integer[] DEBUT, Deque<Integer> stack, Integer NCFC, Integer[] _cfc)
 	{
