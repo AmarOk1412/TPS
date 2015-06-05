@@ -43,7 +43,7 @@
 \subsection{Objectif}
 Dans la première partie de ce TP, nous allons étudier le problème du sac à dos. Pour cela, nous allons utiliser le principe d'algorithme génétique. Le problème est représenté par une liste de poids, un tableau de booléen qui renvoie true si le poids i est présent dans le sac, ainsi qu'une capacité maximale. Le but étant de maximiser le nombre de poids qu'on peut mettre dans un sac sans dépasser sa capacité maximale.
 \subsection{Moyens mis en \oe uvre}
-On a commencé par compléter la classe Individu_SAD qui réprésente un individu dans le cadre du problème du sac à dos.
+On a commencé par compléter la classe Individu\_SAD qui réprésente un individu dans le cadre du problème du sac à dos.
 \begin{minted}{java}
 boolean[] _individu = null;
 double[] _weights = null;
@@ -78,12 +78,12 @@ public boolean[] getIndividu()
 	return _individu;
 }
 \end{minted}
-Pour le croisement de deux individus, on choisit un indice au hasard et on inverse les sous-chaines.
+Le croisement de deux individus s'éffectue en prenant un indice au hasard afin de couper les chaines des parents en 2 sous chaines. Ainsi le premier enfant sera composé de la sous chaine parent1[0:i], parent2[i+1:fin], pour le second ce sera parent2[0:i], parent1[i+1:fin]. La mutation s'effectue en inversant un gene de l'ADN.
 \begin{minted}{java}
 /**
  * renvoie un tableau de 2 individus constituant les
  * enfants de la reproduction entre this et conjoint
- * @param conjoint à accoupler avec l'objet courant
+ * @param conjoint a accoupler avec l'objet courant
  * @return tableau des 2 enfants
  */
 public Individu[] croisement(Individu conjoint)
@@ -112,8 +112,8 @@ public Individu[] croisement(Individu conjoint)
 }
 
 /**
- * applique l'opérateur de mutation
- * associé à la probabilité prob
+ * applique l'operateur de mutation
+ * associe e la probabilite prob
  */
 public void mutation(double prob)
 {
@@ -122,12 +122,12 @@ public void mutation(double prob)
 			_individu[i] = !_in
 }
 \end{minted}
-Ensuite, nous avons complété la classe population qui réprésente un ensemble d'individus.
+Ensuite, nous avons complété la classe Population qui réprésente un ensemble d'individus. La reproduction est élitiste dans le sens ou on garde à chaque fois le meilleur individu de la population précédente.
 \begin{minted}{java}
 private List<Indiv> population;
 
 /**
- * construit une population à partir d'un tableau d'individu
+ * construit une population a partir d un tableau d individu
  */
 Population(Indiv[] popu){
 	population = new LinkedList<Indiv>();
@@ -136,10 +136,10 @@ Population(Indiv[] popu){
 }
 
 /**
- * sélectionne un individu (sélection par roulette par exemple, cf TD)
+ * selectionne un individu (selection par roulette par exemple, cf TD)
  * @param adapt_totale somme des adaptations de tous 
- * les individus (pour ne pas avoir à la recalculer)
- * @return indice de l'individu sélectionné
+ * les individus (pour ne pas avoir a la recalculer)
+ * @return indice de l'individu selectionne
  */
 public int selection(double adapt_totale){
 	while(true)
@@ -152,17 +152,17 @@ public int selection(double adapt_totale){
 }
 
 /**
- * remplace la génération par la suivante
+ * remplace la generation par la suivante
  * (croisement + mutation)
- * @param prob_mut probabilité de mutation
+ * @param prob_mut probabilite de mutation
  */
 @SuppressWarnings("unchecked")
 public void reproduction(double prob_mut) {
 	
-	/***** on construit la nouvelle génération ****/
+	/***** on construit la nouvelle generation ****/
 	List<Indiv> new_generation = new LinkedList<Indiv>();
 	
-	/* élitisme */
+	/* elitisme */
 	new_generation.add(individu_maximal());
 
 	double adapt = 0;
@@ -170,19 +170,19 @@ public void reproduction(double prob_mut) {
 		adapt += i.adaptation();
 	// tant qu'on n'a pas le bon nombre 
 	while (new_generation.size()<population.size()){
-		// on sélectionne les parents
+		// on selectionne les parents
 		Indiv p1 = population.get(selection(adapt));
 		Indiv p2 = population.get(selection(adapt));
 		
 		// ils se reproduisent
 		Individu[] enfants = p1.croisement(p2);
 		
-		// on les ajoute à la nouvelle génération
+		// on les ajoute a la nouvelle generation
 		for(int i = 0; i < enfants.length; ++i)
 			new_generation.add((Indiv) enfants[i]);
 	}
 	
-	// on applique une éventuelle mutation à toute la nouvelle génération
+	// on applique une eventuelle mutation a toute la nouvelle generation
 	boolean first = true;
 	for(Indiv i : new_generation)
 		if(!first)
@@ -226,11 +226,11 @@ public double adaptation_maximale(){
 	return individu_maximal().adaptation();
 }
 \end{minted}
-Enfin, pour tester l'algorithme nous avons complété la classe Client_Sac_A_Dos.
+Enfin, pour tester l'algorithme nous avons complété la classe Client\_Sac\_A\_Dos.
 \begin{minted}{java}
 public static void main(String[] args){
 	
-	/* paramètres */ 
+	/* parametres */ 
 	int nbr_indiv=100;
 	double prob_mut=0.1;
 	
@@ -246,7 +246,7 @@ public static void main(String[] args){
 	double[] poids = charge_poids("../data_sad/nbrobj"+nbr_objets+"_capacite"+capacite+".txt",nbr_objets);
 	
 	
-	/* on crée une population (aléatoire)
+	/* on cree une population (aleatoire)
 	 * de nbr_indiv individus de taille nbr_objets
 	 */
 	Individu_SAD[] pop = new Individu_SAD[nbr_indiv];
@@ -255,17 +255,17 @@ public static void main(String[] args){
 	Population _p = new Population(pop);
 
 	
-	/* on génére les générations successives
+	/* on genere les generations successives
 	 * en faisant se reproduire la population
-	 * et on affiche l'adaptation moyenne et maximale de chaque génération
-	 * on s'arrête si on a atteint la capacité ou si on fait un nombre donné (paramètre) d'itérations
-	 * le résultat est alors donné par l'individu maximal de la dernière génération
+	 * et on affiche l'adaptation moyenne et maximale de chaque generation
+	 * on s'arrete si on a atteint la capacité ou si on fait un nombre donne (parametre) d iterations
+	 * le resultat est alors donne par l individu maximal de la derniere generation
 	 */
 	int it = 0;
 	double best = -1;
 	while(it < 10000 && best < capacite)
 	{
-		System.out.println("Génération " + it);
+		System.out.println("Generation " + it);
 		System.out.println("Adaptation moyenne : " + _p.adaptation_moyenne());
 		System.out.println("Adaptation maximale : " + _p.adaptation_maximale());
 		_p.reproduction(prob_mut);
@@ -274,7 +274,7 @@ public static void main(String[] args){
 	}
 	
 	boolean[] val= ((Individu_SAD)_p.individu_maximal()).getIndividu();
-		System.out.println("Résultat : ");
+		System.out.println("Resultat : ");
 	for(boolean b : val)
 		System.out.print(b?"1":"0");
 	System.out.println("\nAvec un score de :"+_p.individu_maximal().adaptation());
@@ -317,7 +317,7 @@ Population _p = new Population(pop);
 /* on genere les generations successives
  * en faisant se reproduire la population
  * et on affiche l'adaptation moyenne et maximale de chaque generation
- * on s'arrete si on a atteint la capacite ou si on fait un nombre donne (parametre) d'iterations
+ * on s'arrete si on a atteint la capacite ou si on fait un nombre donne (parametre) d iterations
  * le resultat est alors donne par l'individu maximal de la derniere generation
  */
 int it = 0;
@@ -372,7 +372,8 @@ L'adaptation consiste à calculer la longueur du trajet. Dans ce cas, plus le sc
 public double adaptation() {
 	double adapt = 0;
 	for(int i = 1; i < _ind.length; ++i)
-		adapt += Math.abs(Math.sqrt(Math.pow(_x[_ind[i-1]]-_x[_ind[i]],2)+Math.pow(_y[_ind[i-1]]-_y[_ind[i]],2)));
+		adapt += Math.abs(Math.sqrt(Math.pow(_x[_ind[i-1]]-_x[_ind[i]],2)
+		+Math.pow(_y[_ind[i-1]]-_y[_ind[i]],2)));
 	return 1/adapt;
 }
 \end{minted}

@@ -81,4 +81,3 @@ public class Client_Sac_A_Dos {
 		System.out.println("\nAvec un score de :"+_p.individu_maximal().adaptation());
 	}
 }
-

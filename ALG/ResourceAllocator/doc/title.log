@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.13)  19 MAY 2015 17:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.27)  28 MAY 2015 15:06
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -559,93 +559,162 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 44.
  [1]
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
 
  []
 
 <images/acte1.png, id=23, 193.72375pt x 273.02pt>
 File: images/acte1.png Graphic file (type png)
  <use images/acte1.png>
-Package pdftex.def Info: images/acte1.png used on input line 82.
+Package pdftex.def Info: images/acte1.png used on input line 83.
 (pdftex.def)             Requested size: 96.86163pt x 136.50966pt.
 
 <images/acte2.png, id=24, 193.72375pt x 273.02pt>
 File: images/acte2.png Graphic file (type png)
  <use images/acte2.png>
-Package pdftex.def Info: images/acte2.png used on input line 90.
+Package pdftex.def Info: images/acte2.png used on input line 91.
 (pdftex.def)             Requested size: 96.86163pt x 136.50966pt.
 
 <images/acte3.png, id=25, 193.72375pt x 273.02pt>
 File: images/acte3.png Graphic file (type png)
  <use images/acte3.png>
-Package pdftex.def Info: images/acte3.png used on input line 98.
+Package pdftex.def Info: images/acte3.png used on input line 99.
 (pdftex.def)             Requested size: 96.86163pt x 136.50966pt.
 
 [2 <./images/acte1.png> <./images/acte2.png>]
 <images/acte4.png, id=29, 193.72375pt x 273.02pt>
 File: images/acte4.png Graphic file (type png)
  <use images/acte4.png>
-Package pdftex.def Info: images/acte4.png used on input line 107.
+Package pdftex.def Info: images/acte4.png used on input line 108.
 (pdftex.def)             Requested size: 96.86163pt x 136.50966pt.
 
 <images/acte5.png, id=30, 258.9675pt x 273.02pt>
 File: images/acte5.png Graphic file (type png)
  <use images/acte5.png>
-Package pdftex.def Info: images/acte5.png used on input line 116.
+Package pdftex.def Info: images/acte5.png used on input line 117.
 (pdftex.def)             Requested size: 129.48341pt x 136.50966pt.
 
 [3 <./images/acte3.png> <./images/acte4.png>]
 <images/acte6.png, id=34, 258.9675pt x 273.02pt>
 File: images/acte6.png Graphic file (type png)
  <use images/acte6.png>
-Package pdftex.def Info: images/acte6.png used on input line 125.
+Package pdftex.def Info: images/acte6.png used on input line 126.
 (pdftex.def)             Requested size: 129.48341pt x 136.50966pt.
 
 <images/acte8.png, id=35, 369.38pt x 375.4025pt>
 File: images/acte8.png Graphic file (type png)
  <use images/acte8.png>
-Package pdftex.def Info: images/acte8.png used on input line 142.
+Package pdftex.def Info: images/acte8.png used on input line 143.
 (pdftex.def)             Requested size: 184.68954pt x 187.70079pt.
 
 [4 <./images/acte5.png> <./images/acte6.png>]
 <images/acte10.png, id=39, 253.94875pt x 198.7425pt>
 File: images/acte10.png Graphic file (type png)
  <use images/acte10.png>
-Package pdftex.def Info: images/acte10.png used on input line 159.
+Package pdftex.def Info: images/acte10.png used on input line 160.
 (pdftex.def)             Requested size: 126.97406pt x 99.371pt.
 
 <images/acte11.png, id=40, 194.7275pt x 208.78pt>
 File: images/acte11.png Graphic file (type png)
  <use images/acte11.png>
-Package pdftex.def Info: images/acte11.png used on input line 168.
+Package pdftex.def Info: images/acte11.png used on input line 169.
 (pdftex.def)             Requested size: 97.3635pt x 104.38972pt.
 
-[5 <./images/acte8.png> <./images/acte10.png>] [6 <./images/acte11.png>]
-(./title.aux) ) 
+[5 <./images/acte8.png> <./images/acte10.png>]
+<images/test1.png, id=44, 573.14125pt x 60.225pt>
+File: images/test1.png Graphic file (type png)
+ <use images/test1.png>
+Package pdftex.def Info: images/test1.png used on input line 182.
+(pdftex.def)             Requested size: 286.56992pt x 30.11241pt.
+
+<images/test2.png, id=45, 575.14874pt x 191.71625pt>
+File: images/test2.png Graphic file (type png)
+ <use images/test2.png>
+Package pdftex.def Info: images/test2.png used on input line 184.
+(pdftex.def)             Requested size: 287.57367pt x 95.85788pt.
+
+<images/test3.png, id=46, 575.14874pt x 191.71625pt>
+File: images/test3.png Graphic file (type png)
+ <use images/test3.png>
+Package pdftex.def Info: images/test3.png used on input line 186.
+(pdftex.def)             Requested size: 287.57367pt x 95.85788pt.
+
+<images/test4.png, id=47, 580.1675pt x 192.72pt>
+File: images/test4.png Graphic file (type png)
+ <use images/test4.png>
+Package pdftex.def Info: images/test4.png used on input line 188.
+(pdftex.def)             Requested size: 290.08302pt x 96.35976pt.
+
+<images/test5.png, id=48, 580.1675pt x 192.72pt>
+File: images/test5.png Graphic file (type png)
+ <use images/test5.png>
+Package pdftex.def Info: images/test5.png used on input line 190.
+(pdftex.def)             Requested size: 290.08302pt x 96.35976pt.
+
+<images/test6.png, id=49, 580.1675pt x 192.72pt>
+File: images/test6.png Graphic file (type png)
+ <use images/test6.png>
+Package pdftex.def Info: images/test6.png used on input line 192.
+(pdftex.def)             Requested size: 290.08302pt x 96.35976pt.
+
+<images/test7.png, id=50, 580.1675pt x 422.57875pt>
+File: images/test7.png Graphic file (type png)
+ <use images/test7.png>
+Package pdftex.def Info: images/test7.png used on input line 194.
+(pdftex.def)             Requested size: 290.08302pt x 211.28885pt.
+
+<images/test8.png, id=51, 580.1675pt x 192.72pt>
+File: images/test8.png Graphic file (type png)
+ <use images/test8.png>
+Package pdftex.def Info: images/test8.png used on input line 196.
+(pdftex.def)             Requested size: 290.08302pt x 96.35976pt.
+
+<images/test9.png, id=52, 580.1675pt x 192.72pt>
+File: images/test9.png Graphic file (type png)
+ <use images/test9.png>
+Package pdftex.def Info: images/test9.png used on input line 198.
+(pdftex.def)             Requested size: 290.08302pt x 96.35976pt.
+
+<images/test10.png, id=53, 639.38875pt x 315.1775pt>
+File: images/test10.png Graphic file (type png)
+ <use images/test10.png>
+Package pdftex.def Info: images/test10.png used on input line 200.
+(pdftex.def)             Requested size: 319.69359pt x 157.58836pt.
+
+<images/test11.png, id=54, 580.1675pt x 192.72pt>
+File: images/test11.png Graphic file (type png)
+ <use images/test11.png>
+Package pdftex.def Info: images/test11.png used on input line 202.
+(pdftex.def)             Requested size: 290.08302pt x 96.35976pt.
+
+[6 <./images/acte11.png> <./images/test1.png> <./images/test2.png> <./images/te
+st3.png>] [7 <./images/test4.png> <./images/test5.png> <./images/test6.png> <./
+images/test7.png>] [8 <./images/test8.png> <./images/test9.png> <./images/test1
+0.png> <./images/test11.png>] (./title.aux) ) 
 Here is how much of TeX's memory you used:
- 4758 strings out of 495025
- 64856 string characters out of 6181515
+ 4812 strings out of 495025
+ 65869 string characters out of 6181515
  140036 words of memory out of 5000000
- 7882 multiletter control sequences out of 15000+600000
+ 7925 multiletter control sequences out of 15000+600000
  11252 words of font info for 24 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  37i,6n,37p,291b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super
--t1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/cm-super/sfrm1000.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/cm-super/sfrm1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-s
-uper/sfrm1728.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sf
-rm2488.pfb>
-Output written on title.pdf (7 pages, 212546 bytes).
+{/usr/share/texlive/texmf-dist/fon
+ts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/cm-super/sfbx1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-s
+uper/sfbx1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sf
+bx1440.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1728.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/cm-super/sfrm2488.pfb>
+Output written on title.pdf (9 pages, 255205 bytes).
 PDF statistics:
- 85 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
+ 102 PDF objects out of 1000 (max. 8388607)
+ 57 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
 
